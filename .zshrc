@@ -5,6 +5,8 @@
 
 # Set to use xterm for colorschemes in Vim
 export TERM=xterm-256color
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
 export ZSH="/Users/simengangstad/.oh-my-zsh"
 

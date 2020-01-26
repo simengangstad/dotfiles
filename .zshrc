@@ -3,6 +3,9 @@
 
 [[ $TERM != "screen" ]] && exec tmux
 
+# Set to use xterm for colorschemes in Vim
+export TERM=xterm-256color
+
 export ZSH="/Users/simengangstad/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"

@@ -18,7 +18,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 syntax on 
 syntax enable
-colorscheme tender
+colorscheme tender 
 
 let g:lightline = { 'colorscheme': 'tender' }
 let g:airline_theme = 'tender'

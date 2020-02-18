@@ -8,7 +8,7 @@ export TERM=xterm-256color
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
-export ZSH="/Users/simengangstad/.oh-my-zsh"
+export ZSH="/home/simengangstad/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
@@ -71,6 +71,15 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+		source /usr/share/powerline/bindings/bash/powerline.sh
+	fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+fi
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

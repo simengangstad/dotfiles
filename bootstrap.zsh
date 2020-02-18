@@ -10,18 +10,23 @@ echo "Setting up aliases for git"
 git config --global alias.lg "log --all --oneline --graph"
 git config --global alias.ac '!git add -A && git commit -m'
 
-echo "Enabling clipboard support"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	echo "Enabling clipboard support"
 	sudo apt-get install powerline xclip
+	echo "Installing vivid for LS_COLORS"
+	wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
+	sudo dpkg -i vivid_0.5.0_amd64.deb
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-        # Mac OSX
+
 fi
 
 echo "Copying custom zsh theme"
 cp minimized.zsh-theme $HOME/.oh-my-zsh/themes/minimized.zsh-theme
 
-echo "Installing vivid for LS_COLORS"
-wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
-sudo dpkg -i vivid_0.5.0_amd64.deb
-
 echo "Finished setup, now run PluginInstall in Vim"
+
+if [[ "$OSTYPE" == "darwin" ]]; then
+	echo "Remember to import the minimized theme into Terminal.app"
+fi
+
+

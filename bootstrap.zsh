@@ -10,11 +10,15 @@ echo "Setting up aliases for git"
 git config --global alias.lg "log --all --oneline --graph"
 git config --global alias.ac '!git add -A && git commit -m'
 
+echo "Enabling clipboard support"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt-get install powerline xclip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
 fi
+
+echo "Copying custom zsh theme"
+cp minimized.zsh-theme $HOME/.oh-my-zsh/themes/minimized.zsh-theme
 
 
 echo "Finished setup, now run PluginInstall in Vim"

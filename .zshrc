@@ -1,7 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-[[ $TERM != "screen" ]] && exec tmux
+if [[ -z "$TMUX" ]] ;then
+    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+    if [[ -z "$ID" ]] ;then # if not available create a new one
+        tmux new-session
+    else
+        tmux attach-session -t "$ID" # if available attach to it
+    fi
+fi
 
 # Set to use xterm for colorschemes in Vim
 export LC_ALL=en_US.UTF-8  
@@ -81,7 +88,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 		source /usr/share/powerline/bindings/bash/powerline.sh
 	fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-        # Mac OSX
+	# alias vi=/usr/local/bin/vim
+	# alias vim=/usr/local/bin/vim
 fi
 
 

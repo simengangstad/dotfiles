@@ -10,8 +10,8 @@ export LANG=en_US.UTF-8
 
 export ZSH="/home/simengangstad/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
-
+ZSH_THEME="minimized"
+export LS_COLORS="$(vivid generate snazzy)"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 

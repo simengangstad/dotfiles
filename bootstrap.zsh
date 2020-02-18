@@ -20,5 +20,8 @@ fi
 echo "Copying custom zsh theme"
 cp minimized.zsh-theme $HOME/.oh-my-zsh/themes/minimized.zsh-theme
 
+echo "Installing vivid for LS_COLORS"
+wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
+sudo dpkg -i vivid_0.5.0_amd64.deb
 
 echo "Finished setup, now run PluginInstall in Vim"

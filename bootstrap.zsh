@@ -10,3 +10,11 @@ echo "Setting up aliases for git"
 git config --global alias.lg "log --all --oneline --graph"
 git config --global alias.ac '!git add -A && git commit -m'
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	sudo apt-get install powerline
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+fi
+
+
+echo "Finished setup, now run PluginInstall in Vim"

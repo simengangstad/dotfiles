@@ -11,7 +11,7 @@ git config --global alias.lg "log --all --oneline --graph"
 git config --global alias.ac '!git add -A && git commit -m'
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	sudo apt-get install powerline
+	sudo apt-get install powerline xclip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
 fi

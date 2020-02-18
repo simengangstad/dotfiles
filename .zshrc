@@ -4,14 +4,18 @@
 [[ $TERM != "screen" ]] && exec tmux
 
 # Set to use xterm for colorschemes in Vim
-export TERM=xterm-256color
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
-
-export ZSH="/home/simengangstad/.oh-my-zsh"
+export TERM=xterm-256color
+export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="minimized"
-export LS_COLORS="$(vivid generate snazzy)"
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	export LS_COLORS="$(vivid generate snazzy)"
+fi
+
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 

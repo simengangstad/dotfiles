@@ -88,8 +88,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 		source /usr/share/powerline/bindings/bash/powerline.sh
 	fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	# alias vi=/usr/local/bin/vim
-	# alias vim=/usr/local/bin/vim
+	alias vi=/usr/local/bin/vim
+	alias vim=/usr/local/bin/vim
 fi
 
 

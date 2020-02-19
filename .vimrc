@@ -7,8 +7,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jacoborus/tender.vim'
-Plugin 'justmao945/vim-clang'
-Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()          
 filetype plugin indent on
@@ -22,8 +21,8 @@ endif
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on 
 syntax enable
-colorscheme tender 
 
+colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
 let g:airline_theme = 'tender'
 
@@ -33,6 +32,7 @@ let g:clang_c_options = '-std=gnu11'
 let g:clang_cpp_options = '-std=c++17 -stdlib=libc++' 
 let g:clang_cpp_competeopt = ''
 let g:clang_check_syntax_auto = 1
+let g:ycm_use_clangd = 0
 
 " Platform specifics
 if !exists("g:os")

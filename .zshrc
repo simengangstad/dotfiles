@@ -90,6 +90,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 	alias vi=/usr/local/bin/vim
 	alias vim=/usr/local/bin/vim
+	alias cdcloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 fi
 
 

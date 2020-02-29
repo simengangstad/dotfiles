@@ -42,6 +42,7 @@ endif
 if g:os == "Darwin"
 	let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 elseif g:os == "Linux"
+	let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang-6.0.so.1'
 endif
 
 " Netrw

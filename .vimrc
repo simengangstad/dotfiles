@@ -33,6 +33,7 @@ let g:clang_cpp_options = '-std=c++17 -stdlib=libc++'
 let g:clang_cpp_competeopt = ''
 let g:clang_check_syntax_auto = 1
 let g:ycm_use_clangd = 0
+let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
 
 " Platform specifics
 if !exists("g:os")

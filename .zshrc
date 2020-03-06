@@ -1,13 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [[ -z "$TMUX" ]] ;then
-    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
-    if [[ -z "$ID" ]] ;then # if not available create a new one
-        tmux new-session
-    else
-        tmux attach-session -t "$ID" # if available attach to it
-    fi
+if [[ ! $TERM =~ screen ]]; then
+    exec tmux
 fi
 
 # Set to use xterm for colorschemes in Vim
@@ -94,21 +89,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib65
+export PATH=$PATH:$CUDA_HOME/bin
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"

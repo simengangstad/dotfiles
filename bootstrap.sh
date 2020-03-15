@@ -4,7 +4,8 @@ echo "Installing ohmyzsh"
 sudo apt install curl zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-echo "Installing Vundle"
+echo "Installing Vim and dependencies"
+sudo apt install vim cmake python3-dev
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 echo "Setting up aliases for git"
@@ -19,7 +20,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt install ./vivid_*.deb
 
 	echo "Installing i3"
-	sudo apt install i3
+	sudo apt install i3 i3blocks
 	mkdir -p $HOME/.config/i3
 
 	echo "Installing playerctl"
@@ -32,26 +33,26 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	echo "Installing i3lock-color"
 	git clone https://github.com/Raymo111/i3lock-color.git
-	pushd i3lock-color
-		sudo apt install autoreconf	
-		autoreconf -fiv
+	cd i3lock-color
+	sudo apt install pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev autoconf
+	autoreconf -fiv
 
-		rm -rf build/
-		mkdir -p build && cd build/
+	rm -rf build/
+	mkdir -p build && cd build/
 
-		../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-		make
-	popd
+	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+	make
+	cd ..
 fi
 
 echo "Copying custom zsh theme"
 cp minimized.zsh-theme $HOME/.oh-my-zsh/themes/minimized.zsh-theme
 
 
+chsh -s $(which zsh)
 echo "Finished setup, now run PluginInstall in Vim"
 
 if [[ "$OSTYPE" == "darwin" ]]; then
 	echo "Remember to import the minimized theme into Terminal.app"
 fi
-
 

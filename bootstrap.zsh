@@ -15,13 +15,39 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt-get install powerline xclip
 	echo "Installing vivid for LS_COLORS"
 	wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
-	sudo dpkg -i vivid_0.5.0_amd64.deb
+	sudo apt install ./vivid_*.deb
+
+	echo "Installing i3"
+	sudo apt install i3
+	mkdir -r $HOME/.config/i3
+
+	echo "Installing playerctl"
+	wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"
+	sudo apt install ./playerctl-*.deb
+
+	echo "Installing icons, themes and feh"
+	sudo add-apt-repository ppa:noobslab/icons
+	sudo apt update && sudo apt install ultra-flat-icons gnome-themes-standard gtk2-engines-murrine libglib2.0-dev libxml2-utils materia-gtk-theme feh
+
+	echo "Installing i3lock-color"
+	git clone git@github.com:Raymo111/i3lock-color.git
+	pushd i3lock-color
+	
+		autoreconf -fiv
+
+		rm -rf build/
+		mkdir -p build && cd build/
+
+		../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+		make
+	popd
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 
 fi
 
 echo "Copying custom zsh theme"
 cp minimized.zsh-theme $HOME/.oh-my-zsh/themes/minimized.zsh-theme
+
 
 echo "Finished setup, now run PluginInstall in Vim"
 

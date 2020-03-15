@@ -1,6 +1,7 @@
-#!/bin/zsh
+#!/bin/bash
 
 echo "Installing ohmyzsh"
+sudo apt install curl zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 echo "Installing Vundle"
@@ -19,7 +20,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	echo "Installing i3"
 	sudo apt install i3
-	mkdir -r $HOME/.config/i3
+	mkdir -p $HOME/.config/i3
 
 	echo "Installing playerctl"
 	wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"
@@ -30,9 +31,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt update && sudo apt install ultra-flat-icons gnome-themes-standard gtk2-engines-murrine libglib2.0-dev libxml2-utils materia-gtk-theme feh
 
 	echo "Installing i3lock-color"
-	git clone git@github.com:Raymo111/i3lock-color.git
+	git clone https://github.com/Raymo111/i3lock-color.git
 	pushd i3lock-color
-	
+		sudo apt install autoreconf	
 		autoreconf -fiv
 
 		rm -rf build/
@@ -41,8 +42,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 		../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 		make
 	popd
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-
 fi
 
 echo "Copying custom zsh theme"

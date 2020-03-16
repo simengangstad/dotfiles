@@ -45,5 +45,6 @@ $HOME/.config/i3/i3lock-color \
 --verif-font="FontAwesome" \
 --wrong-font="FontAwesome" \
 --time-font="System Ubuntu" \
---date-font="FontAwesome"
+--date-font="FontAwesome" \
+-t
 

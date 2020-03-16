@@ -18,7 +18,7 @@
     urgent-foreground:           @foreground;
     alternate-urgent-background: @background;
     active-foreground:           @foreground;
-    selected-active-foreground:  @foreground;
+	selected-active-foreground:  @grey;
     alternate-normal-foreground: @foreground;
     alternate-active-background: @beige;
     bordercolor:                 @foreground;

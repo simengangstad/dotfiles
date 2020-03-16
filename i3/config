@@ -64,10 +64,10 @@ bindsym Mod1+Return exec i3-sensible-terminal
 bindsym Mod1+q kill
 
 # start rofi in run configuration 
-bindsym Mod1+d exec --no-startup-id rofi -show drun -show-icons -icon-theme Ultra-Flat-Icons -font "System Ani 40"
+bindsym Mod1+d exec --no-startup-id rofi -show drun -display-drun "" -show-icons -icon-theme Ultra-Flat-Icons -font "System Ani 40"
 
 # start rofi in window configuration 
-bindsym Mod1+c exec --no-startup-id rofi -show window
+bindsym Mod1+c exec --no-startup-id rofi -show window -display-window ""
 
 # Screen shot
 bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'

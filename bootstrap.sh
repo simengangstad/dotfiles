@@ -20,7 +20,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt install ./vivid_*.deb
 
 	echo "Installing i3"
-	sudo apt install i3 i3blocks
+	sudo apt install i3 i3blocks fonts-font-awesome rofi xautolock
 	mkdir -p $HOME/.config/i3
 
 	echo "Installing playerctl"

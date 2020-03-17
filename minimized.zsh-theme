@@ -13,7 +13,7 @@ PROMPT='%{$fg_bold[blue]%}$(_collapsed_wd)%{$reset_color%} \
 $(git_prompt_info)\
 %{$fg[015]%}$PROMPT_SYMBOL '
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%} %{$FG[203]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[white]%} %{$FG[203]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN=""

@@ -1,23 +1,29 @@
+exec_always --no-startup-id compton --config /home/simengangstad/.config/compton.conf
+
 ##################################################
 ####			      Theme				      ####
 ##################################################
 
-
 font pango:ubuntu, 11
-new_window 1pixel
+
+# i3 gaps
+gaps inner 15
+for_window [class   = ".*"] border pixel 1
+for_window [title   = ".*"] border pixel 1
+smart_gaps on
 
 # Color palette: https://github.com/jacoborus/tender.vim 
 
-set $focus-color 				#44778d
+# set $focus-color 				#44778d
+set $focus-color 				#ffffff
 set $base-color					#303030
-set $base-dimmed-color			#262626
 set $urgent-color     			#ffcb6b
 set $text-color 				#ffffff
 set $text-dimmed-color 			#666666
 set $active-color 				#44778d
 
 #                       border              background         text                 indicator
-client.focused          $base-color 	 	$active-color 	   $text-color			#424242
+client.focused          $base-color 	 	$focus-color 	   $text-color			#424242
 client.unfocused        $base-color 		$base-color    	   $text-dimmed-color 	#424242 
 client.focused_inactive $base-color  		$base-color    	   $text-dimmed-color 	#424242 
 client.urgent           $urgent-color    	$urgent-color      $text-dimmed-color   #424242
@@ -30,9 +36,9 @@ bar {
         separator   #666666
 
 		# 				   border				background 			text
-        focused_workspace  $focus-color 		$focus-color 		$text-color
+        focused_workspace  $focus-color 		$focus-color 		$base-color
         active_workspace   $base-color 			$base-color 		$text-color
-        inactive_workspace $base-color 			$base-color 		$text-color 
+        inactive_workspace $base-color 			$base-color 	 	$text-color 
         urgent_workspace   #2f343a 				#900000 			#ffffff
         binding_mode       #2f343a 				#900000 			#ffffff
     }
@@ -72,6 +78,7 @@ bindsym Mod1+c exec --no-startup-id rofi -show window -display-window ""
 # Screen shot
 bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
 
+# Map caps lock to escape
 exec_always setxkbmap -option caps:escape
 
 # change focus
@@ -198,9 +205,9 @@ bindsym Mod1+r mode "resize"
 ##################################################
 
 # Pulse Audio controls
-bindsym F12 exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym F11 exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym F10 exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym F12 exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
+bindsym F11 exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
+bindsym F10 exec --no-startup-id pactl set-sink-mute 2 toggle # mute sound
 
 # Media player controls
 bindsym F8 exec playerctl play-pause
@@ -214,4 +221,3 @@ bindsym F7 exec playerctl previous
 # Auto lock
 exec xautolock -time 10 -locker '$HOME/.config/i3/lock.sh' &
 
-# Cap

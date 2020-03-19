@@ -13,13 +13,19 @@ done
 rm -rf "$HOME/.config/i3" 
 ln -s "$SCRIPTPATH/i3" "$HOME/.config/i3"
 
+rm "$HOME/.config/i3/i3lock-color"
+ln -sv "$SCRIPTPATH/i3lock-color/build/i3lock" "$HOME/.config/i3/i3lock-color"
+
 # Rofi
 rm -rf "$HOME/.config/rofi" 
 ln -s "$SCRIPTPATH/rofi" "$HOME/.config/rofi"
 
-rm "$HOME/.config/i3/i3lock-color"
-ln -sv "$SCRIPTPATH/i3lock-color/build/i3lock" "$HOME/.config/i3/i3lock-color"
-
+# Compton
 rm "$HOME/.config/compton.conf"
 ln -sv "$SCRIPTPATH/compton.conf" "$HOME/.config/compton.conf"
+
+# Theme
+rm -rf "$HOME/.themes/minimized-dark" 
+ln -s "$SCRIPTPATH/minimized-dark" "$HOME/.themes/minimized-dark"
+
 

@@ -20,8 +20,24 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt install ./vivid_*.deb
 
 	echo "Installing i3"
-	sudo apt install i3 i3blocks fonts-font-awesome rofi xautolock
+	sudo apt install i3 i3blocks fonts-font-awesome rofi xautolock compton
 	mkdir -p $HOME/.config/i3
+
+	sudo add-apt-repository ppa:kgilmer/speed-ricer
+	sudo apt update
+	sudo apt install i3-gaps
+
+	# compile & install
+	autoreconf --force --install
+	rm -rf build/
+	mkdir -p build && cd build/
+
+	# Disabling sanitizers is important for release versions!
+	# The prefix and sysconfdir are, obviously, dependent on the distribution.
+	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+	make
+	sudo make install
+	cd ..
 
 	echo "Installing playerctl"
 	wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"
@@ -36,7 +52,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	cd i3lock-color
 	sudo apt install pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev autoconf
 	autoreconf -fiv
-
+	
 	rm -rf build/
 	mkdir -p build && cd build/
 

@@ -6,9 +6,10 @@
     beige:                       #d3b987; 
     blue:                        #44778d; 
 	green: 						 #c9d05c;
-	red: 						 #c5152f;
+	red: 						 #f38181;
+	white: 						 #e3fdfd;
 
-	selected: 					 @blue;
+	selected: 					 @red;
 	grey: 					 	 #262626;
 
     selected-normal-foreground:  @foreground;
@@ -18,31 +19,32 @@
     urgent-foreground:           @foreground;
     alternate-urgent-background: @background;
     active-foreground:           @foreground;
-	selected-active-foreground:  @grey;
+	selected-active-foreground:  @foreground;
     alternate-normal-foreground: @foreground;
-    alternate-active-background: @beige;
+    alternate-active-background: @background;
     bordercolor:                 @foreground;
     normal-background:           @background;
     selected-normal-background:  @selected;
-    separatorcolor:              @beige;
+    separatorcolor:              @white;
     spacing:                     3;
-    urgent-background:           @red;
+    urgent-background:           @background;
     alternate-urgent-foreground: @foreground;
-    selected-urgent-background:  @red;
-    alternate-active-foreground: @grey;
-    selected-active-background:  @beige;
-    active-background:           @beige;
+    selected-urgent-background:  @background;
+    alternate-active-foreground: @foreground;
+    selected-active-background:  @background;
+    active-background:           @background;
 }
 #window {
-    border:     1;
+    border:     0;
     text-color: @foreground;
     background-color: rgba ( 0, 0, 0, 0 % );
     padding:    5;
     text-color: @bordercolor;
     background-color: @background;
 	border-color: #333333;
-	font: "System Ubuntu 18";
+	font: "System Ubuntu, Bold 18";
 	width: 600px;
+	height: 200px;
 }
 #mainbox {
     border:  0;
@@ -65,7 +67,7 @@
 #element {
 	padding: 2px;
     border: 0;
-	font: "System Ubuntu 12";
+	font: "System Ubuntu, Bold 12";
 }
 #element.normal.normal {
     text-color: @normal-foreground;

@@ -1,8 +1,13 @@
 exec_always --no-startup-id compton --config /home/simengangstad/.config/compton.conf
+set $primary_monitor HDMI-0
+set $secondary_monitor DVI-D-0
+exec_always xrandr --output $primary_monitor --primary
 
 ##################################################
 ####			      Theme				      ####
 ##################################################
+
+# Palette: https://flatuicolors.com/palette/defo
 
 font pango:ubuntu, 11
 
@@ -11,11 +16,10 @@ gaps inner 15
 for_window [class   = ".*"] border pixel 1
 for_window [title   = ".*"] border pixel 1
 smart_gaps on
+smart_borders on
 
-# Color palette: https://github.com/jacoborus/tender.vim 
-
-# set $focus-color 				#44778d
-set $focus-color 				#ffffff
+set $focus-color 			    #bdc3c7	
+set $bar-focus-color 			#3498db
 set $base-color					#303030
 set $urgent-color     			#ffcb6b
 set $text-color 				#ffffff
@@ -23,7 +27,7 @@ set $text-dimmed-color 			#666666
 set $active-color 				#44778d
 
 #                       border              background         text                 indicator
-client.focused          $base-color 	 	$focus-color 	   $text-color			#424242
+client.focused          $base-color 	 	$focus-color 	   $base-color 			#424242
 client.unfocused        $base-color 		$base-color    	   $text-dimmed-color 	#424242 
 client.focused_inactive $base-color  		$base-color    	   $text-dimmed-color 	#424242 
 client.urgent           $urgent-color    	$urgent-color      $text-dimmed-color   #424242
@@ -36,7 +40,7 @@ bar {
         separator   #666666
 
 		# 				   border				background 			text
-        focused_workspace  $focus-color 		$focus-color 		$base-color
+        focused_workspace  $bar-focus-color 	$bar-focus-color 	$text-color
         active_workspace   $base-color 			$base-color 		$text-color
         inactive_workspace $base-color 			$base-color 	 	$text-color 
         urgent_workspace   #2f343a 				#900000 			#ffffff
@@ -70,7 +74,7 @@ bindsym Mod1+Return exec i3-sensible-terminal
 bindsym Mod1+q kill
 
 # start rofi in run configuration 
-bindsym Mod1+d exec --no-startup-id rofi -show drun -display-drun "" -show-icons -icon-theme Ultra-Flat-Icons -font "System Ani 40"
+bindsym Mod1+d exec --no-startup-id rofi -show drun -display-drun "" -show-icons -icon-theme Ultra-Flat-Icons 
 
 # start rofi in window configuration 
 bindsym Mod1+c exec --no-startup-id rofi -show window -display-window ""
@@ -115,8 +119,8 @@ bindsym Mod1+Control+v split v
 bindsym Mod1+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym Mod1+s layout stacking
-bindsym Mod1+w layout tabbed
+# bindsym Mod1+s layout stacking
+# bindsym Mod1+w layout tabbed
 bindsym Mod1+e layout toggle split
 
 # toggle tiling / floating
@@ -205,9 +209,9 @@ bindsym Mod1+r mode "resize"
 ##################################################
 
 # Pulse Audio controls
-bindsym F12 exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
-bindsym F11 exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
-bindsym F10 exec --no-startup-id pactl set-sink-mute 2 toggle # mute sound
+bindsym F12 exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym F11 exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym F10 exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
 
 # Media player controls
 bindsym F8 exec playerctl play-pause
@@ -221,3 +225,15 @@ bindsym F7 exec playerctl previous
 # Auto lock
 exec xautolock -time 10 -locker '$HOME/.config/i3/lock.sh' &
 
+# Define layout for workspaces
+
+workspace 1 output $primary_monitor
+workspace 3 output $primary_monitor
+workspace 5 output $primary_monitor
+workspace 7 output $primary_monitor
+workspace 9 output $primary_monitor 
+workspace 2 output $secondary_monitor 
+workspace 4 output $secondary_monitor 
+workspace 6 output $secondary_monitor 
+workspace 8 output $secondary_monitor 
+workspace 10 output $secondary_monitor 

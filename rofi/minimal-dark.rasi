@@ -4,12 +4,12 @@
     lightbg:                     #534c48;
     red:                         #f15d22;
     beige:                       #d3b987; 
-    blue:                        #44778d; 
+    blue:                        #3498db; 
 	green: 						 #c9d05c;
-	red: 						 #f38181;
+	red: 						 #ff7979;
 	white: 						 #e3fdfd;
 
-	selected: 					 @red;
+	selected: 					 @blue;
 	grey: 					 	 #262626;
 
     selected-normal-foreground:  @foreground;

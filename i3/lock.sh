@@ -4,11 +4,11 @@ BG=$HOME/.config/i3/wallpaper.png
 
 # Color palette: https://github.com/jacoborus/tender.vim 
 
-BACKGROUND_COLOR='#303030ff'
+BACKGROUND_COLOR='#202020ff'
 BACKGROUND_COLOR_DIMMED='#ffffffff'
 TEXT_COLOR='#ffffffff'
-ERROR_COLOR='#f43753ff'
-INPUT_COLOR='#44778dff'
+ERROR_COLOR='#c0392bff'
+INPUT_COLOR='#4e81edff'
 
 $HOME/.config/i3/i3lock-color \
 -i $BG 				 \

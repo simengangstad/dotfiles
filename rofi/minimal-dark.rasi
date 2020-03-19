@@ -1,10 +1,10 @@
 * {
     text-color:                  #f2f2f2;
-    background-color:            #303030;
+    background-color:            #202020;
     lightbg:                     #534c48;
     red:                         #f15d22;
     beige:                       #d3b987; 
-    blue:                        #3498db; 
+    blue:                        #4e81ed; 
 	green: 						 #c9d05c;
 	red: 						 #ff7979;
 	white: 						 #e3fdfd;
@@ -31,7 +31,7 @@
     alternate-urgent-foreground: @foreground;
     selected-urgent-background:  @background;
     alternate-active-foreground: @foreground;
-    selected-active-background:  @background;
+    selected-active-background:  @selected;
     active-background:           @background;
 }
 #window {

@@ -1,4 +1,5 @@
 exec_always --no-startup-id compton --config /home/simengangstad/.config/compton.conf
+
 set $primary_monitor HDMI-0
 set $secondary_monitor DVI-D-0
 exec_always xrandr --output $primary_monitor --primary
@@ -10,17 +11,18 @@ exec_always xrandr --output $primary_monitor --primary
 # Palette: https://flatuicolors.com/palette/defo
 
 font pango:ubuntu, 11
+new_window pixel 0
 
 # i3 gaps
 gaps inner 15
-for_window [class   = ".*"] border pixel 1
-for_window [title   = ".*"] border pixel 1
+for_window [class   = ".*"] border pixel 3
+for_window [title   = ".*"] border pixel 3
 smart_gaps on
 smart_borders on
 
-set $focus-color 			    #bdc3c7	
-set $bar-focus-color 			#3498db
-set $base-color					#303030
+set $focus-color 			    #202020
+set $bar-focus-color 			#4e81ed	
+set $base-color				    #202020
 set $urgent-color     			#ffcb6b
 set $text-color 				#ffffff
 set $text-dimmed-color 			#666666
@@ -209,9 +211,9 @@ bindsym Mod1+r mode "resize"
 ##################################################
 
 # Pulse Audio controls
-bindsym F12 exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym F11 exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym F10 exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym F12 exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
+bindsym F11 exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
+bindsym F10 exec --no-startup-id pactl set-sink-mute 2 toggle # mute sound
 
 # Media player controls
 bindsym F8 exec playerctl play-pause
@@ -223,7 +225,7 @@ bindsym F7 exec playerctl previous
 ##################################################
 
 # Auto lock
-exec xautolock -time 10 -locker '$HOME/.config/i3/lock.sh' &
+# exec xautolock -time 10 -locker '$HOME/.config/i3/lock.sh' &
 
 # Define layout for workspaces
 

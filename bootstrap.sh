@@ -20,7 +20,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt install ./vivid_*.deb
 
 	echo "Installing i3"
-	sudo apt install i3 i3blocks fonts-font-awesome rofi xautolock compton
+	sudo apt install i3 i3blocks fonts-font-awesome rofi xautolock compton scrot
 	mkdir -p $HOME/.config/i3
 
 	sudo add-apt-repository ppa:kgilmer/speed-ricer

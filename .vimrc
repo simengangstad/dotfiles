@@ -77,9 +77,3 @@ let working_directory = FindSessionDirectory() . "/**"
 
 execute "set path=".escape(working_directory, ' ')
 
-" Launch 
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore | wincmd w
-augroup END
-

@@ -20,32 +20,18 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt install ./vivid_*.deb
 
 	echo "Installing i3"
-	sudo apt install i3 i3blocks fonts-font-awesome rofi xautolock compton scrot
-	mkdir -p $HOME/.config/i3
-
 	sudo add-apt-repository ppa:kgilmer/speed-ricer
 	sudo apt update
-	sudo apt install i3-gaps
-
-	# compile & install
-	autoreconf --force --install
-	rm -rf build/
-	mkdir -p build && cd build/
-
-	# Disabling sanitizers is important for release versions!
-	# The prefix and sysconfdir are, obviously, dependent on the distribution.
-	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-	make
-	sudo make install
-	cd ..
-
+	mkdir -p $HOME/.config/i3
+	sudo apt install i3-gaps i3blocks fonts-font-awesome rofi xautolock compton
+	
 	echo "Installing playerctl"
 	wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"
 	sudo apt install ./playerctl-*.deb
 
 	echo "Installing icons, themes and feh"
 	sudo add-apt-repository ppa:noobslab/icons
-	sudo apt update && sudo apt install ultra-flat-icons gnome-themes-standard gtk2-engines-murrine libglib2.0-dev libxml2-utils materia-gtk-theme feh
+	sudo apt update && sudo apt install ultra-flat-icons gnome-themes-standard gtk2-engines-murrine libglib2.0-dev libxml2-utils feh
 
 	echo "Installing i3lock-color"
 	git clone https://github.com/Raymo111/i3lock-color.git
@@ -58,7 +44,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 	make
-	cd ..
+	cd ../..
 fi
 
 echo "Copying custom zsh theme"

@@ -65,6 +65,7 @@ set textwidth=120
 set backspace=indent,eol,start
 set ruler
 set number
+set clipboard=unnamed
 
 function FindSessionDirectory() abort
   if len(argv()) > 0

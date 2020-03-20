@@ -7,7 +7,7 @@ BG=$HOME/.config/i3/wallpaper.png
 BACKGROUND_COLOR='#202020ff'
 BACKGROUND_COLOR_DIMMED='#ffffffff'
 TEXT_COLOR='#ffffffff'
-ERROR_COLOR='#c0392bff'
+ERROR_COLOR='#f44336ff'
 INPUT_COLOR='#4e81edff'
 
 $HOME/.config/i3/i3lock-color \

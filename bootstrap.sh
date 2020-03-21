@@ -14,7 +14,7 @@ git config --global alias.ac '!git add -A && git commit -m'
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	echo "Enabling clipboard support"
-	sudo apt-get install powerline xclip
+	sudo apt-get install xclip
 	echo "Installing vivid for LS_COLORS"
 	wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
 	sudo apt install ./vivid_*.deb
@@ -31,7 +31,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	echo "Installing icons, themes and feh"
 	sudo add-apt-repository ppa:noobslab/icons
-	sudo apt update && sudo apt install ultra-flat-icons gnome-themes-standard gtk2-engines-murrine libglib2.0-dev libxml2-utils feh
+	sudo apt update && sudo apt install ultra-flat-icons gtk2-engines-murrine libglib2.0-dev libxml2-utils feh
 
 	echo "Installing i3lock-color"
 	git clone https://github.com/Raymo111/i3lock-color.git
@@ -45,6 +45,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 	make
 	cd ../..
+
 fi
 
 echo "Copying custom zsh theme"

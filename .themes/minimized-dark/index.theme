@@ -1,12 +1,12 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=Materia-dark
-Comment=A Material Design theme
+Name=Minimized-dark
+Comment=A Minimized Design theme
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
-GtkTheme=Materia-dark
-MetacityTheme=Materia-dark
-IconTheme=Adwaita
-CursorTheme=Adwaita
+GtkTheme=Minimized-dark
+MetacityTheme=Minimized-dark
+IconTheme=UltraFlat
+CursorTheme=Oreo Blue Cursors
 CursorSize=24

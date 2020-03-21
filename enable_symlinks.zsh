@@ -22,7 +22,7 @@ ln -s "$SCRIPTPATH/.config/rofi" "$HOME/.config/rofi"
 
 # Compton
 rm "$HOME/.config/compton.conf"
-ln -sv "$SCRIPTPATH/compton.conf" "$HOME/.config/compton.conf"
+ln -sv "$SCRIPTPATH/.config/compton.conf" "$HOME/.config/compton.conf"
 
 # Theme
 rm -rf "$HOME/.themes/minimized-dark" 

@@ -1,4 +1,5 @@
 exec --no-startup-id compton --config $HOME/.config/compton.conf
+exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 
 set $primary_monitor HDMI-0
 set $secondary_monitor DVI-D-0
@@ -70,7 +71,8 @@ set $right l
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return split h; exec i3-sensible-terminal
+bindsym Mod1+Shift+Return split v; exec i3-sensible-terminal
 
 # kill focused window
 bindsym Mod1+q kill

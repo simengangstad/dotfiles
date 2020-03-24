@@ -19,11 +19,12 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd64.deb"
 	sudo apt install ./vivid_*.deb
 
-	echo "Installing i3"
+	echo "Installing i3 and dunst"
 	sudo add-apt-repository ppa:kgilmer/speed-ricer
 	sudo apt update
 	mkdir -p $HOME/.config/i3
-	sudo apt install i3-gaps i3blocks fonts-font-awesome rofi xautolock compton
+	mkdir -p $HOME/.config/dunst
+	sudo apt install i3-gaps i3blocks fonts-font-awesome rofi xautolock compton dunst
 	
 	echo "Installing playerctl"
 	wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"
@@ -31,7 +32,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	echo "Installing icons, themes and feh"
 	sudo add-apt-repository ppa:noobslab/icons
-	sudo apt update && sudo apt install ultra-flat-icons gtk2-engines-murrine libglib2.0-dev libxml2-utils feh
+	sudo apt update && sudo apt install ultra-flat-icons gtk2-engines-murrine libglib2.0-dev libxml2-utils feh 
 
 	echo "Installing i3lock-color"
 	git clone https://github.com/Raymo111/i3lock-color.git
@@ -45,7 +46,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 	make
 	cd ../..
-
 fi
 
 echo "Copying custom zsh theme"

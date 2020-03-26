@@ -212,10 +212,11 @@ bindsym Mod1+r mode "resize"
 ####			      Function keys			  ####
 ##################################################
 
+set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 # Pulse Audio controls
-bindsym F12 exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym F11 exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym F10 exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym F12 exec --no-startup-id pactl set-sink-volume $default_audio_device +5% #increase sound volume
+bindsym F11 exec --no-startup-id pactl set-sink-volume $default_audio_device -5% #decrease sound volume
+bindsym F10 exec --no-startup-id pactl set-sink-mute $default_audio_device toggle # mute sound
 
 # Media player controls
 bindsym F8 exec playerctl play-pause

@@ -1,4 +1,4 @@
-exec --no-startup-id compton --config $HOME/.config/compton.conf
+exec --no-startup-id compton -b --config $HOME/.config/compton.conf
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 
 set $primary_monitor HDMI-0
@@ -14,10 +14,12 @@ exec_always xrandr --output $primary_monitor --primary
 font pango:ubuntu, 11
 new_window pixel 0
 
+
 # i3 gaps
 gaps inner 15
 for_window [class   = ".*"] border pixel 2
 for_window [title   = ".*"] border pixel 2
+for_window [class	= albert] border pixel 0 
 smart_gaps on
 smart_borders on
 
@@ -78,10 +80,7 @@ bindsym Mod1+Shift+Return split v; exec i3-sensible-terminal
 bindsym Mod1+q kill
 
 # start rofi in run configuration 
-bindsym Mod1+d exec --no-startup-id rofi -show drun -display-drun "" -show-icons -icon-theme Ultra-Flat-Icons 
-
-# start rofi in window configuration 
-bindsym Mod1+c exec --no-startup-id rofi -show window -display-window ""
+bindsym Mod1+d exec --no-startup-id rofi -show 
 
 # Screen shot
 bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'

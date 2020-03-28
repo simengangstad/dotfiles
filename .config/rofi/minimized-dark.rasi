@@ -1,17 +1,7 @@
 * {
     text-color:                  #f2f2f2;
     background-color:            #202020;
-    lightbg:                     #534c48;
-    red:                         #f15d22;
-    beige:                       #d3b987; 
-    blue:                        #4e81ed; 
-	green: 						 #c9d05c;
-	red: 						 #ff7979;
-	white: 						 #e3fdfd;
-
-	selected: 					 @blue;
-	lightgrey: 			         #262626;
-	
+	selected: 					 #4e81ed;
 
     selected-normal-foreground:  @foreground;
     normal-foreground:           @foreground;
@@ -26,7 +16,7 @@
     bordercolor:                 @foreground;
     normal-background:           @background;
     selected-normal-background:  @selected;
-    separatorcolor:              @white;
+    separatorcolor:              @background;
     spacing:                     3;
     urgent-background:           @background;
     alternate-urgent-foreground: @foreground;
@@ -41,9 +31,7 @@
     background-color: @background; 
     text-color: @bordercolor;
 	font: "System Ubuntu, Bold 18";
-	padding: 3px;
-	width: 600px;
-	height: 200px;
+	padding: 5px 5px 5px 5px;
 }
 
 #message {
@@ -51,8 +39,8 @@
 }
 
 #element {
-	padding: 3px;
-	font: "System Ubuntu, Bold 12";
+	padding: 3px 0px 0px 3px;
+	font: "System Ubuntu, Bold 14";
 }
 
 #element.normal.normal {

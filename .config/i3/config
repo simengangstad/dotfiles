@@ -42,7 +42,7 @@ bar {
 
 	colors {
         background 	$base-color
-        separator   #666666
+        separator   $text-color 
 
 		# 				   border				background 			text
         focused_workspace  $bar-focus-color 	$bar-focus-color 	$text-color

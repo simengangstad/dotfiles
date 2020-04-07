@@ -33,6 +33,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	alias cdcloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 fi
 
+alias lsa='ls -lah --color=auto'
+alias ls='ls -lh --color=auto'
+alias mkdir='mkdir -pv'
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib65
 export PATH=$PATH:$CUDA_HOME/bin

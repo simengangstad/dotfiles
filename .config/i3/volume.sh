@@ -1,10 +1,13 @@
 #!/bin/bash
-vol=$(/usr/share/i3blocks/volume 5 pulse)
+vol=$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master))
+muted=$(awk -F"[][]" '/dB/ { print $6 }' <(amixer sget Master))
 vol=${vol:0:-1}
 
 re='^[0-9]+$'
 
 if ! [[ $vol =~ $re ]] ; then
+	echo "" 
+elif [ "$muted" = "off" ]; then
 	echo "" 
 else
 	if [ $vol -eq 0 ]

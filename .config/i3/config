@@ -1,8 +1,11 @@
-exec --no-startup-id compton -b --config $HOME/.config/compton.conf
-exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
+exec compton -b --config $HOME/.config/compton.conf
+exec dunst -config $HOME/.config/dunst/dunstrc
+exec sudo powertop --auto-tune
 
-set $primary_monitor HDMI-0
-set $secondary_monitor DVI-D-0
+# set $primary_monitor HDMI-0
+# set $secondary_monitor DVI-D-0
+set $primary_monitor eDP-1
+set $secondary_monitor eDP-1
 exec_always xrandr --output $primary_monitor --primary
 
 ##################################################
@@ -79,7 +82,7 @@ bindsym Mod1+Shift+Return split v; exec i3-sensible-terminal
 # kill focused window
 bindsym Mod1+q kill
 
-# start rofi in run configuration 
+# start rofi 
 bindsym Mod1+d exec --no-startup-id rofi -show 
 
 # Screen shot
@@ -211,11 +214,16 @@ bindsym Mod1+r mode "resize"
 ####			      Function keys			  ####
 ##################################################
 
-set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 # Pulse Audio controls
-bindsym F12 exec --no-startup-id pactl set-sink-volume $default_audio_device +5% #increase sound volume
-bindsym F11 exec --no-startup-id pactl set-sink-volume $default_audio_device -5% #decrease sound volume
-bindsym F10 exec --no-startup-id pactl set-sink-mute $default_audio_device toggle # mute sound
+# set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
+set $default_audio_device 0
+bindsym F3 exec pactl set-sink-volume $default_audio_device +5% 
+bindsym F2 exec pactl set-sink-volume $default_audio_device -5%
+bindsym F1 exec pactl set-sink-mute $default_audio_device toggle
+
+# Brightness
+bindsym F5 exec sudo brightnessctl set 5%-
+bindsym F6 exec sudo brightnessctl set +5% 
 
 # Media player controls
 bindsym F8 exec playerctl play-pause

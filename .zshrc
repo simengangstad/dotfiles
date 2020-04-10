@@ -19,22 +19,18 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 alias tkd="tmux kill-session -a"
-alias open="xdg-open"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
-		source /usr/share/powerline/bindings/bash/powerline.sh
-	fi
-	source /opt/ros/melodic/setup.zsh
-	source $HOME/develop/catkin_ws/devel/setup.zsh
+	# source /opt/ros/melodic/setup.zsh
+	# source $HOME/develop/catkin_ws/devel/setup.zsh
+	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	alias open="xdg-open"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 	alias vi=/usr/local/bin/vim
 	alias vim=/usr/local/bin/vim
 	alias cdcloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 fi
 
-alias lsa='ls -lah --color=auto'
-alias ls='ls -lh --color=auto'
 alias mkdir='mkdir -pv'
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib65

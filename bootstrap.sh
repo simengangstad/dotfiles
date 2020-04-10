@@ -46,6 +46,12 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 	make
 	cd ../..
+
+	echo "Installing powerline fonts"
+	git clone https://github.com/powerline/fonts.git
+	cd fonts
+	./install.sh
+	cd ..
 fi
 
 echo "Copying custom zsh theme"

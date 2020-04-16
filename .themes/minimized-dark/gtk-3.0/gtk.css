@@ -60,7 +60,7 @@
  * Base States *
  ***************/
 .background {
-  background-color: #202020;
+  background-color: #1d1d1d;
   color: #FFFFFF;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .gtkstyle-fallback {
-  background-color: #202020;
+  background-color: #1d1d1d;
   color: #FFFFFF;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .gtkstyle-fallback:insensitive {
-  background-color: #212121;
+  background-color: #1d1d1d;
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -100,7 +100,7 @@
 }
 
 .view {
-  background-color: #202020;
+  background-color: #1d1d1d;
   color: #FFFFFF;
 }
 
@@ -199,7 +199,7 @@ GtkTextView {
   border-radius: 2px;
   transition: all 270ms cubic-bezier(0, 0, 0.2, 1), box-shadow 180ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background-color: #202020;
+  background-color: #1d1d1d;
   color: #FFFFFF;
 }
 
@@ -346,7 +346,7 @@ GtkTreeView .entry:not(:selected), GtkTreeView .entry:not(:selected):focus {
   border-image: none;
   border-radius: 0;
   box-shadow: none;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 /***********
@@ -912,7 +912,7 @@ GtkComboBox.combobox-entry .button:dir(rtl) {
 .toolbar {
   -GtkWidget-window-dragging: true;
   padding: 4px;
-  background-color: #212121;
+  background-color: #1d1d1d;
 }
 
 .osd .toolbar, .toolbar.osd, .app-notification,
@@ -923,7 +923,7 @@ GtkComboBox.combobox-entry .button:dir(rtl) {
   border-width: 8px;
   border-image: -gtk-scaled(url("assets/box-shadow-dark.png"), url("assets/box-shadow-dark@2.png")) 10/10px stretch;
   border-radius: 2px;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .osd .toolbar:backdrop, .toolbar.osd:backdrop, .app-notification:backdrop {
@@ -943,7 +943,7 @@ GtkComboBox.combobox-entry .button:dir(rtl) {
   border-style: solid;
   border-width: 0 0 1px;
   border-color: rgba(0, 0, 0, 0.26);
-  background-color: #212121;
+  background-color: #1d1d1d;
   background-clip: border-box;
 }
 
@@ -956,7 +956,7 @@ GtkComboBox.combobox-entry .button:dir(rtl) {
   padding: 6px;
   border-radius: 2px 2px 0 0;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24), inset 0 1px rgba(255, 255, 255, 0.1);
-  background-color: #202020;
+  background-color: #1d1d1d1;
   color: #FFFFFF;
 }
 
@@ -1223,7 +1223,7 @@ column-header .button {
   border-color: rgba(0, 0, 0, 0.26);
   border-radius: 0;
   box-shadow: none;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 column-header .button:hover, column-header .button:active {
@@ -1231,7 +1231,7 @@ column-header .button:hover, column-header .button:active {
 }
 
 column-header .button:insensitive {
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 column-header:last-child .button, column-header:last-child.button {
@@ -1250,7 +1250,7 @@ column-header.button.dnd, column-header .button.dnd {
 .menubar {
   -GtkWidget-window-dragging: true;
   padding: 0;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .menubar > .menuitem {
@@ -1274,7 +1274,7 @@ column-header.button.dnd, column-header .button.dnd {
   margin: 4px 0;
   padding: 4px 0;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.1);
-  background-color: #202020;
+  background-color: #1d1d1d;
   border: 1px solid rgba(0, 0, 0, 0.26);
 }
 
@@ -1392,7 +1392,7 @@ column-header.button.dnd, column-header .button.dnd {
  *****************/
 .notebook {
   padding: 0;
-  background-color: #202020;
+  background-color: #1d1d1d;
   -GtkNotebook-initial-gap: 8;
   -GtkNotebook-arrow-spacing: 5;
   -GtkNotebook-tab-curvature: 0;
@@ -1423,7 +1423,7 @@ column-header.button.dnd, column-header .button.dnd {
 }
 
 .notebook.header {
-  background-color: #212121;
+  background-color: #1d1d1d;
 }
 
 .notebook.header.frame {
@@ -1570,7 +1570,7 @@ column-header.button.dnd, column-header .button.dnd {
   border-color: rgba(0, 0, 0, 0.26);
   border-bottom-width: 0;
   border-bottom-color: transparent;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .notebook tab.reorderable-page.bottom {
@@ -1588,7 +1588,7 @@ column-header.button.dnd, column-header .button.dnd {
   border-color: rgba(0, 0, 0, 0.26);
   border-top-width: 0;
   border-top-color: transparent;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .notebook tab.reorderable-page.left {
@@ -1606,7 +1606,7 @@ column-header.button.dnd, column-header .button.dnd {
   border-color: rgba(0, 0, 0, 0.26);
   border-right-width: 0;
   border-right-color: transparent;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .notebook tab.reorderable-page.right {
@@ -1624,7 +1624,7 @@ column-header.button.dnd, column-header .button.dnd {
   border-color: rgba(0, 0, 0, 0.26);
   border-left-width: 0;
   border-left-color: transparent;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .notebook tab .label {
@@ -1695,7 +1695,7 @@ column-header.button.dnd, column-header .button.dnd {
 
 .scrollbar .trough {
   border: 1px none rgba(0, 0, 0, 0.26);
-  background-color: #202020;
+  background-color: #1d1d1d;
   background-clip: border-box;
 }
 
@@ -1766,7 +1766,7 @@ column-header.button.dnd, column-header .button.dnd {
 .scrollbars-junction,
 .scrollbars-junction.frame {
   border-style: solid none none solid;
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .scrollbars-junction:dir(rtl),
@@ -1808,7 +1808,7 @@ GtkSwitch.slider {
   border-radius: 100px;
   transition: all 270ms cubic-bezier(0, 0, 0.2, 1), box-shadow 180ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background-color: #202020;
+  background-color: #1d1d1d;
   color: #FFFFFF;
 }
 
@@ -2295,7 +2295,7 @@ GtkProgressBar.trough.osd {
   border-radius: 2px;
   transition: all 270ms cubic-bezier(0, 0, 0.2, 1), box-shadow 180ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background-color: #202020;
+  background-color: #1d1d1d;
   color: #FFFFFF;
 }
 
@@ -2373,7 +2373,7 @@ GtkFontButton .separator.vertical {
  *********/
 .list {
   border-color: rgba(0, 0, 0, 0.26);
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 .list-row,
@@ -2769,7 +2769,7 @@ GtkColorSwatch#add-color-button {
  * Misc *
  ********/
 .content-view {
-  background-color: #212121;
+  background-color: #1d1d1d;
 }
 
 .scale-popup .button {
@@ -2825,7 +2825,7 @@ GtkColorSwatch#add-color-button {
 .window-frame.solid-csd {
   border-radius: 0;
   margin: 0;
-  background-color: #202020;
+  background-color: #1d1d1d;
   box-shadow: none;
 }
 
@@ -2926,7 +2926,7 @@ GtkColorSwatch#add-color-button {
 .touch-selection {
   font: initial;
   color: #FFFFFF;
-  background-color: #202020;
+  background-color: #1d1d1d;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
 }
 
@@ -3016,7 +3016,7 @@ GtkColorSwatch#add-color-button {
   border-style: solid solid none;
   border-color: rgba(0, 0, 0, 0.26);
   border-radius: 3px 3px 0 0;
-  background-color: #202020;
+  background-color: #1d1d1d;
   background-clip: border-box;
 }
 
@@ -3112,7 +3112,7 @@ EelEditableLabel.entry {
  * Builder *
  ***********/
 GbTerminalView {
-  background-color: #202020;
+  background-color: #1d1d1d;
 }
 
 /***********
@@ -3157,7 +3157,7 @@ UnityDecoration.top {
   border-style: none;
   border-radius: 2px 2px 0 0;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.1);
-  background-color: #202020;
+  background-color: #1d1d1d;
   color: #FFFFFF;
 }
 
@@ -3188,8 +3188,8 @@ UnityDecoration.menubar .menuitem *:hover {
 
 UnityPanelWidget,
 .unity-panel {
-  background-color: #212121;
-  background-image: linear-gradient(to bottom, #212121);
+  background-color: #1d1d1d;
+  background-image: linear-gradient(to bottom, #1d1d1d);
   color: #FFFFFF;
 }
 
@@ -3233,10 +3233,10 @@ text color for entries, views and content in general */
 @define-color theme_text_color #FFFFFF;
 /*
 widget base background color */
-@define-color theme_bg_color #212121;
+@define-color theme_bg_color #1d1d1d;
 /*
 text widgets and the like base background color */
-@define-color theme_base_color #202020;
+@define-color theme_base_color #1d1d1d;
 /*
 base background color of selections */
 @define-color theme_selected_bg_color #338DD6;
@@ -3245,7 +3245,7 @@ text/foreground color of selections */
 @define-color theme_selected_fg_color #FFFFFF;
 /*
 base background color of insensitive widgets */
-@define-color insensitive_bg_color #212121;
+@define-color insensitive_bg_color #1d1d1d;
 /*
 text foreground color of insensitive widgets */
 @define-color insensitive_fg_color rgba(255, 255, 255, 0.5);
@@ -3260,10 +3260,10 @@ text color for entries, views and content in general on backdrop windows */
 @define-color theme_unfocused_text_color #FFFFFF;
 /*
 widget base background color on backdrop windows */
-@define-color theme_unfocused_bg_color #212121;
+@define-color theme_unfocused_bg_color #1d1d1d;
 /*
 text widgets and the like base background color on backdrop windows */
-@define-color theme_unfocused_base_color #202020;
+@define-color theme_unfocused_base_color #1d1d1d;
 /*
 base background color of selections on backdrop windows */
 @define-color theme_unfocused_selected_bg_color #338DD6;
@@ -3286,5 +3286,5 @@ these are pretty self explicative */
 @define-color success_color #00C853;
 /*
 FIXME this is really an API */
-@define-color content_view_bg #202020;
+@define-color content_view_bg #1d1d1d;
 @define-color placeholder_text_color #c1c1c1;

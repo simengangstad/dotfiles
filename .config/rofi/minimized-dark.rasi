@@ -1,6 +1,6 @@
 * {
     text-color:                  #f2f2f2;
-    background-color:            #202020;
+    background-color:            #1d1d1d;
 	selected: 					 #4e81ed;
 
     selected-normal-foreground:  @foreground;
@@ -30,7 +30,7 @@
     text-color: @foreground;
     background-color: @background; 
     text-color: @bordercolor;
-	font: "System Ubuntu 18";
+	font: "Monospace bold 19";
 	padding: 5px 5px 5px 5px;
 }
 
@@ -39,8 +39,8 @@
 }
 
 #element {
-	padding: 3px 0px 0px 3px;
-	font: "System Ubuntu 14";
+	padding: 3px 0px 3px 3px;
+	font: "Monospace 15";
 }
 
 #element.normal.normal {

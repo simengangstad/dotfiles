@@ -9,7 +9,7 @@ _collapsed_wd() {
 
 PROMPT_SYMBOL="~>"
 
-PROMPT='%{$fg_bold[blue]%}$(_collapsed_wd)%{$reset_color%} \
+PROMPT='%{$fg_bold[white]%}$FG[069]$(_collapsed_wd)%{$reset_color%} \
 $(git_prompt_info)\
 %{$fg[015]%}$PROMPT_SYMBOL '
 

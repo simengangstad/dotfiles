@@ -1,2 +1,4 @@
 *.swp
 i3lock-color/
+.config/spotify-tui/client.yml
+.config/spotify-tui/.spotify_token_cache.json

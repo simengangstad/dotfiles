@@ -35,4 +35,8 @@ ln -s "$SCRIPTPATH/.icons/oreo_blue_cursors" "$HOME/.icons/oreo_blue_cursors"
 rm -rf "$HOME/.config/dunst" 
 ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
 
+# Spotify tui 
+rm -rf "$HOME/.config/spotify-tui" 
+ln -s "$SCRIPTPATH/.config/spotify-tui" "$HOME/.config/spotify-tui"
+
 

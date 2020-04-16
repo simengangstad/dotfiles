@@ -1,4 +1,4 @@
-exec compton -b --config $HOME/.config/compton.conf
+#exec compton -b --config $HOME/.config/compton.conf
 exec dunst -config $HOME/.config/dunst/dunstrc
 exec sudo powertop --auto-tune
 
@@ -14,21 +14,20 @@ exec_always xrandr --output $primary_monitor --primary
 
 # Palette: https://flatuicolors.com/palette/defo
 
-font pango:ubuntu, 11
+font pango:monospace, 11
 new_window pixel 0
 
 
 # i3 gaps
-gaps inner 15
-for_window [class   = ".*"] border pixel 2
-for_window [title   = ".*"] border pixel 2
-for_window [class	= albert] border pixel 0 
-smart_gaps on
-smart_borders on
-
+# gaps inner 15
+for_window [class   = ".*"] border pixel 1
+for_window [title   = ".*"] border pixel 1
+#smart_gaps on
+# smart_borders on
+#
 set $focus-color 			    #4e81ed	
 set $bar-focus-color 			#4e81ed	
-set $base-color				    #202020
+set $base-color				    #1d1d1d
 set $text-color 				#ffffff
 set $text-dimmed-color 			#666666
 set $active-color 				#44778d
@@ -41,7 +40,7 @@ client.focused_inactive $base-color  		$base-color    	   $text-dimmed-color 	#4
 client.urgent           $urgent-color    	$urgent-color      $text-dimmed-color   #424242
 
 bar {
-	status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+	status_command i3blocks -c $HOME/.config/i3/bar.conf
 
 	colors {
         background 	$base-color
@@ -52,10 +51,10 @@ bar {
         active_workspace   $base-color 			$base-color 		$text-color
         inactive_workspace $base-color 			$base-color 	 	$text-color 
         urgent_workspace   $urgent-color		$urgent-color		$text-color	
-        binding_mode       $bar-focus-color		$bar-focus-color		$text-color	
+        binding_mode       $bar-focus-color		$bar-focus-color	$text-color	
     }
 
-	font pango:ubuntu, bold 12
+	font pango:monospace, bold 12
 	position top
 }
 
@@ -216,7 +215,7 @@ bindsym Mod1+r mode "resize"
 
 # Pulse Audio controls
 # set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
-set $default_audio_device 0
+set $default_audio_device 0 
 bindsym F3 exec pactl set-sink-volume $default_audio_device +5% 
 bindsym F2 exec pactl set-sink-volume $default_audio_device -5%
 bindsym F1 exec pactl set-sink-mute $default_audio_device toggle

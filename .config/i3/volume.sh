@@ -9,7 +9,7 @@ re='^[0-9]+$'
 if ! [[ $vol =~ $re ]] ; then
 	echo "" 
 elif [ "$muted" = "off" ]; then
-	echo " $vol" 
+	echo "  $vol" 
 else
 	if [ $vol -eq 0 ]
 		then 

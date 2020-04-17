@@ -1,6 +1,6 @@
-#exec compton -b --config $HOME/.config/compton.conf
+exec compton -b --config $HOME/.config/compton.conf
 exec dunst -config $HOME/.config/dunst/dunstrc
-exec sudo powertop --auto-tune
+# exec sudo powertop --auto-tune
 
 # set $primary_monitor HDMI-0
 # set $secondary_monitor DVI-D-0
@@ -54,7 +54,7 @@ bar {
         binding_mode       $bar-focus-color		$bar-focus-color	$text-color	
     }
 
-	font pango:monospace, bold 12
+	font pango:monospace bold 12
 	position top
 }
 
@@ -216,9 +216,9 @@ bindsym Mod1+r mode "resize"
 # Pulse Audio controls
 set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 # set $default_audio_device 0
-bindsym F3 exec pactl set-sink-volume $default_audio_device +5% 
-bindsym F2 exec pactl set-sink-volume $default_audio_device -5%
-bindsym F1 exec pactl set-sink-mute $default_audio_device toggle
+bindsym F3 exec "pactl set-sink-volume $default_audio_device +2% && pkill -RTMIN+2 i3blocks"
+bindsym F2 exec "pactl set-sink-volume $default_audio_device -2% && pkill -RTMIN+2 i3blocks"
+bindsym F1 exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
 
 # Brightness
 # bindsym F5 exec sudo brightnessctl set 5%-

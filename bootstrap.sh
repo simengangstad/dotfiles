@@ -24,7 +24,7 @@ mkdir -p $HOME/.config/i3
 mkdir -p $HOME/.config/dunst
 mkdir -p $HOME/.icons
 mkdir -p $HOME/.themes
-sudo apt install i3-gaps i3blocks rofi xautolock compton dunst
+sudo apt install i3-gaps i3blocks rofi xautolock compton dunst fonts-font-awesome
 
 echo "Installing playerctl"
 wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"

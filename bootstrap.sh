@@ -24,7 +24,7 @@ mkdir -p $HOME/.config/i3
 mkdir -p $HOME/.config/dunst
 mkdir -p $HOME/.icons
 mkdir -p $HOME/.themes
-sudo apt install i3-gaps i3blocks fonts-font-awesome rofi xautolock compton dunst
+sudo apt install i3-gaps i3blocks rofi xautolock compton dunst
 
 echo "Installing playerctl"
 wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"
@@ -55,6 +55,6 @@ cp minimized.zsh-theme $HOME/.oh-my-zsh/themes/minimized.zsh-theme
 
 
 chsh -s $(which zsh)
-echo "Finished setup, now run PluginInstall in Vim"
+echo "Finished setup, now run PluginInstall in Vim and remember to install Font Awesome"
 
 

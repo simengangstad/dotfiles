@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,run, :~/.config/rofi/finder.sh";
+	modi: "drun,run, :~/.config/rofi/finder.sh,ssh";
 	width: 550;
 	lines: 5;
 	show-icons: true;
@@ -42,9 +42,9 @@ configuration {
 /*	pid: "/run/user/1000/rofi.pid";*/
 	display-window: " ";
 	display-windowcd: "";
-	display-run: " ";
-	display-ssh: " ";
-	display-drun: " ";
+	display-run: " ";
+	display-ssh: " ";
+	display-drun: " ";
 	display-combi: "";
 	display-keys: "";
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/

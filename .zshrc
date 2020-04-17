@@ -18,18 +18,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-alias tkd="tmux kill-session -a"
-
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	# source /opt/ros/melodic/setup.zsh
-	# source $HOME/develop/catkin_ws/devel/setup.zsh
-	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-	alias open="xdg-open"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	alias vi=/usr/local/bin/vim
-	alias vim=/usr/local/bin/vim
-	alias cdcloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
-fi
+# source /opt/ros/melodic/setup.zsh
+# source $HOME/develop/catkin_ws/devel/setup.zsh
+eval $($HOME/.linuxbrew/bin/brew shellenv)
+alias open="xdg-open"
 
 alias mkdir='mkdir -pv'
 export CUDA_HOME=/usr/local/cuda

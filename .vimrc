@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'VundleVim/Vundle.vim'
 Plug 'jacoborus/tender.vim'
-Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp']}
+Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp']}
 Plug 'itchyny/lightline.vim'
 call plug#end()
 

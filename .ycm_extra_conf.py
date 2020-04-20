@@ -1,4 +1,4 @@
-def FlagsForFile ( filename, **kwargs ):
-    return {
-            'flags': [ '-x', '-Wall', '-Wextra', '-Werror', 'std=c++17' ]
-    }
+def Settings( **kwargs ):
+  return {
+    'flags': [ '-x', 'c++', '-Wall', '-Wextra', '-Werror' ],
+  }

@@ -1,16 +1,16 @@
-exec compton -b --config $HOME/.config/compton.conf
-exec dunst -config $HOME/.config/dunst/dunstrc
-# exec sudo powertop --auto-tune
+exec --no-startup-id compton -b --config $HOME/.config/compton.conf
+exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
+exec --no-startup-id sudo powertop --auto-tune
 
-set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
-# set $default_audio_device 0
+# set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
+set $default_audio_device 0
 
-set $primary_monitor HDMI-0
-set $secondary_monitor DVI-D-0
-# set $primary_monitor eDP-1
-# set $secondary_monitor eDP-1
+# set $primary_monitor HDMI-0
+# set $secondary_monitor DVI-D-0
+set $primary_monitor eDP-1
+set $secondary_monitor eDP-1
 
-exec_always xrandr --output $primary_monitor --primary
+exec_always --no-startup-id xrandr --output $primary_monitor --primary
 
 ##################################################
 ####			      Theme				      ####
@@ -44,7 +44,7 @@ client.focused_inactive $base-color  		$base-color    	   $text-dimmed-color 	#4
 client.urgent           $urgent-color    	$urgent-color      $text-dimmed-color   #424242
 
 bar {
-	status_command i3blocks -c $HOME/.config/i3/desktop.conf
+	status_command i3blocks -c $HOME/.config/i3/laptop.conf
 
 	colors {
         background 	$base-color
@@ -92,7 +92,7 @@ bindsym Mod1+d exec --no-startup-id rofi -show
 bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
 
 # Map caps lock to escape
-exec_always setxkbmap -option caps:escape
+exec_always --no-startup-id setxkbmap -option caps:escape
 
 # change focus
 bindsym Mod1+$left focus left
@@ -223,8 +223,8 @@ bindsym F2 exec "pactl set-sink-volume $default_audio_device -2% && pkill -RTMIN
 bindsym F1 exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
 
 # Brightness
-# bindsym F5 exec sudo brightnessctl set 5%-
-# bindsym F6 exec sudo brightnessctl set +5% 
+bindsym F5 exec sudo brightnessctl set 5%-
+bindsym F6 exec sudo brightnessctl set +5% 
 
 # Media player controls
 bindsym F8 exec playerctl play-pause
@@ -236,7 +236,7 @@ bindsym F7 exec playerctl previous
 ##################################################
 
 # Auto lock
-exec xautolock -time 10 -locker '$HOME/.config/i3/lock.sh' &
+exec --no-startup-id xautolock -time 10 -locker '$HOME/.config/i3/lock.sh' &
 
 # Define layout for workspaces
 

@@ -53,6 +53,6 @@ if ($status eq 'Discharging') {
 	}
 }
 
-print "$full_text\n";
+print "$full_text";
 
 exit(0);

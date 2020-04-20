@@ -24,14 +24,14 @@ configuration {
 
 * {
 	background-color: #1d1d1dff;
-	background-color-selected: #262626ff;
+	background-color-selected: #303030ff;
 	foreground-color: #ffffffff;
 	focus-color: #4e81edff;
-	font: "Monospace, Bold 13";
+	font: "Monospace, Bold 14";
 }
 
 window {
-  height: 25%;
+  height: 27%;
   width: 30%;
 }
 

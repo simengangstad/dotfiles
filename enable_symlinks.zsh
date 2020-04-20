@@ -36,7 +36,7 @@ rm -rf "$HOME/.config/dunst"
 ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
 
 # Spotify tui 
-rm -rf "$HOME/.config/spotify-tui" 
-ln -s "$SCRIPTPATH/.config/spotify-tui" "$HOME/.config/spotify-tui"
+rm "$HOME/.config/spotify-tui/config.yml" 
+ln -sv "$SCRIPTPATH/.config/spotify-tui/config.yml" "$HOME/.config/spotify-tui/config.yml"
 
 

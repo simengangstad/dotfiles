@@ -8,6 +8,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jacoborus/tender.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'itchyny/lightline.vim'
+
 
 call vundle#end()          
 filetype plugin indent on
@@ -24,27 +26,14 @@ syntax enable
 
 colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
-let g:airline_theme = 'tender'
 
 
-" Clang complete
-let g:clang_c_options = '-std=gnu11' 
-let g:clang_cpp_options = '-std=c++17 -stdlib=libc++' 
-let g:clang_cpp_competeopt = ''
-let g:clang_check_syntax_auto = 1
+
+" YCM 
 let g:ycm_use_clangd = 0
 let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
+set completeopt-=preview
 
-" Platform specifics
-if !exists("g:os")
-	let g:os = substitute(system('uname'), '\n', '', '')
-endif
-
-if g:os == "Darwin"
-	let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-elseif g:os == "Linux"
-	let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang-6.0.so.1'
-endif
 
 " Netrw
 let g:netrw_liststyle = 3
@@ -66,6 +55,12 @@ set backspace=indent,eol,start
 set ruler
 set number
 set clipboard=unnamed
+set noshowmode
+set laststatus=2
+set ignorecase
+set smartcase
+set incsearch
+
 
 function FindSessionDirectory() abort
   if len(argv()) > 0

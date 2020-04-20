@@ -2,7 +2,7 @@
 
 BG=$HOME/.config/i3/wallpaper.png
 
-BACKGROUND_COLOR='#4e81edff'
+BACKGROUND_COLOR='#1d1d1dff'
 WHITE='#ffffffff'
 TEXT_COLOR='#ffffffff'
 ERROR_COLOR='#f44336ff'

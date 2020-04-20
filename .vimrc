@@ -1,18 +1,20 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 set nocompatible             
 filetype off                  
 
 " Plugins
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'jacoborus/tender.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'itchyny/lightline.vim'
-
-
-call vundle#end()          
-filetype plugin indent on
+Plug 'VundleVim/Vundle.vim'
+Plug 'jacoborus/tender.vim'
+Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp']}
+Plug 'itchyny/lightline.vim'
+call plug#end()
 
 if (has("termguicolors"))
 	 set termguicolors
@@ -60,6 +62,7 @@ set laststatus=2
 set ignorecase
 set smartcase
 set incsearch
+set hlsearch
 
 
 function FindSessionDirectory() abort

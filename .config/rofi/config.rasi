@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,run, :~/.config/rofi/finder.sh,ssh";
+	modi: "drun,run, :~/.config/rofi/finder.sh,window,ssh";
 	width: 550;
 	lines: 5;
 	show-icons: true;

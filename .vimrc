@@ -62,6 +62,7 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set linebreak
 
 
 function FindSessionDirectory() abort

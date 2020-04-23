@@ -17,13 +17,15 @@ wget "https://github.com/sharkdp/vivid/releases/download/v0.5.0/vivid_0.5.0_amd6
 sudo apt install ./vivid_*.deb
 
 echo "Installing i3 and dunst"
-sudo add-apt-repository ppa:kgilmer/speed-ricer
-sudo apt update
 mkdir -p $HOME/.config/i3
 mkdir -p $HOME/.config/dunst
 mkdir -p $HOME/.icons
 mkdir -p $HOME/.themes
-sudo apt install i3-gaps i3blocks rofi xautolock compton dunst fonts-font-awesome
+sudo apt install i3blocks rofi xautolock compton dunst fonts-font-awesome feh
+
+echo "Installing papirus icon theme"
+sudo add-apt-repository ppa:papirus/papirus
+sudo apt update && sudo apt install papirus-icon-theme
 
 echo "Installing playerctl"
 wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"

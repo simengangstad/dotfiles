@@ -93,6 +93,8 @@ bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures
 
 # Map caps lock to escape
 exec_always --no-startup-id setxkbmap -option caps:escape
+bindsym Mod1+Shift+b exec --no-startup-id setxkbmap gb
+bindsym Mod1+Shift+n exec --no-startup-id setxkbmap no 
 
 # change focus
 bindsym Mod1+$left focus left

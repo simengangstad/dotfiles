@@ -26,6 +26,7 @@ new_window pixel 0
 gaps inner 15
 for_window [class   = ".*"] border pixel 3
 for_window [title   = ".*"] border pixel 3 
+smart_borders on
 
 #
 set $focus-color 			    #4e81ed	
@@ -61,7 +62,7 @@ bar {
 	position top
 }
 
-exec_always --no-startup-id "feh --bg-scale $HOME/.config/i3/wallpaper.png"
+exec_always --no-startup-id "feh --bg-scale $HOME/.config/i3/dive.png"
 
 ##################################################
 ####			    Key maps				  ####

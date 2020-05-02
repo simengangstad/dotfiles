@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BG=$HOME/.config/i3/wallpaper.png
+BG=$HOME/.config/i3/dive.png
 
 BACKGROUND_COLOR='#1d1d1dff'
 WHITE='#ffffffff'

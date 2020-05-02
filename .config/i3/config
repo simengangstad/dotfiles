@@ -1,9 +1,10 @@
-exec --no-startup-id compton -b --config $HOME/.config/compton.conf
+exec --no-startup-id picom -b --config $HOME/.config/picom.conf
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 exec --no-startup-id sudo powertop --auto-tune
 
 # set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
-set $default_audio_device 0
+# set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
+set $default_audio_device 0 
 
 # set $primary_monitor HDMI-0
 # set $secondary_monitor DVI-D-0
@@ -21,13 +22,11 @@ exec_always --no-startup-id xrandr --output $primary_monitor --primary
 font pango:Monospace, 11
 new_window pixel 0
 
-
 # i3 gaps
 gaps inner 15
-for_window [class   = ".*"] border pixel 1
-for_window [title   = ".*"] border pixel 1
-smart_gaps on
-smart_borders on
+for_window [class   = ".*"] border pixel 3
+for_window [title   = ".*"] border pixel 3 
+
 #
 set $focus-color 			    #4e81ed	
 set $bar-focus-color 			#4e81ed	
@@ -37,8 +36,8 @@ set $text-dimmed-color 			#666666
 set $active-color 				#44778d
 set $urgent-color     			#f44336	
 
-#                       border              background         text                 indicator
-client.focused          $base-color 	 	$focus-color 	   $base-color 			#424242
+#                       background 			border 			   text                 indicator
+client.focused          $focus-color 	 	$focus-color 	   $text-color 			#424242
 client.unfocused        $base-color 		$base-color    	   $text-dimmed-color 	#424242 
 client.focused_inactive $base-color  		$base-color    	   $text-dimmed-color 	#424242 
 client.urgent           $urgent-color    	$urgent-color      $text-dimmed-color   #424242
@@ -220,16 +219,16 @@ bindsym Mod1+r mode "resize"
 ##################################################
 
 # Pulse Audio controls
-bindsym F3 exec "pactl set-sink-volume $default_audio_device +2% && pkill -RTMIN+2 i3blocks"
-bindsym F2 exec "pactl set-sink-volume $default_audio_device -2% && pkill -RTMIN+2 i3blocks"
-bindsym F1 exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume $default_audio_device +2% && pkill -RTMIN+2 i3blocks"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume $default_audio_device -2% && pkill -RTMIN+2 i3blocks"
+bindsym XF86AudioMuteVolume exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
 
 # Brightness
-bindsym F5 exec sudo brightnessctl set 5%-
-bindsym F6 exec sudo brightnessctl set +5% 
+bindsym XF86MonBrightnessDown exec sudo brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec sudo brightnessctl set +5% 
 
 # Media player controls
-bindsym F8 exec playerctl play-pause
+bindsym XF86WLAN exec playerctl play-pause
 bindsym F9 exec playerctl next
 bindsym F7 exec playerctl previous
 
@@ -238,7 +237,7 @@ bindsym F7 exec playerctl previous
 ##################################################
 
 # Auto lock
-exec --no-startup-id xautolock -time 10 -locker '$HOME/.config/i3/lock.sh' &
+exec --no-startup-id xautolock -time 15 -locker '$HOME/.config/i3/lock.sh' &
 
 # Define layout for workspaces
 

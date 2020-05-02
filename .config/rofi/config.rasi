@@ -27,7 +27,7 @@ configuration {
 	background-color-selected: #303030ff;
 	foreground-color: #ffffffff;
 	focus-color: #4e81edff;
-	font: "Monospace, 14";
+	font: "Monospace, Bold 14";
 }
 
 window {

@@ -58,7 +58,7 @@ bar {
         binding_mode       $bar-focus-color		$bar-focus-color	$text-color	
     }
 
-	font pango:Monospace bold 12
+	font pango:Monospace 12
 	position top
 }
 

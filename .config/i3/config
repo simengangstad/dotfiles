@@ -63,7 +63,7 @@ bar {
 	position top
 }
 
-exec_always --no-startup-id "feh --bg-scale $HOME/.config/i3/lake.png"
+exec_always --no-startup-id "feh --bg-scale $HOME/.config/i3/sierra.png"
 
 ##################################################
 ####			    Key maps				  ####

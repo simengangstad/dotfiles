@@ -1,10 +1,9 @@
 #!/bin/bash
 
-BG=$HOME/.config/i3/lake.png
+BG=$HOME/.config/i3/sierra.png
 
 BACKGROUND_COLOR='#1d1d1dff'
 WHITE='#ffffffff'
-DIM_WHITE='#373737ff'
 TEXT_COLOR='#ffffffff'
 ERROR_COLOR='#e74c3cff'
 
@@ -17,7 +16,7 @@ $HOME/.config/i3/i3lock-color \
 --ringwrongcolor=$ERROR_COLOR   \
 \
 --insidecolor=$BACKGROUND_COLOR \
---ringcolor=$DIM_WHITE \
+--ringcolor=$BACKGROUND_COLOR \
 --linecolor='#00000000' \
 --separatorcolor=$WHITE \
 \

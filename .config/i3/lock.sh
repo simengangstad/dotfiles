@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BG=$HOME/.config/i3/dive.png
+BG=$HOME/.config/i3/lake.png
 
 BACKGROUND_COLOR='#1d1d1dff'
 WHITE='#ffffffff'
@@ -41,6 +41,6 @@ $HOME/.config/i3/i3lock-color \
 --noinputtext="" \
 --verif-font="FontAwesome" \
 --wrong-font="FontAwesome" \
---time-font="System Ubuntu" \
+--time-font="San Francisco Display" \
 --date-font="FontAwesome" \
 -t

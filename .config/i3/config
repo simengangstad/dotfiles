@@ -20,7 +20,7 @@ exec_always --no-startup-id xrandr --output $primary_monitor --primary
 
 # Palette: https://flatuicolors.com/palette/defo
 
-font pango:Monospace, 11
+font pango:San Francisco Display, 12
 new_window pixel 0
 
 # i3 gaps
@@ -59,11 +59,11 @@ bar {
         binding_mode       $bar-focus-color		$bar-focus-color	$text-color	
     }
 
-	font pango:Monospace Bold 12
+	font pango:San Francisco Display, Bold 12
 	position top
 }
 
-exec_always --no-startup-id "feh --bg-scale $HOME/.config/i3/dive.png"
+exec_always --no-startup-id "feh --bg-scale $HOME/.config/i3/lake.png"
 
 ##################################################
 ####			    Key maps				  ####

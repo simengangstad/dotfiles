@@ -27,11 +27,11 @@ configuration {
 	background-color-selected: #303030ff;
 	foreground-color: #ffffffff;
 	focus-color: #4e81edff;
-	font: "Monospace, Bold 14";
+	font: "San Francisco Display, Bold 14";
 }
 
 window {
-  height: 27%;
+  height: 24%;
   width: 30%;
   border-radius: 4px;
 }
@@ -73,7 +73,7 @@ inputbar {
 }
 
 prompt {
-  font: "Monospace, Bold 17";
+  font: "San Francisco Display, Bold 17";
   background-color: @focus-color;
   text-color: @foreground-color;
   padding: 4 0  4 8;

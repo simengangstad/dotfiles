@@ -16,9 +16,9 @@ else
 			echo " $vol" 
 	elif [ $vol -lt 35 ] 
 		then
-			echo " $vol" 
+			echo "  $vol" 
 	elif [ $vol -gt 34 ]
 		then 
-			echo " $vol"
+			echo "  $vol"
 	fi	
 fi

@@ -8,7 +8,7 @@ if [[ "${status}" == "up" ]]; then
 	
 	quality=$(grep ${wifi} /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 	ssid=$(iwgetid -r)
-	echo " $ssid"
+	echo "  $ssid"
 	#if [[ -d "/sys/class/net/${device}/wireless" ]]; then
 	#	quality=$(grep ${device} /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 	#	echo "$ssid ${quality}%"

@@ -30,8 +30,8 @@ for_window [title   = ".*"] border pixel 1
 smart_borders on
 
 #
-set $focus-color 			    #eeeeee
-set $bar-focus-color 			#eeeeee
+set $focus-color 			    #ffffff
+set $bar-focus-color 			#ffffff
 set $base-color				    #1d1d1d
 set $text-color 				#ffffff
 set $text-dimmed-color 			#666666

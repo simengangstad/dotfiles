@@ -28,8 +28,8 @@ ln -sv "$SCRIPTPATH/.config/compton.conf" "$HOME/.config/compton.conf"
 rm -rf "$HOME/.themes/minimized-dark" 
 ln -s "$SCRIPTPATH/.themes/minimized-dark" "$HOME/.themes/minimized-dark"
 
-rm -rf "$HOME/.icons/oreo_blue_cursors" 
-ln -s "$SCRIPTPATH/.icons/oreo_blue_cursors" "$HOME/.icons/oreo_blue_cursors"
+# rm -rf "$HOME/.icons/oreo_blue_cursors" 
+# ln -s "$SCRIPTPATH/.icons/oreo_blue_cursors" "$HOME/.icons/oreo_blue_cursors"
 
 # Dunst
 rm -rf "$HOME/.config/dunst" 

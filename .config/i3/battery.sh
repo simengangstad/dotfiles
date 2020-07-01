@@ -30,7 +30,7 @@ if ($acpi =~ /(\d\d:\d\d):/) {
 
 
 if ($status eq 'Charging') {
-	print " ";
+	print "  ";
 }
 
 # consider color and urgent flag only on discharge

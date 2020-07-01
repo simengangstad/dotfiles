@@ -25,13 +25,13 @@ new_window pixel 0
 
 # i3 gaps
 gaps inner 15
-for_window [class   = ".*"] border pixel 2
-for_window [title   = ".*"] border pixel 2
+for_window [class   = ".*"] border pixel 1
+for_window [title   = ".*"] border pixel 1
 smart_borders on
 
 #
-set $focus-color 			    #4e81ed	
-set $bar-focus-color 			#4e81ed	
+set $focus-color 			    #eeeeee
+set $bar-focus-color 			#eeeeee
 set $base-color				    #1d1d1d
 set $text-color 				#ffffff
 set $text-dimmed-color 			#666666
@@ -39,7 +39,7 @@ set $active-color 				#44778d
 set $urgent-color     			#f44336	
 
 #                       background 			border 			   text                 indicator
-client.focused          $focus-color 	 	$focus-color 	   $text-color 			#424242
+client.focused          $focus-color 	 	$focus-color 	   $text-dimmed-color	#424242
 client.unfocused        $base-color 		$base-color    	   $text-dimmed-color 	#424242 
 client.focused_inactive $base-color  		$base-color    	   $text-dimmed-color 	#424242 
 client.urgent           $urgent-color    	$urgent-color      $text-dimmed-color   #424242
@@ -52,7 +52,7 @@ bar {
         separator   $text-color 
 
 		# 				   border				background 			text
-        focused_workspace  $bar-focus-color 	$bar-focus-color 	$text-color
+        focused_workspace  $bar-focus-color 	$bar-focus-color 	#000000
         active_workspace   $base-color 			$base-color 		$text-color
         inactive_workspace $base-color 			$base-color 	 	$text-color 
         urgent_workspace   $urgent-color		$urgent-color		$text-color	

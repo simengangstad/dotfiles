@@ -4,7 +4,7 @@ echo "Installing ohmyzsh"
 sudo apt install curl zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-echo "Installing Vim and dependencies"
+echo "Installing Vim"
 sudo apt install vim 
 
 echo "Setting up aliases for git"
@@ -21,7 +21,9 @@ mkdir -p $HOME/.config/i3
 mkdir -p $HOME/.config/dunst
 mkdir -p $HOME/.icons
 mkdir -p $HOME/.themes
-sudo apt install i3blocks rofi xautolock compton dunst fonts-font-awesome feh
+sudo add-apt-repository ppa:kgilmer/speed-ricer
+sudo apt update
+sudo apt install i3-gaps i3blocks rofi xautolock compton dunst fonts-font-awesome feh
 
 echo "Installing papirus icon theme"
 sudo add-apt-repository ppa:papirus/papirus

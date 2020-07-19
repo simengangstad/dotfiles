@@ -5,7 +5,7 @@ configuration {
 	show-icons: true;
 	hide-scrollbar: true;
 	scrollbar-width: 0;
-	drun-icon-theme: "Papirus";
+	icon-theme: "Papirus";
 	display-window: " ";
 	display-windowcd: "";
 	display-run: " ";
@@ -24,8 +24,10 @@ configuration {
 
 * {
 	background-color: #1d1d1dff;
+	background-color-prompt: #1d1d1dff;
 	background-color-selected: #303030ff;
-	foreground-color: #ffffff;
+	foreground-color: #ffffffff;
+	foreground-color-prompt: #ffffffff;
 	font: "San Francisco Display, Bold 14";
 }
 
@@ -66,22 +68,22 @@ element selected {
 inputbar {
   children: [prompt, entry];
   padding: 4 4 4 4;
-  background-color: @background-color-selected;
+  background-color: @background-color-prompt;
   border: 0 0 0 0;
-  border-color: @foreground-color;
+  border-color: @foreground-color-prompt;
 }
 
 prompt {
   font: "San Francisco Display, Bold 17";
-  background-color: @background-color-selected;
-  text-color: @foreground-color;
+  background-color: @background-color-prompt;
+  text-color: @foreground-color-prompt;
   padding: 4 0  4 8;
 }
 
 entry {
   font: "Monospace, Bold 17";
-  background-color: @background-color-selected;
-  text-color: @foreground-color;
+  background-color: @background-color-prompt;
+  text-color: @foreground-color-prompt;
   padding: 4 12 4 0;
 }
 

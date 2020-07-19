@@ -8,6 +8,7 @@ my $acpi;
 my $status;
 my $percent;
 my $full_text;
+my $icon;
 my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
 
 # read the first line of the "acpi" command output
@@ -15,7 +16,7 @@ open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
 $acpi = <ACPI>;
 close(ACPI);
 
-# fail on unexpected output
+# fail on unexpected icon
 if ($acpi !~ /: (\w+), (\d+)%/) {
 	die "$acpi\n";
 }
@@ -24,35 +25,34 @@ $status = $1;
 $percent = $2;
 $full_text = "$percent%";
 
-if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " ($1)";
-}
-
-
-if ($status eq 'Charging') {
-	print "  ";
-}
+# if ($acpi =~ /(\d\d:\d\d):/) {
+#	$full_text .= " ($1)";
+#}
 
 # consider color and urgent flag only on discharge
 if ($status eq 'Discharging') {
 
  	if ($percent < 10) {
-		print " ";
+		$icon=" ";
 	} elsif ($percent < 35) {
-		print " ";
+		$icon=" ";
 	} elsif ($percent < 60) {
-		print " ";
+		$icon=" ";
 	} elsif ($percent < 85) {
-		print " ";
+		$icon=" ";
 	} elsif ($percent <= 100) {
-		print " ";
+		$icon=" ";
 	}
 
 	if ($percent < 5) {
 		exit(33);
 	}
 }
+else {
+	$icon="  ";
+}
 
-print "$full_text";
+
+print "<span background='#303030' foreground='#ffffff' >     $icon $full_text</span>";
 
 exit(0);

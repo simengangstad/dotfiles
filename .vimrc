@@ -52,6 +52,7 @@ set shiftwidth=4
 set autoindent
 set smartindent
 set textwidth=120
+set colorcolumn=120
 set backspace=indent,eol,start
 set ruler
 set number

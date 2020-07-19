@@ -32,8 +32,12 @@ ln -s "$SCRIPTPATH/.themes/minimized-dark" "$HOME/.themes/minimized-dark"
 rm -rf "$HOME/.config/dunst" 
 ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
 
-# Spotify tui 
-rm "$HOME/.config/spotify-tui/config.yml" 
-ln -sv "$SCRIPTPATH/.config/spotify-tui/config.yml" "$HOME/.config/spotify-tui/config.yml"
+# Icons 
+rm -rf "$HOME/.icons/Vimix-Doder-dark" 
+rm -rf "$HOME/.icons/Vimix-Doder" 
+rm -rf "$HOME/.icons/Bibata_Ice" 
+ln -s "$SCRIPTPATH/.icons/Vimix-Doder-dark" "$HOME/.icons/Vimix-Doder-dark"
+ln -s "$SCRIPTPATH/.icons/Vimix-Doder" "$HOME/.icons/Vimix-Doder"
+ln -s "$SCRIPTPATH/.icons/Bibata_Ice" "$HOME/.icons/Bibata_Ice"
 
 

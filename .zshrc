@@ -20,13 +20,11 @@ source $ZSH/oh-my-zsh.sh
 
 # source /opt/ros/melodic/setup.zsh
 # source $HOME/develop/catkin_ws/devel/setup.zsh
-eval $($HOME/.linuxbrew/bin/brew shellenv)
 alias open="xdg-open"
 
 alias mkdir='mkdir -pv'
-export CUDA_HOME=/usr/local/cuda
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib65
-export PATH=$PATH:$CUDA_HOME/bin
 export VIRTUAL_ENV_DISABLE_PROMPT=
-export PATH=$PATH:$HOME/Firmware/build/px4_sitl_default/bin
+
+bindkey -v
+
 

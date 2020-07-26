@@ -43,10 +43,6 @@ if ($status eq 'Discharging') {
 	} elsif ($percent <= 100) {
 		$icon=" ";
 	}
-
-	if ($percent < 5) {
-		exit(33);
-	}
 }
 else {
 	$icon="  ";

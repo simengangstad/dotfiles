@@ -1,27 +1,20 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh 
 
-if [ ! -z "$@" ]
-then
-  QUERY=$@
-  if [[ "$@" == /* ]]
-  then
-    if [[ "$@" == *\?\? ]]
-    then
-      coproc ( nautilus "${QUERY%\/* \?\?}"  > /dev/null 2>&1 )
-      exec 1>&-
-      exit;
-    else
-      coproc ( nautilus "$@"  > /dev/null 2>&1 )
-      exec 1>&-
-      exit;
-    fi
-  elif [[ "$@" == \?* ]]
-  then
-    while read -r line; do
-      echo "$line" \?\?
-    done <<< $(find $HOME -iname *"${QUERY#\?}"* 2>&1 | grep -v 'Permission denied\|Input/output error')
-  else
-    find $HOME -iname *"${QUERY#!}"* 2>&1 | grep -v 'Permission denied\|Input/output error'
-  fi
+# If there are any arguments passed
+if [[ -n "$@" ]]; then
+	# Check if the argument passed is a file path or directory, in other words we chose an item after
+	# searching or just initially
+	if [[ -d "$HOME/$1"  ]] || [[ -f "$HOME/$1" ]]
+	then
+		coproc xdg-open "$HOME/$1" > /dev/null
+	# We are searching initially
+	else
+		# Look up in database, get only items wit file:// prefix, remove said prefix and remove $HOME prefix
+		result=$(recoll -t -e -b -f $1 | grep 'file://' | sed -e 's|^ *file://||' | sed -e "s|$HOME/||")
+		for entry in $result
+		do
+			echo $entry
+		done
+	fi
 fi
 

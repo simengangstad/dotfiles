@@ -25,10 +25,6 @@ sudo add-apt-repository ppa:kgilmer/speed-ricer
 sudo apt update
 sudo apt install i3-gaps i3blocks rofi xautolock compton dunst fonts-font-awesome feh
 
-echo "Installing papirus icon theme"
-sudo add-apt-repository ppa:papirus/papirus
-sudo apt update && sudo apt install papirus-icon-theme
-
 echo "Installing playerctl"
 wget "https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb"
 sudo apt install ./playerctl-*.deb

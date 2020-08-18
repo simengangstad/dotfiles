@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BG=$HOME/.config/i3/sunset.jpg
+BG=$HOME/.config/i3/sierra.png
 
 BACKGROUND_COLOR='#1d1d1dff'
 BACKGROUND_LIGHTER_COLOR='#303030ff'

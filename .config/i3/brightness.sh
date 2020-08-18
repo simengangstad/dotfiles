@@ -1,2 +1,2 @@
 #!/bin/bash
-echo '<span background="#303030" foreground="#ffffff" >'"       $(awk -F, '{ print $4 }' <(sudo brightnessctl -m))"'</span>'
+echo '<span background="#ffffff" foreground="#1d1d1d" >'"       $(awk -F, '{ print $4 }' <(sudo brightnessctl -m))"'</span>'

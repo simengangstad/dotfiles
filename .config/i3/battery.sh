@@ -49,6 +49,6 @@ else {
 }
 
 
-print "<span background='#303030' foreground='#ffffff' >     $icon $full_text</span>";
+print "<span background='#ffffff' foreground='#1d1d1d' >     $icon $full_text</span>";
 
 exit(0);

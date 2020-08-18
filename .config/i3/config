@@ -1,15 +1,15 @@
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 exec --no-startup-id compton -b --config $HOME/.config/compton.conf
-# exec --no-startup-id sudo powertop --auto-tune
+exec --no-startup-id sudo powertop --auto-tune
 
-set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
-# set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
+# set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
+set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
 # set $default_audio_device bluez_sink.E4_90_FD_F3_A0_58.a2dp_sink
 
-set $primary_monitor HDMI-1
-set $secondary_monitor HDMI-0
-# set $primary_monitor eDP-1
-# set $secondary_monitor eDP-1 
+# set $primary_monitor HDMI-1
+# set $secondary_monitor HDMI-0
+set $primary_monitor eDP-1
+set $secondary_monitor eDP-1 
 
 exec_always --no-startup-id xrandr --output $primary_monitor --primary
 # exec sudo brightnessctl set 30% && pkill -RTMIN+3 i3blocks
@@ -30,7 +30,7 @@ smart_borders on
 
 #
 set $focus-color 			    #ffffff
-set $bar-focus-color 			#dddddd
+set $bar-focus-color 			#ffffff
 set $base-color				   	#1d1d1d
 set $text-color 				#ffffff
 set $text-focus-color 			#1d1d1d
@@ -45,7 +45,7 @@ client.focused_inactive $base-color  		$base-color    	   $text-color
 client.urgent           $urgent-color    	$urgent-color      $text-color
 
 bar {
-	status_command i3blocks -c $HOME/.config/i3/desktop.conf
+	status_command i3blocks -c $HOME/.config/i3/laptop.conf
 
 	colors {
         background 	$base-color
@@ -226,18 +226,18 @@ bindsym $mod+r mode "resize"
 ##################################################
 
 # Pulse Audio controls
-bindsym F3 exec "pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks"
-bindsym F2 exec "pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks"
-bindsym F1 exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
+# bindsym F3 exec "pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks"
+# bindsym F2 exec "pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks"
+# bindsym F1 exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
 
-# bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks"
-# bindsym XF86AudioLowerVolume exec "pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks"
-# bindsym XF86AudioMute exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks"
+bindsym XF86AudioMute exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
 
 
 # Brightness
-# bindsym XF86MonBrightnessDown exec sudo brightnessctl set 5%- && pkill -RTMIN+3 i3blocks
-# bindsym XF86MonBrightnessUp exec sudo brightnessctl set +5% && pkill -RTMIN+3 i3blocks
+bindsym XF86MonBrightnessDown exec sudo brightnessctl set 5%- && pkill -RTMIN+3 i3blocks
+bindsym XF86MonBrightnessUp exec sudo brightnessctl set +5% && pkill -RTMIN+3 i3blocks
  
 
 # Media player controls

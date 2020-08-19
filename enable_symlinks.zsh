@@ -21,8 +21,11 @@ rm -rf "$HOME/.config/rofi"
 ln -s "$SCRIPTPATH/.config/rofi" "$HOME/.config/rofi"
 
 # Compton 
-rm "$HOME/.config/compton.conf"
-ln -sv "$SCRIPTPATH/.config/compton.conf" "$HOME/.config/compton.conf"
+rm "$HOME/.config/compton-laptop.conf"
+ln -sv "$SCRIPTPATH/.config/compton-laptop.conf" "$HOME/.config/compton-laptop.conf"
+rm "$HOME/.config/compton-desktop.conf"
+ln -sv "$SCRIPTPATH/.config/compton-desktop.conf" "$HOME/.config/compton-desktop.conf"
+
 
 # Theme
 rm -rf "$HOME/.themes/minimized-dark" 

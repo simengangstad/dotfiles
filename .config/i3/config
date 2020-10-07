@@ -12,8 +12,8 @@ set $secondary_monitor HDMI-0
 # set $secondary_monitor eDP-1 
 
 exec --no-startup-id xrandr --output $primary_monitor --primary
-exec --no-startup-id xrandr --output $primary_monitor --mode 1920x1080 --pos 0x0
-exec --no-startup-id xrandr --output $secondary_monitor --mode 1920x1080 --pos 1920x0 --rotate left
+# exec --no-startup-id xrandr --output $primary_monitor --mode 1920x1080 --pos 0x0
+exec --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
 # exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x-540
 # exec sudo brightnessctl set 30% && pkill -RTMIN+3 i3blocks
 

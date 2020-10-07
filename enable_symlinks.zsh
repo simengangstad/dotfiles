@@ -31,9 +31,16 @@ ln -sv "$SCRIPTPATH/.config/compton-desktop.conf" "$HOME/.config/compton-desktop
 rm -rf "$HOME/.themes/minimized-dark" 
 ln -s "$SCRIPTPATH/.themes/minimized-dark" "$HOME/.themes/minimized-dark"
 
-# Dunst
+# dunst
 rm -rf "$HOME/.config/dunst" 
 ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
+
+# Albert
+rm -rf "$HOME/.config/albert/albert.conf" 
+ln -sv "$SCRIPTPATH/.config/albert/albert.conf" "$HOME/.config/albert/albert.conf"
+mkdir "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel" 
+rm -rf "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
+ln -sv "$SCRIPTPATH/.config/albert/minimized-dark.qss" "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
 
 # Icons 
 rm -rf "$HOME/.icons/Vimix-Doder-dark" 

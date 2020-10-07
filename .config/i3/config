@@ -1,5 +1,5 @@
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
-exec --no-startup-id compton -b --config $HOME/.config/compton-desktop.conf
+exec --no-startup-id compton -b --config $HOME/.config/compton-laptop.conf
 exec --no-startup-id sudo powertop --auto-tune
 exec --no-startup-id albert
 

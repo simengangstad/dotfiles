@@ -40,7 +40,7 @@ rm -rf "$HOME/.config/albert/albert.conf"
 ln -sv "$SCRIPTPATH/.config/albert/albert.conf" "$HOME/.config/albert/albert.conf"
 mkdir "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel" 
 rm -rf "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
-ln -sv "$SCRIPTPATH/.config/albert/minimized-dark.qss" "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
+cp "$SCRIPTPATH/.config/albert/minimized-dark.qss" "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
 
 # Icons 
 rm -rf "$HOME/.icons/Vimix-Doder-dark" 

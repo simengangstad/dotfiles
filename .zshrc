@@ -20,9 +20,9 @@ source $ZSH/oh-my-zsh.sh
 alias open="xdg-open"
 
 alias mkdir='mkdir -pv'
-export path=/opt/gcc-arm-none-eabi-6-2017-q2-update/bin:$path
-export path=/home/simengangstad/develop/ardupilot/tools/autotest:$path
-export path=/usr/lib/ccache:$path
+export PATH=/opt/gcc-arm-none-eabi-6-2017-q2-update/bin:$PATH
+export PATH=/home/simengangstad/develop/ardupilot/tools/autotest:$PATH
+export PATH=/usr/lib/ccache:$PATH
 
 bindkey -v
 

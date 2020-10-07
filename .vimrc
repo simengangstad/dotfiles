@@ -11,8 +11,9 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'jacoborus/tender.vim'
-Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp']}
 Plug 'itchyny/lightline.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 call plug#end()
 
 if (has("termguicolors"))
@@ -27,13 +28,6 @@ syntax enable
 
 colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
-
-
-
-" YCM 
-let g:ycm_use_clangd = 0
-let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
-set completeopt-=preview
 
 
 " Netrw
@@ -51,7 +45,6 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set smartindent
-set textwidth=120
 set colorcolumn=120
 set backspace=indent,eol,start
 set ruler
@@ -63,7 +56,6 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-set linebreak
 
 
 function FindSessionDirectory() abort

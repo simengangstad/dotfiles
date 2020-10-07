@@ -1,6 +1,7 @@
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 exec --no-startup-id compton -b --config $HOME/.config/compton-desktop.conf
 # exec --no-startup-id sudo powertop --auto-tune
+# exec --no-startup-id albert
 
 set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 # set $default_audio_device alsa_output.pci-0000_09_00.1.hdmi-stereo
@@ -12,10 +13,9 @@ set $secondary_monitor HDMI-0
 # set $secondary_monitor eDP-1 
 
 exec --no-startup-id xrandr --output $primary_monitor --primary
-# exec --no-startup-id xrandr --output $primary_monitor --mode 1920x1080 --pos 0x0
 exec --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
-# exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x-540
-# exec sudo brightnessctl set 30% && pkill -RTMIN+3 i3blocks
+
+for_window [class="Gnome-control-center"] floating enable
 
 
 ##################################################
@@ -29,9 +29,10 @@ new_window pixel 0
 gaps inner 15
 for_window [class   = ".*"] border pixel 1
 for_window [title   = ".*"] border pixel 1
+for_window [class   = "albert"] border pixel 0
 smart_borders on
 
-#
+# Colors
 set $focus-color 			    #ffffff
 set $bar-focus-color 			#ffffff
 set $base-color				   	#1d1d1d
@@ -85,14 +86,18 @@ set $mod Mod1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split h; exec i3-sensible-terminal
-bindsym $mod+Shift+Return split v; exec i3-sensible-terminal
+bindsym $mod+Return split h; exec /usr/bin/x-terminal-emulator 
+bindsym $mod+Shift+Return split v; exec /usr/bin/x-terminal-emulator 
 
 # kill focused window
 bindsym $mod+q kill
 
 # start rofi 
-bindsym $mod+d exec --no-startup-id rofi -show 
+# bindsym $mod+d exec --no-startup-id rofi -show 
+bindsym $mod+d exec --no-startup-id albert show
+
+# start settings
+bindsym $mod+s exec --no-startup-id gnome-control-center 
 
 # Screen shot
 bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
@@ -126,18 +131,10 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+Control+h split h
-
-# split in vertical orientation
-bindsym $mod+Control+v split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -146,18 +143,12 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+m move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# If there are multiple scrathpad windows, this command cycles through them.
+bindsym $mod+Shift+m scratchpad show
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -229,14 +220,18 @@ bindsym $mod+r mode "resize"
 ##################################################
 
 # Pulse Audio controls
-bindsym F3 exec "pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks"
-bindsym F2 exec "pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks"
-bindsym F1 exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
+bindsym F3 exec pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks
+bindsym F2 exec pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks
+bindsym F1 exec pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks
 
 # bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks"
 # bindsym XF86AudioLowerVolume exec "pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks"
 # bindsym XF86AudioMute exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks"
 
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioMute exec pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle 
 
 # Brightness
 # bindsym XF86MonBrightnessDown exec sudo brightnessctl set 5%- && pkill -RTMIN+3 i3blocks
@@ -244,9 +239,9 @@ bindsym F1 exec "pactl set-sink-mute $default_audio_device toggle && pkill -RTMI
  
 
 # Media player controls
-bindsym F8 exec playerctl play-pause
-bindsym F9 exec playerctl next
-bindsym F7 exec playerctl previous
+# bindsym F8 exec playerctl play-pause
+# bindsym F9 exec playerctl next
+# bindsym F7 exec playerctl previous
 
 ##################################################
 ####			      General				  ####

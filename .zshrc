@@ -17,12 +17,18 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-source /opt/ros/noetic/setup.zsh
-source $HOME/catkin_ws/devel/setup.zsh
 alias open="xdg-open"
 
 alias mkdir='mkdir -pv'
+export path=/opt/gcc-arm-none-eabi-6-2017-q2-update/bin:$path
+export path=/home/simengangstad/develop/ardupilot/tools/autotest:$path
+export path=/usr/lib/ccache:$path
 
 bindkey -v
 
+
+source /opt/ros/noetic/setup.zsh
+source ~/catkin_ws/devel/setup.zsh
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+export dotnet_cli_telemetry_optout=1
 

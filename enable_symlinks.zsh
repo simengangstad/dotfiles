@@ -38,7 +38,7 @@ ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
 # Albert
 rm -rf "$HOME/.config/albert/albert.conf" 
 ln -sv "$SCRIPTPATH/.config/albert/albert.conf" "$HOME/.config/albert/albert.conf"
-mkdir "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel" 
+mkdir -p "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel" 
 rm -rf "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
 cp "$SCRIPTPATH/.config/albert/minimized-dark.qss" "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
 

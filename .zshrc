@@ -11,19 +11,17 @@ fi
 
 plugins=(
 	git
-	virtualenv
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# source /opt/ros/melodic/setup.zsh
-# source $HOME/develop/catkin_ws/devel/setup.zsh
+source /opt/ros/noetic/setup.zsh
+source $HOME/catkin_ws/devel/setup.zsh
 alias open="xdg-open"
 
 alias mkdir='mkdir -pv'
-export VIRTUAL_ENV_DISABLE_PROMPT=
 
 bindkey -v
 

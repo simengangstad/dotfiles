@@ -41,7 +41,7 @@ cursor-scroll = ns-resize
 
 [bar/left]
 inherit = bar/main
-monitor = HDMI-1
+monitor = eDP-1
 
 [bar/right]
 inherit = bar/main

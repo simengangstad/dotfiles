@@ -8,4 +8,4 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # Launch polybar
 polybar left &
-polybar right &
+# polybar right &

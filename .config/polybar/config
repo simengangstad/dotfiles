@@ -33,19 +33,24 @@ font-2 = PowerlineExtraSymbels:size=11:antialias=true;2.5
 
 modules-left = i3
 modules-center = xwindow
-modules-right = network audio date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[bar/laptop]
+inherit = bar/main
+mointor = eDP-1
+modules-right = wlan audio date
 
 [bar/left]
 inherit = bar/main
-monitor = eDP-1
+monitor = HDMI-1
+modules-right = network audio date
 
 [bar/right]
 inherit = bar/main
 monitor = HDMI-0
+modules-right = network audio date
 
 [module/xwindow]
 type = internal/xwindow
@@ -109,16 +114,14 @@ label-foreground = ${colors.tertiary}
 
 [module/wlan]
 type = internal/network
-interface = wlx74da38417ebf 
+interface = wlp0s20f3 
 interval = 3.0
 
 format-connected = <label-connected>
-format-connected-underline = #9f78e1
-label-connected = "直"
+label-connected =   %essid%
 label-connected-foreground = ${colors.primary}
 
 format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = 睊
 label-disconnected-foreground = ${colors.alert}
 
@@ -147,7 +150,15 @@ label = %date%%time%
 type = internal/network
 interface = enp4s0
 interval = 5.0
-format-connected = 
+
+format-connected = <label-connected>
+label-connected =   %essid%
+label-connected-foreground = ${colors.primary}
+
+format-disconnected = <label-disconnected>
+label-disconnected = 睊
+label-disconnected-foreground = ${colors.alert}
+
 
 
 

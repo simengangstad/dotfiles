@@ -1,8 +1,8 @@
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 exec --no-startup-id picom -b --config $HOME/.config/picom/config.conf
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh  
 
 # Desktop
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh desktop
 # set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 #
 # set $primary_monitor HDMI-1
@@ -17,6 +17,7 @@ set $secondary_monitor eDP-1
 exec_always --no-startup-id xrandr --output $primary_monitor --primary
 
 set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh laptop
 exec --no-startup-id sudo powertop --auto-tune
 
 

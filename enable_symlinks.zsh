@@ -20,11 +20,9 @@ ln -sv "$SCRIPTPATH/i3lock-color/build/i3lock" "$HOME/.config/i3/i3lock-color"
 rm -rf "$HOME/.config/rofi" 
 ln -s "$SCRIPTPATH/.config/rofi" "$HOME/.config/rofi"
 
-# Compton 
-rm "$HOME/.config/compton-laptop.conf"
-ln -sv "$SCRIPTPATH/.config/compton-laptop.conf" "$HOME/.config/compton-laptop.conf"
-rm "$HOME/.config/compton-desktop.conf"
-ln -sv "$SCRIPTPATH/.config/compton-desktop.conf" "$HOME/.config/compton-desktop.conf"
+# Picom 
+rm "$HOME/.config/picom"
+ln -s "$SCRIPTPATH/.config/picom" "$HOME/.config/picom"
 
 
 # Theme

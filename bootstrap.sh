@@ -32,13 +32,13 @@ sudo apt install libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev l
 pushd picom
 	git submodule update --init --recursive
 	meson --buildtype=release . build
-	ninja -C build
+	sudo ninja -C build install
 popd
 
 echo "Installing polybar"
 git clone https://github.com/polybar/polybar.git
 pushd polybar
-	sudo apt install build-essential git cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
+	sudo apt install build-essential git cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libiw-dev
 	./build.sh
 popd
 

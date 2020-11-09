@@ -35,12 +35,9 @@ ln -s "$SCRIPTPATH/.themes/minimized-dark" "$HOME/.themes/minimized-dark"
 rm -rf "$HOME/.config/dunst" 
 ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
 
-# Albert
-rm -rf "$HOME/.config/albert/albert.conf" 
-ln -sv "$SCRIPTPATH/.config/albert/albert.conf" "$HOME/.config/albert/albert.conf"
-mkdir -p "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel" 
-rm -rf "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
-cp "$SCRIPTPATH/.config/albert/minimized-dark.qss" "$HOME/.local/share/albert/org.albert.frontend.widgetboxmodel/themes/minimized-dark.qss" 
+# Polybar
+rm -rf "$HOME/.config/polybar" 
+ln -s "$SCRIPTPATH/.config/polybar" "$HOME/.config/polybar"
 
 # Icons 
 rm -rf "$HOME/.icons/Vimix-Doder-dark" 

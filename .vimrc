@@ -34,7 +34,7 @@ let g:lightline = { 'colorscheme': 'tender' }
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 1
-let g:netrw_winsize = 20
+let g:netrw_winsize = 25 
 let g:netrw_browse_split = 4
 let g:netrw_altv=1
 
@@ -56,6 +56,8 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set t_Co=256
+
 
 
 function FindSessionDirectory() abort

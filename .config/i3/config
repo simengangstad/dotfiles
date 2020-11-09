@@ -1,24 +1,25 @@
+set $primary_monitor HDMI-1
+set $secondary_monitor HDMI-0
+# set $primary_monitor eDP-1
+# set $secondary_monitor eDP-1 
+
+exec_always --no-startup-id xrandr --output $primary_monitor --primary
+exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
+
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
-exec --no-startup-id compton -b --config $HOME/.config/compton-laptop.conf
-exec --no-startup-id sudo powertop --auto-tune
-exec --no-startup-id albert
+exec --no-startup-id picom -b --config $HOME/.config/picom/config.conf
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh  
+# exec --no-startup-id sudo powertop --auto-tune
 
 # Desktop
-# set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
+set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 
 # Laptop
-set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
-
-# set $primary_monitor HDMI-1
-# set $secondary_monitor HDMI-0
-set $primary_monitor eDP-1
-set $secondary_monitor eDP-1 
-
-exec --no-startup-id xrandr --output $primary_monitor --primary
-# exec --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
+# set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
 
 for_window [class="Gnome-control-center"] floating enable
 for_window [class="Lxappearance"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 
 
 ##################################################
@@ -29,14 +30,15 @@ font pango:San Francisco Display, 12
 new_window pixel 0
 
 # i3 gaps
+gaps top 48
 gaps inner 15
-for_window [class   = ".*"] border pixel 1
-for_window [title   = ".*"] border pixel 1
+for_window [class   = ".*"] border pixel 0
+for_window [title   = ".*"] border pixel 0
 for_window [class   = "albert"] border pixel 0
-smart_borders on
 
 # Colors
-set $focus-color 			    #ffffff
+# set $focus-color 			    #ffffff
+set $focus-color 			    #1d1d1d
 set $bar-focus-color 			#ffffff
 set $base-color				   	#1d1d1d
 set $text-color 				#ffffff
@@ -51,26 +53,26 @@ client.unfocused        $base-color 		$base-color    	   $text-color
 client.focused_inactive $base-color  		$base-color    	   $text-color
 client.urgent           $urgent-color    	$urgent-color      $text-color
 
-bar {
-	status_command i3blocks -c $HOME/.config/i3/laptop.conf
-
-	colors {
-        background 	$base-color
-        separator   $text-color 
-
-		# 				   border				background 			text
-        focused_workspace  $bar-focus-color 	$bar-focus-color	$text-focus-color 	
-        active_workspace   $base-color 			$base-color 		$text-color
-        inactive_workspace $base-color 			$base-color 	 	$text-color 
-        urgent_workspace   $urgent-color		$urgent-color		$text-color	
-        binding_mode       $bar-focus-color		$bar-focus-color	$text-focus-color	
-    }
-
-	font pango:San Francisco Display bold 12
-	position top 
-}
-
-exec_always --no-startup-id "feh --bg-fill $HOME/.config/i3/sierra.png"
+#bar {
+#	status_command i3blocks -c $HOME/.config/i3/desktop.conf
+#
+#	colors {
+#        background 	$base-color
+#        separator   $text-color 
+#
+#		# 				   border				background 			text
+#        focused_workspace  $bar-focus-color 	$bar-focus-color	$text-focus-color 	
+#        active_workspace   $bar-focus-color 	$bar-focus-color 	$text-focus-color
+#        inactive_workspace $base-color 			$base-color 	 	$text-color 
+#        urgent_workspace   $urgent-color		$urgent-color		$text-color	
+#        binding_mode       $bar-focus-color		$bar-focus-color	$text-focus-color	
+#    }
+#
+#	font pango:San Francisco Display bold 12
+#	position top 
+#}
+#
+exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/sierra.png
 
 ##################################################
 ####			    Key maps				  ####
@@ -83,21 +85,20 @@ set $down j
 set $left h
 set $right l 
 
-set $mod Mod1
+set $mod Mod4
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split h; exec /usr/bin/x-terminal-emulator 
-bindsym $mod+Shift+Return split v; exec /usr/bin/x-terminal-emulator 
+bindsym $mod+Return split h; exec /usr/bin/gnome-terminal
+bindsym $mod+Shift+Return split v; exec /usr/bin/gnome-terminal
 
 # kill focused window
 bindsym $mod+q kill
 
 # start rofi 
-# bindsym $mod+d exec --no-startup-id rofi -show 
-bindsym $mod+d exec --no-startup-id albert show
+bindsym $mod+d exec --no-startup-id rofi -show 
 
 # start settings
 bindsym $mod+s exec --no-startup-id gnome-control-center 
@@ -154,16 +155,15 @@ bindsym $mod+m move scratchpad
 bindsym $mod+Shift+m scratchpad show
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+1 workspace 5, workspace 1
+bindsym $mod+2 workspace 6, workspace 2
+bindsym $mod+3 workspace 7, workspace 3
+bindsym $mod+4 workspace 8, workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -177,8 +177,6 @@ bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -223,24 +221,28 @@ bindsym $mod+r mode "resize"
 ##################################################
 
 # Pulse Audio controls
-bindsym F3 exec pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks
-bindsym F2 exec pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks
-bindsym F1 exec pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks
+bindsym F3 exec --no-startup-id pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks
+bindsym F2 exec --no-startup-id pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks
+bindsym F1 exec --no-startup-id pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks
-bindsym XF86AudioMute exec pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $default_audio_device +5% && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $default_audio_device -5% && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle 
 
 # Brightness
-bindsym XF86MonBrightnessDown exec sudo brightnessctl set 5%- && pkill -RTMIN+3 i3blocks
-bindsym XF86MonBrightnessUp exec sudo brightnessctl set +5% && pkill -RTMIN+3 i3blocks
- 
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 5%- && pkill -RTMIN+3 i3blocks
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +5% && pkill -RTMIN+3 i3blocks
 
 # Media player controls
-bindsym F8 exec playerctl play-pause
-bindsym F9 exec playerctl next
-bindsym F7 exec playerctl previous
+bindsym F8 exec --no-startup-id playerctl play-pause
+bindsym F9 exec --no-startup-id playerctl next
+bindsym F7 exec --no-startup-id playerctl previous
+
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next 
+
 
 ##################################################
 ####			      General				  ####
@@ -252,12 +254,10 @@ exec --no-startup-id xautolock -time 15 -locker '$HOME/.config/i3/lock.sh' &
 # Define layout for workspaces
 
 workspace 1 output $primary_monitor
+workspace 2 output $primary_monitor
 workspace 3 output $primary_monitor
-workspace 5 output $primary_monitor
-workspace 7 output $primary_monitor
-workspace 9 output $primary_monitor 
-workspace 2 output $secondary_monitor 
-workspace 4 output $secondary_monitor 
+workspace 4 output $primary_monitor
+workspace 5 output $secondary_monitor 
 workspace 6 output $secondary_monitor 
+workspace 7 output $secondary_monitor 
 workspace 8 output $secondary_monitor 
-workspace 10 output $secondary_monitor 

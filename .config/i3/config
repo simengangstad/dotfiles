@@ -2,25 +2,25 @@ exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 exec --no-startup-id picom -b --config $HOME/.config/picom/config.conf
 
 # Desktop
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh desktop
-set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
-
-set $primary_monitor HDMI-1
-set $secondary_monitor HDMI-0
-exec_always --no-startup-id xrandr --output $primary_monitor --primary
-exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
-set $mod Mod4
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh desktop
+#set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
+#
+#set $primary_monitor HDMI-1
+#set $secondary_monitor HDMI-0
+#exec_always --no-startup-id xrandr --output $primary_monitor --primary
+#exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
+#set $mod Mod4
 
 
 # Laptop
-#set $primary_monitor eDP-1
-#set $secondary_monitor eDP-1 
-#exec_always --no-startup-id xrandr --output $primary_monitor --primary
-#
-#set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh laptop
-#exec --no-startup-id sudo powertop --auto-tune
-#set $mod Mod1
+set $primary_monitor eDP-1
+set $secondary_monitor eDP-1 
+exec_always --no-startup-id xrandr --output $primary_monitor --primary
+
+set $default_audio_device alsa_output.pci-0000_00_1f.3.analog-stereo
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh laptop
+exec --no-startup-id sudo powertop --auto-tune
+set $mod Mod1
 
 
 
@@ -162,24 +162,24 @@ bindsym $mod+Shift+m scratchpad show
 
 # switch to workspace
 # Desktop
-bindsym $mod+1 workspace 5, workspace 1
-bindsym $mod+2 workspace 6, workspace 2
-bindsym $mod+3 workspace 7, workspace 3
-bindsym $mod+4 workspace 8, workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-
-# Laptop
-#bindsym $mod+1 workspace 1
-#bindsym $mod+2 workspace 2
-#bindsym $mod+3 workspace 3
-#bindsym $mod+4 workspace 4
+#bindsym $mod+1 workspace 5, workspace 1
+#bindsym $mod+2 workspace 6, workspace 2
+#bindsym $mod+3 workspace 7, workspace 3
+#bindsym $mod+4 workspace 8, workspace 4
 #bindsym $mod+5 workspace 5
 #bindsym $mod+6 workspace 6
 #bindsym $mod+7 workspace 7
 #bindsym $mod+8 workspace 8
+
+# Laptop
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
 
 
 bindsym $mod+Tab workspace next

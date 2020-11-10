@@ -152,7 +152,7 @@ interface = enp4s0
 interval = 5.0
 
 format-connected = <label-connected>
-label-connected =   %essid%
+label-connected =   
 label-connected-foreground = ${colors.primary}
 
 format-disconnected = <label-disconnected>

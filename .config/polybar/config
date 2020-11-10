@@ -40,7 +40,7 @@ cursor-scroll = ns-resize
 [bar/laptop]
 inherit = bar/main
 mointor = eDP-1
-modules-right = wlan battery audio date
+modules-right = wlan battery backlight audio date
 
 [bar/left]
 inherit = bar/main
@@ -105,11 +105,11 @@ label-urgent-padding = ${self.label-focused-padding}
 
 [module/backlight]
 type = internal/backlight
-card = radeon_bl0
+card = intel_backlight 
 
 format = <label>
-label = "  %percentage%%"
-label-foreground = ${colors.tertiary}
+label = " %percentage%"
+label-foreground = ${colors.fourth}
 
 
 [module/wlan]

@@ -16,15 +16,15 @@ configuration {
 	kb-remove-char-back: "BackSpace";
 	kb-remove-to-eol: "";
 	kb-accept-entry: "Return,KP_Enter";
-	kb-mode-next: "Shift+Right,Control+Tab,Super+l";
+	/*kb-mode-next: "Shift+Right,Control+Tab,Super+l";
 	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Super+h";
 	kb-row-up: "Up,Super+k,ISO_Left_Tab";
-	kb-row-down: "Down,Super+j";
+	kb-row-down: "Down,Super+j";*/
 
-	/*kb-mode-next: "Shift+Right,Control+Tab,Alt+l";
+	kb-mode-next: "Shift+Right,Control+Tab,Alt+l";
 	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Alt+h";
 	kb-row-up: "Up,Alt+k,ISO_Left_Tab";
-	kb-row-down: "Down,Alt+j";*/
+	kb-row-down: "Down,Alt+j";
 }
 
 * {

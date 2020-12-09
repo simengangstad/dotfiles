@@ -1,6 +1,0 @@
-Install tlp
-Install powertop
-Disable ethernet and bluetooth in BIOS
-Set battery optimisation in BIOS
-Install newest NVIDIA drivers, and select Intel Graphics with NVIDIA Prime
-Modify grub with: GRUB_CMDLINE_LINUX="acpi_osi="!Linux-Lenovo-NV-HDMI-Audio""

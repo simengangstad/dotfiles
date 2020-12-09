@@ -9,40 +9,42 @@ for entry in .*; do
 	fi	
 done
 
-# i3
-rm -rf "$HOME/.config/i3" 
-ln -s "$SCRIPTPATH/.config/i3" "$HOME/.config/i3"
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	# i3
+	rm -rf "$HOME/.config/i3" 
+	ln -s "$SCRIPTPATH/.config/i3" "$HOME/.config/i3"
 
-rm "$HOME/.config/i3/i3lock-color"
-ln -sv "$SCRIPTPATH/i3lock-color/build/i3lock" "$HOME/.config/i3/i3lock-color"
+	rm "$HOME/.config/i3/i3lock-color"
+	ln -sv "$SCRIPTPATH/i3lock-color/build/i3lock" "$HOME/.config/i3/i3lock-color"
 
-# Rofi
-rm -rf "$HOME/.config/rofi" 
-ln -s "$SCRIPTPATH/.config/rofi" "$HOME/.config/rofi"
+	# Rofi
+	rm -rf "$HOME/.config/rofi" 
+	ln -s "$SCRIPTPATH/.config/rofi" "$HOME/.config/rofi"
 
-# Picom 
-rm "$HOME/.config/picom"
-ln -s "$SCRIPTPATH/.config/picom" "$HOME/.config/picom"
+	# Picom 
+	rm "$HOME/.config/picom"
+	ln -s "$SCRIPTPATH/.config/picom" "$HOME/.config/picom"
 
 
-# Theme
-rm -rf "$HOME/.themes/minimized-dark" 
-ln -s "$SCRIPTPATH/.themes/minimized-dark" "$HOME/.themes/minimized-dark"
+	# Theme
+	rm -rf "$HOME/.themes/minimized-dark" 
+	ln -s "$SCRIPTPATH/.themes/minimized-dark" "$HOME/.themes/minimized-dark"
 
-# dunst
-rm -rf "$HOME/.config/dunst" 
-ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
+	# dunst
+	rm -rf "$HOME/.config/dunst" 
+	ln -s "$SCRIPTPATH/.config/dunst" "$HOME/.config/dunst"
 
-# Polybar
-rm -rf "$HOME/.config/polybar" 
-ln -s "$SCRIPTPATH/.config/polybar" "$HOME/.config/polybar"
+	# Polybar
+	rm -rf "$HOME/.config/polybar" 
+	ln -s "$SCRIPTPATH/.config/polybar" "$HOME/.config/polybar"
 
-# Icons 
-rm -rf "$HOME/.icons/Vimix-Doder-dark" 
-rm -rf "$HOME/.icons/Vimix-Doder" 
-rm -rf "$HOME/.icons/Bibata_Ice" 
-ln -s "$SCRIPTPATH/.icons/Vimix-Doder-dark" "$HOME/.icons/Vimix-Doder-dark"
-ln -s "$SCRIPTPATH/.icons/Vimix-Doder" "$HOME/.icons/Vimix-Doder"
-ln -s "$SCRIPTPATH/.icons/Bibata_Ice" "$HOME/.icons/Bibata_Ice"
+	# Icons 
+	rm -rf "$HOME/.icons/Vimix-Doder-dark" 
+	rm -rf "$HOME/.icons/Vimix-Doder" 
+	rm -rf "$HOME/.icons/Bibata_Ice" 
+	ln -s "$SCRIPTPATH/.icons/Vimix-Doder-dark" "$HOME/.icons/Vimix-Doder-dark"
+	ln -s "$SCRIPTPATH/.icons/Vimix-Doder" "$HOME/.icons/Vimix-Doder"
+	ln -s "$SCRIPTPATH/.icons/Bibata_Ice" "$HOME/.icons/Bibata_Ice"
+fi
 
 

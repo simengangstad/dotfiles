@@ -45,11 +45,9 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set smartindent
-set colorcolumn=120
 set backspace=indent,eol,start
 set ruler
 set number
-set clipboard=unnamed
 set noshowmode
 set laststatus=2
 set ignorecase

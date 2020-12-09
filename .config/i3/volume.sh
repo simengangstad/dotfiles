@@ -24,4 +24,4 @@ else
 	fi	
 fi
 
-echo '<span background="#ffffffff" foreground="#1d1d1d" >'"     $output"'</span>'
+echo "$output"

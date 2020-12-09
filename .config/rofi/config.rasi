@@ -1,15 +1,14 @@
 configuration {
-	modi: "drun,run,window,ssh";
+	modi: "drun,run";
 	width: 550;
 	lines: 5;
 	show-icons: true;
 	hide-scrollbar: true;
 	scrollbar-width: 0;
-	icon-theme: "Papirus";
-	display-window: " ";
+	display-window: "";
 	display-windowcd: "";
-	display-run: " ";
-	display-ssh: " ";
+	display-run: "  ";
+	display-ssh: "";
 	display-drun: " ";
 	display-combi: "";
 	display-keys: "";
@@ -33,7 +32,7 @@ configuration {
 	background-color-selected: #303030ff;
 	foreground-color: #ffffffff;
 	foreground-color-prompt: #ffffffff;
-	font: "San Francisco Display, Bold 14";
+	font: "Ubuntu, Bold 14";
 }
 
 window {

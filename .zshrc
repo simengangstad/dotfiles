@@ -14,6 +14,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	# export dotnet_cli_telemetry_optout=1
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
+	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 fi
 
 plugins=(

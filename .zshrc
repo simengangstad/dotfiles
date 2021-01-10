@@ -9,8 +9,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	alias open="xdg-open"
 	alias copy="xclip -sel clip"
 	
-	# source /opt/ros/noetic/setup.zsh
-	# source ~/catkin_ws/devel/setup.zsh
+	source /opt/ros/noetic/setup.zsh
+	source ~/catkin_ws/devel/setup.zsh
 	# export dotnet_cli_telemetry_optout=1
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"

@@ -1,58 +1,45 @@
-exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
-exec --no-startup-id compton -b --config $HOME/.config/compton/config.conf
+exec --no-startup-id picom -b --config $HOME/.config/picom/picomrc
 
 # Desktop
-#set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
-#
-#set $primary_monitor HDMI-1
-#set $secondary_monitor HDMI-0
-#exec_always --no-startup-id xrandr --output $primary_monitor --primary
-#exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
-#set $mod Mod4
+set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 
-
-# Laptop
-set $primary_monitor eDP-1
-set $secondary_monitor eDP-1 
+set $primary_monitor HDMI-1
+set $secondary_monitor HDMI-0
 exec_always --no-startup-id xrandr --output $primary_monitor --primary
+exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
 set $mod Mod1
-
-
-for_window [class="Gnome-control-center"] floating enable
-for_window [class="Lxappearance"] floating enable
-for_window [class="Gnome-calculator"] floating enable
 
 
 ##################################################
 ####			      Theme				      ####
 ##################################################
 
-font pango:Ubuntu, 11
+font pango:NotoSans 11
 new_window pixel 0
 
 # i3 gaps
 gaps inner 15
-for_window [class   = ".*"] border pixel 2
-for_window [title   = ".*"] border pixel 2
+for_window [class   = ".*"] border pixel 1
+for_window [title   = ".*"] border pixel 1
 
 # Colors
 set $focus-color 			    #ffffff
-set $bar-focus-color 			#ffffff
+set $bar-focus-color 			#4e81ed
 set $base-color				   	#1d1d1d
 set $text-color 				#ffffff
-set $text-focus-color 			#1d1d1d
+set $text-focus-color 			#ffffff
 set $border-color 				#ffffff
 set $active-color 				#44778d
 set $urgent-color     			#f44336	
 
 #                       background 			border 			   text                 
-client.focused          $focus-color 	 	$focus-color 	   $text-color
+client.focused          $base-color 	 	$focus-color 	   $text-color
 client.unfocused        $base-color 		$base-color    	   $text-color
 client.focused_inactive $base-color  		$base-color    	   $text-color
 client.urgent           $urgent-color    	$urgent-color      $text-color
 
 bar {
-	status_command i3blocks -c $HOME/.config/i3/laptop.conf
+	status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
 
 	colors {
         background 	$base-color
@@ -66,8 +53,8 @@ bar {
         binding_mode       $bar-focus-color		$bar-focus-color	$text-focus-color	
     }
 
-	font pango:Ubuntu Bold 11
-	position top 
+	font pango:NotoSans Bold 11
+	position bottom 
 }
 
 exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/sierra.png
@@ -88,21 +75,18 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split h; exec /usr/bin/gnome-terminal
-bindsym $mod+Shift+Return split v; exec /usr/bin/gnome-terminal
+bindsym $mod+Return split h; exec alacritty 
+bindsym $mod+Shift+Return split v; exec alacritty 
 
 # kill focused window
 bindsym $mod+q kill
 
-# start rofi 
-bindsym $mod+d exec --no-startup-id rofi -show 
-
-# start settings
-bindsym $mod+s exec --no-startup-id gnome-control-center 
+# start dmenu 
+bindsym $mod+d exec --no-startup-id exec dmenu_run -b -i -fn 'NotoSans Bold' -nf '#ffffff' -sb '#4e81ed' -sf '#ffffff'
 
 # Map caps lock to escape
 exec_always --no-startup-id setxkbmap -option caps:escape
-bindsym $mod+Shift+b exec --no-startup-id setxkbmap gb
+bindsym $mod+Shift+b exec --no-startup-id setxkbmap us 
 bindsym $mod+Shift+n exec --no-startup-id setxkbmap no 
 
 # change focus
@@ -150,25 +134,14 @@ bindsym $mod+Shift+m scratchpad show
 
 # switch to workspace
 # Desktop
-#bindsym $mod+1 workspace 5, workspace 1
-#bindsym $mod+2 workspace 6, workspace 2
-#bindsym $mod+3 workspace 7, workspace 3
-#bindsym $mod+4 workspace 8, workspace 4
-#bindsym $mod+5 workspace 5
-#bindsym $mod+6 workspace 6
-#bindsym $mod+7 workspace 7
-#bindsym $mod+8 workspace 8
-
-# Laptop
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+1 workspace 5, workspace 1
+bindsym $mod+2 workspace 6, workspace 2
+bindsym $mod+3 workspace 7, workspace 3
+bindsym $mod+4 workspace 8, workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -188,9 +161,6 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# locks the session
-bindsym $mod+Shift+x exec i3lock -i $HOME/.config/i3/sierra.png
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec i3-msg exit
@@ -235,10 +205,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $default
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $default_audio_device toggle && pkill -RTMIN+2 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle 
 
-# Brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 5%- && pkill -RTMIN+3 i3blocks
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +5% && pkill -RTMIN+3 i3blocks
-
 # Media player controls
 bindsym F8 exec --no-startup-id playerctl play-pause
 bindsym F9 exec --no-startup-id playerctl next
@@ -252,9 +218,6 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 ##################################################
 ####			      General				  ####
 ##################################################
-
-# Auto lock
-exec --no-startup-id xautolock -time 15 -locker '$HOME/.config/i3/lock.sh' &
 
 # Define layout for workspaces
 

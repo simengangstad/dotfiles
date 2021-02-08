@@ -1,12 +1,8 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	mkdir -p $HOME/.config/i3
-	mkdir -p $HOME/.config/dunst
-	mkdir -p $HOME/.config/compton
-	sudo add-apt-repository ppa:kgilmer/speed-ricer
-	sudo apt update
-	sudo apt install curl zsh git vim i3-gaps i3blocks rofi xautolock dunst fonts-font-awesome feh compton playerctl brightnessctl
+	sudo apt update && sudo apt upgrade
+	sudo apt install zsh git vim i3-gaps i3blocks dunst dmenu feh fonts-font-awesome
 	chsh -s $(which zsh)
 
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then

@@ -1,6 +1,5 @@
 #!/bin/bash
-#vol=$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master))
-#muted=$(awk -F"[][]" '/dB/ { print $6 }' <(amixer sget Master))
+
 vol=($(awk -F"[][]" '{ print $2 }' <(amixer -D pulse sget Master)))
 muted=($(awk -F"[][]" '{ print $4 }' <(amixer -D pulse sget Master)))
 vol=$(echo $vol | sed 's/%//')

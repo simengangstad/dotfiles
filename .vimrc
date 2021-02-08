@@ -5,7 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 set nocompatible             
-filetype off                  
+filetype on
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -32,6 +32,7 @@ syntax enable
 
 colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
+hi Normal guifg=#eeeeee ctermfg=255 guibg=#1d1d1d ctermbg=235 gui=NONE cterm=NONE
 
 
 " Netrw

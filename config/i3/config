@@ -1,12 +1,7 @@
-exec --no-startup-id picom -b --config $HOME/.config/picom/picomrc
-
-# Desktop
 set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
 
 set $primary_monitor HDMI-1
 set $secondary_monitor HDMI-0
-exec_always --no-startup-id xrandr --output $primary_monitor --primary
-exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
 set $mod Mod1
 
 
@@ -19,11 +14,12 @@ new_window pixel 0
 
 # i3 gaps
 gaps inner 15
-for_window [class   = ".*"] border pixel 1
-for_window [title   = ".*"] border pixel 1
+smart_borders on
+for_window [class   = ".*"] border pixel 2
+for_window [title   = ".*"] border pixel 2
 
 # Colors
-set $focus-color 			    #ffffff
+set $focus-color 			    #4e81ed
 set $bar-focus-color 			#4e81ed
 set $base-color				   	#1d1d1d
 set $text-color 				#ffffff
@@ -57,7 +53,6 @@ bar {
 	position bottom 
 }
 
-exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/sierra.png
 
 ##################################################
 ####			    Key maps				  ####
@@ -75,14 +70,14 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split h; exec alacritty 
-bindsym $mod+Shift+Return split v; exec alacritty 
+bindsym $mod+Return split h; exec --no-startup-id alacritty 
+bindsym $mod+Shift+Return split v; exec --no-startup-id alacritty 
 
 # kill focused window
 bindsym $mod+q kill
 
 # start dmenu 
-bindsym $mod+d exec --no-startup-id exec dmenu_run -b -i -fn 'NotoSans Bold' -nf '#ffffff' -sb '#4e81ed' -sf '#ffffff'
+bindsym $mod+d exec --no-startup-id exec dmenu_run -b -i -fn 'NotoSans Bold' -nb '#1d1d1d' -nf '#ffffff' -sb '#4e81ed' -sf '#ffffff'
 
 # Map caps lock to escape
 exec_always --no-startup-id setxkbmap -option caps:escape
@@ -229,3 +224,8 @@ workspace 5 output $secondary_monitor
 workspace 6 output $secondary_monitor 
 workspace 7 output $secondary_monitor 
 workspace 8 output $secondary_monitor 
+
+exec_always --no-startup-id xrandr --output $primary_monitor --primary
+exec_always --no-startup-id xrandr --output $secondary_monitor --pos 1920x0 --rotate left
+exec --no-startup-id picom -b --config $HOME/.config/picom/picomrc
+exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/landscape.jpg

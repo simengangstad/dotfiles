@@ -10,10 +10,6 @@ filetype on
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'govim/govim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
-
 Plug 'jacoborus/tender.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -32,7 +28,6 @@ syntax enable
 
 colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
-hi Normal guifg=#eeeeee ctermfg=255 guibg=#1d1d1d ctermbg=235 gui=NONE cterm=NONE
 
 
 " Netrw
@@ -75,18 +70,3 @@ endfunction!
 let working_directory = FindSessionDirectory() . "/**"
 
 execute "set path=".escape(working_directory, ' ')
-
-
-function! Omni()
-    call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-                    \ 'name': 'omni',
-                    \ 'whitelist': ['go'],
-                    \ 'completor': function('asyncomplete#sources#omni#completor')
-                    \  }))
-endfunction
-
-au VimEnter * :call Omni()
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"

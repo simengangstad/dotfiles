@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="sunaku"
+ZSH_THEME="robbyrussell"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	export LC_ALL=en_US.UTF-8  
@@ -13,6 +13,9 @@ elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 	export PATH=/opt/homebrew/bin:$PATH
+	# export GOPATH="${HOME}/.go"
+	# export GOROOT="$(brew --prefix golang)/libexec"
+	#export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 fi
 
 plugins=(

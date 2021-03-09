@@ -8,7 +8,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	export TERM=xterm-256color
 	
 	source /opt/ros/noetic/setup.zsh
-	#source ~/catkin_ws/devel/setup.zsh
+	source ~/catkin_ws/devel/setup.zsh
+	export DOTNET_CLI_TELEMETRY_OPTOUT=1
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -27,6 +28,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 alias mkdir='mkdir -pv'
+alias vim='nvim'
 bindkey -v
 
 

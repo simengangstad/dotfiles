@@ -19,14 +19,8 @@ Plug 'sbdchd/neoformat'
 
 call plug#end()
 
-if (has("termguicolors"))
-    set termguicolors
-endif
-
-
 " Color theme
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-syntax on
 syntax enable
 
 colorscheme tender

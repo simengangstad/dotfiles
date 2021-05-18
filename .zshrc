@@ -14,9 +14,6 @@ elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 	export PATH=/opt/homebrew/bin:$PATH
-	export GOPATH="${HOME}/.go"
-	# export GOROOT="$(brew --prefix golang)/libexec"
-	export PATH="$PATH:${GOPATH}/bin"
 fi
 
 plugins=(

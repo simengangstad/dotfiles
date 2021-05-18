@@ -3,7 +3,7 @@
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 for entry in .*; do
-	if [ ! -d $entry ] && [ $entry != '.gitignore' ] && [ $entry != '.zprofile' ] && [[ $entry != *.swp ]]; then
+	if [ ! -d $entry ] && [ $entry != '.gitignore' ] && [ $entry != '.zprofile' ] && [[ $entry != *.swp ]] && [[ $entry != '.DS_Store' ]]; then
 		rm "$HOME/$entry"
 		ln -sv "$SCRIPTPATH/$entry" "$HOME"
 	fi	

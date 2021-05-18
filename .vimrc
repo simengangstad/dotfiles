@@ -82,6 +82,12 @@ nnoremap <A-t> :call TermToggle(12)<CR>
 inoremap <A-t> <Esc>:call TermToggle(12)<CR>
 tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
 
+" Mapping for macOS (this is Alt-t)
+
+nnoremap † :call TermToggle(12)<CR>
+inoremap † <Esc>:call TermToggle(12)<CR>
+tnoremap † <C-\><C-n>:call TermToggle(12)<CR>
+
 " Terminal go back to normal mode
 tnoremap <Esc> <C-\><C-n>
 tnoremap :q! <C-\><C-n>:q!<CR>

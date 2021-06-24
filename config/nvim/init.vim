@@ -23,6 +23,8 @@ call plug#end()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
 
+" au colorscheme * hi Normal ctermbg=None
+
 colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
 
@@ -37,6 +39,7 @@ let g:netrw_altv=1
 
 
 " General
+set splitright
 set mouse=a
 set tabstop=4
 set shiftwidth=4
@@ -107,8 +110,21 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " Formatting
 let g:neoformat_cpp_clangformat = {
             \ 'exe': 'clang-format',
-            \ 'args': ['--style="{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false }"']
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false }"']
             \}
+
+let g:neoformat_c_clangformat = {
+            \ 'exe': 'clang-format',
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false }"']
+            \}
+
+let g:neoformat_arduino_clangformat = {
+            \ 'exe': 'clang-format',
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false }"']
+            \}
+
+
+
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
 
@@ -132,10 +148,6 @@ augroup fmt
 augroup END
 
 " Coc
-let g:coc_global_extensions = [
-            \ 'coc-json',
-            \ ]
-
 set hidden
 set nobackup
 set nowritebackup

@@ -10,16 +10,8 @@ for entry in .*; do
 done
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	rm -rf "$HOME/.config/i3" 
-	rm -rf "$HOME/.config/alacritty" 
-	rm -rf "$HOME/.config/picom"
-	rm -rf "$HOME/.config/dunst" 
     rm -rf "$HOME/.config/nvim"
 
-	ln -s "$SCRIPTPATH/config/i3" "$HOME/.config/i3"
-	ln -s "$SCRIPTPATH/config/alacritty" "$HOME/.config/alacritty"
-	ln -s "$SCRIPTPATH/config/picom" "$HOME/.config/picom"
-	ln -s "$SCRIPTPATH/config/dunst" "$HOME/.config/dunst"
 	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
 
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then

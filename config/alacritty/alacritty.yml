@@ -1,8 +1,0 @@
-window:
-  padding:
-    x: 10 
-    y: 10 
-
-colors:
-  primary:
-    background: '#1d1d1d'

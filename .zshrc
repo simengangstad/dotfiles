@@ -7,7 +7,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	export LANG=en_US.UTF-8
 	export TERM=xterm-256color
 
-    # Detect WSL
+    # Detect !WSL
     if [[ ! $(grep microsoft /proc/version) ]]; then
         source /opt/ros/noetic/setup.zsh
         source ~/catkin_ws/devel/setup.zsh

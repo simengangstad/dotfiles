@@ -14,7 +14,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
         export DOTNET_CLI_TELEMETRY_OPTOUT=1
     fi
 	
-elif [[ "$OSTYPE" == "darwin20.0" ]]; then
+elif [[ "$OSTYPE" == "darwin21.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 	export PATH=/opt/homebrew/bin:$PATH
@@ -31,6 +31,3 @@ source $ZSH/oh-my-zsh.sh
 alias mkdir='mkdir -pv'
 alias vim='nvim'
 bindkey -v
-
-
-

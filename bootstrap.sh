@@ -2,7 +2,7 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt update && sudo apt upgrade
-	sudo apt install zsh git vim i3-gaps i3blocks dunst dmenu feh fonts-font-awesome clang clang-format tmux ccls
+	sudo apt install zsh git neovim clang clang-format tmux ccls
 	chsh -s $(which zsh)
 
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then

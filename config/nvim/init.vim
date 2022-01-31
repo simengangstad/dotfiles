@@ -146,6 +146,7 @@ let g:neoformat_arduino_clangformat = {
 
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
+let g:neoformat_enabled_python = ['black', 'yapf']
 
 " Enable tab to spaces conversion
 let g:neoformat_basic_format_retab = 1
@@ -159,18 +160,15 @@ augroup fmt
     autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
-
-" Make undo change, not format
-augroup fmt
-    autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
-augroup END
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+EOF
 
 lua << EOF
 local nvim_lsp = require'lspconfig'
@@ -254,7 +252,7 @@ nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 set updatetime=300
 
 " Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd CursorHold * lua vim.diagnostic.open_float()
 
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>

@@ -12,17 +12,15 @@ done
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     rm -rf "$HOME/.config/nvim"
     rm -rf "$HOME/.config/sway"
-    rm -rf "$HOME/.config/waybar"
     rm -rf "$HOME/.config/wofi"
     rm -rf "$HOME/.config/alacritty"
 
 	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
 	ln -s "$SCRIPTPATH/config/sway" "$HOME/.config/sway"
-	ln -s "$SCRIPTPATH/config/waybar" "$HOME/.config/waybar"
 	ln -s "$SCRIPTPATH/config/wofi" "$HOME/.config/wofi"
 	ln -s "$SCRIPTPATH/config/alacritty" "$HOME/.config/alacritty"
 
-elif [[ "$OSTYPE" == "darwin20.0" ]]; then
+elif [[ "$OSTYPE" == "darwin21.0" ]]; then
 	rm -rf "$HOME/.config/yabai" 
 	rm -rf "$HOME/.config/skhd" 
 	rm -rf "$HOME/.config/nvim"

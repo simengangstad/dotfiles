@@ -1,0 +1,205 @@
+# set $default_audio_device alsa_output.pci-0000_0b_00.4.analog-stereo
+set $default_audio_device alsa_output.pci-0000_09_00.1.hdmi-stereo-extra4
+
+set $primary_monitor HDMI-A-2
+set $secondary_monitor HDMI-A-1
+
+set $mod Mod1
+set $term alacritty
+set $menu wofi --show=drun --height=200 --width=500 --prompt=""
+
+output $secondary_monitor mode 1920x1080 position 0,0 transform 90
+output $primary_monitor mode 1920x1080 position 1080,390
+focus output $primary_monitor
+
+input type:keyboard {
+    xkb_layout us
+    xkb_options caps:escape
+}
+
+# Define layout for workspaces
+workspace 1 output $primary_monitor
+workspace 2 output $primary_monitor
+workspace 3 output $primary_monitor
+workspace 4 output $primary_monitor
+workspace 5 output $secondary_monitor
+workspace 6 output $secondary_monitor
+workspace 7 output $secondary_monitor
+workspace 8 output $secondary_monitor
+
+#exec swayidle -w \
+#              timeout 300 'swaylock -f -c 000000' \
+#              timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#              before-sleep 'swaylock -f -c 000000'
+
+
+##################################################
+####                  Theme                   ####
+##################################################
+
+output * bg $HOME/pictures/mountains.jpg fill
+
+gaps inner 15
+
+default_border pixel 2
+
+# Colors
+set $focus-color                #ffffff77
+set $base-color                 #1d1d1d
+set $text-color                 #ffffff
+set $text-focus-color           #1d1d1d
+set $urgent-color               #f6474799
+
+#                       background          border             text
+client.focused          $focus-color        $focus-color       $text-color
+client.unfocused        $base-color         $base-color        $text-color
+client.focused_inactive $base-color         $base-color        $text-color
+client.urgent           $urgent-color       $urgent-color      $text-color
+
+set $bar-background-color                 #1d1d1d99
+set $bar-focus-color                      #ffffffbb
+set $bar-text-focus-color                 #1d1d1d99
+set $bar-text-color                       #ffffff99
+
+bar {
+    position top
+    status_command while ~/.config/sway/bar.sh; do sleep 1; done
+    font pango: ubuntu bold 11
+
+    colors {
+        background  $bar-background-color
+        separator   $bar-text-color
+
+        #                  border                   background              text
+        focused_workspace  $bar-focus-color         $bar-focus-color        $bar-text-focus-color
+        active_workspace   $bar-focus-color         $bar-focus-color        $bar-text-focus-color
+        inactive_workspace $bar-background-color    $bar-background-color   $bar-text-color
+        urgent_workspace   $urgent-color            $urgent-color           $bar-text-color
+        binding_mode       $bar-background-color    $bar-background-color   $bar-text-color
+    }
+}
+
+##################################################
+####                Key maps                  ####
+##################################################
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up k
+set $down j
+set $left h
+set $right l
+
+
+floating_modifier $mod normal
+
+bindsym $mod+Return exec $term
+
+bindsym $mod+s split toggle
+
+bindsym $mod+q kill
+
+bindsym $mod+d exec $menu
+
+# Map caps lock to escape
+bindsym $mod+Shift+b exec swaymsg input type:keyboard xkb_layout us
+bindsym $mod+Shift+n exec swaymsg input type:keyboard xkb_layout no
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# move the currently focused window to the scratchpad
+bindsym $mod+m move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scrathpad windows, this command cycles through them.
+bindsym $mod+Shift+m scratchpad show
+
+# switch to workspace
+bindsym $mod+1 workspace 5, workspace 1
+bindsym $mod+2 workspace 6, workspace 2
+bindsym $mod+3 workspace 7, workspace 3
+bindsym $mod+4 workspace 8, workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+##################################################
+####                  Function keys           ####
+##################################################
+
+# Pulse Audio controls
+bindsym F10 exec pactl set-sink-mute $default_audio_device toggle
+bindsym F11 exec pactl set-sink-volume $default_audio_device -2%
+bindsym F12 exec pactl set-sink-volume $default_audio_device +2%
+
+## Media player controls
+bindsym F8 exec --no-startup-id playerctl play-pause
+bindsym F9 exec --no-startup-id playerctl next
+bindsym F7 exec --no-startup-id playerctl previous
+

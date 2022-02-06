@@ -1,0 +1,15 @@
+font:
+  normal:
+    family: Ubuntu Mono
+  bold:
+    family: Ubuntu Mono
+  size: 12
+
+window:
+  padding:
+    x: 10 
+    y: 10
+
+colors:
+  primary:
+    background: '#1d1d1d'

@@ -1,10 +1,3 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 set nocompatible
 filetype plugin indent on
 
@@ -15,6 +8,7 @@ Plug 'jacoborus/tender.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'neovim/nvim-lspconfig'
 Plug 'sbdchd/neoformat'
 Plug 'neovim/nvim-lspconfig'
 
@@ -45,6 +39,8 @@ syntax enable
 colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
 
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
 
 " Netrw
 let g:netrw_liststyle = 3
@@ -105,7 +101,6 @@ inoremap <A-t> <Esc>:call TermToggle(12)<CR>
 tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
 
 " Mapping for macOS (this is Alt-t)
-
 nnoremap † :call TermToggle(12)<CR>
 inoremap † <Esc>:call TermToggle(12)<CR>
 tnoremap † <C-\><C-n>:call TermToggle(12)<CR>
@@ -118,6 +113,9 @@ tnoremap :q! <C-\><C-n>:q!<CR>
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Double space removes highlight
+nnoremap <Leader><space> :noh<CR>
 
 
 " CtrlP
@@ -162,6 +160,12 @@ augroup END
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+
+" LSP
+
+lua << EOF
+require'lspconfig'.ccls.setup{}
+EOF
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
@@ -263,4 +267,3 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 set signcolumn=yes
 
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
-

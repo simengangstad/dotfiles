@@ -13,7 +13,7 @@ elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 fi
 
 # Oh my zsh
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 git config --global alias.lg "log --all --oneline --graph"
 

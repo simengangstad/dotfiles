@@ -4,9 +4,6 @@ ZSH_THEME="robbyrussell"
 
 plugins=(
 	git
-    zsh-autosuggestions
-    sudo
-    web-search
 )
 
 source $ZSH/oh-my-zsh.sh

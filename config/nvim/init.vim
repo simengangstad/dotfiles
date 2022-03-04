@@ -173,6 +173,15 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 lua << EOF
+local lspconfig = require'lspconfig'
+
+lspconfig.ccls.setup {
+    filetypes = {"c", "cpp", "arduino", "ino"}
+}
+EOF
+
+
+lua << EOF
 local nvim_lsp = require'lspconfig'
 
 local opts = {
@@ -254,7 +263,7 @@ nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 set updatetime=300
 
 " Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd CursorHold * lua vim.diagnostic.open_float()
 
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>

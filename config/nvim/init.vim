@@ -8,9 +8,10 @@ Plug 'jacoborus/tender.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'neovim/nvim-lspconfig'
 Plug 'sbdchd/neoformat'
 Plug 'neovim/nvim-lspconfig'
+
+Plug 'simrat39/rust-tools.nvim'
 
 Plug 'simrat39/rust-tools.nvim'
 
@@ -20,13 +21,13 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
-Plug 'simrat39/rust-tools.nvim'
-
 Plug 'hrsh7th/vim-vsnip'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 
@@ -71,6 +72,7 @@ set hlsearch
 set foldmethod=indent
 set nofoldenable
 set t_Co=256
+
 
 " Terminal
 let g:term_buf = 0
@@ -135,15 +137,21 @@ let g:neoformat_c_clangformat = {
             \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true }"']
             \}
 
+let g:neoformat_glsl_clangformat = {
+            \ 'exe': 'clang-format',
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true }"']
+            \}
+
 let g:neoformat_arduino_clangformat = {
             \ 'exe': 'clang-format',
             \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true }"']
             \}
 
 
-
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
+let g:neoformat_enabled_glsl = ['clangformat']
+let g:neoformat_enabled_arduino = ['clangformat']
 let g:neoformat_enabled_python = ['black', 'yapf']
 
 " Enable tab to spaces conversion
@@ -202,6 +210,7 @@ local opts = {
 require('rust-tools').setup(opts)
 EOF
 
+
 lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
@@ -212,8 +221,8 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-j>'] = cmp.mapping.select_prev_item(),
+    ['<C-h>'] = cmp.mapping.select_next_item(),
     -- Add tab support
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
@@ -237,8 +246,6 @@ cmp.setup({
 })
 EOF
 
-
-
 " Code navigation shortcuts
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -250,6 +257,11 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold

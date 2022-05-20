@@ -1,10 +1,9 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	# sudo apt update && sudo apt upgrade
-	#sudo apt install zsh git neovim clang clang-format tmux ccls
-    pacman -Syu zsh clang git neovim 
-	# chsh -s $(which zsh)
+	sudo apt update && sudo apt upgrade
+	sudo apt install zsh git neovim clang clang-format tmux ccls
+	chsh -s $(which zsh)
 
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	# Brew

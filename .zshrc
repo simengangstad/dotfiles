@@ -19,10 +19,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	export LC_ALL=en_US.UTF-8  
 	export LANG=en_US.UTF-8
 	export TERM=xterm-256color
-
-    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-      exec sway
-    fi
 elif [[ "$OSTYPE" == "darwin21.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"

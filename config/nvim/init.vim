@@ -42,6 +42,15 @@ let g:lightline = { 'colorscheme': 'tender' }
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
+highlight clear ColorColumn
+highlight clear SignColumn
+highlight Visual cterm=bold ctermbg=4 ctermfg=NONE
+highlight CursorLine cterm=bold ctermbg=4
+highlight VertSplit ctermbg=NONE ctermfg=NONE
+
+" Remove vertical line for splits
+set fillchars+=vert:\ ,
+
 
 " Netrw
 let g:netrw_liststyle = 3
@@ -50,6 +59,7 @@ let g:netrw_browse_split = 1
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 let g:netrw_altv=1
+
 
 
 " General
@@ -63,7 +73,6 @@ set backspace=indent,eol,start
 set ruler
 set number
 set noshowmode
-set colorcolumn=80
 set laststatus=2
 set ignorecase
 set smartcase
@@ -72,6 +81,8 @@ set hlsearch
 set foldmethod=indent
 set nofoldenable
 set t_Co=256
+
+
 
 
 " Terminal
@@ -177,10 +188,6 @@ EOF
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
-
-lua << EOF
-require'lspconfig'.pyright.setup{}
-EOF
 
 lua << EOF
 local nvim_lsp = require'lspconfig'

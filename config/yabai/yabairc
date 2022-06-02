@@ -12,10 +12,12 @@ yabai -m rule --add app="^Systemvalg$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Påminnelser$" manage=off
 yabai -m rule --add app="^Kalkulator$" manage=off
+yabai -m rule --add app="^Kalender$" manage=off
 yabai -m rule --add app="^1Password 7$" manage=off
 yabai -m rule --add app="^Aktivitetsmonitor$" manage=off
 yabai -m rule --add app="^Simulator$" manage=off
 yabai -m rule --add app="^Huskelapper$" manage=off
+yabai -m rule --add label="MATLAB" app="^MATLAB$" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(Generelt|Faner|Autofyll|Passord|Søk|Sikkerhet|Personvern|Nettsteder|Tillegg|Avansert)$" manage=off
 
 

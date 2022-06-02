@@ -1,10 +1,3 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 set nocompatible
 filetype plugin indent on
 
@@ -20,19 +13,21 @@ Plug 'neovim/nvim-lspconfig'
 
 Plug 'simrat39/rust-tools.nvim'
 
+Plug 'simrat39/rust-tools.nvim'
+
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
-Plug 'simrat39/rust-tools.nvim'
-
 Plug 'hrsh7th/vim-vsnip'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 
@@ -45,6 +40,17 @@ syntax enable
 colorscheme tender
 let g:lightline = { 'colorscheme': 'tender' }
 
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight clear ColorColumn
+highlight clear SignColumn
+highlight Visual cterm=bold ctermbg=4 ctermfg=NONE
+highlight CursorLine cterm=bold ctermbg=4
+highlight VertSplit ctermbg=NONE ctermfg=NONE
+
+" Remove vertical line for splits
+set fillchars+=vert:\ ,
+
 
 " Netrw
 let g:netrw_liststyle = 3
@@ -53,6 +59,7 @@ let g:netrw_browse_split = 1
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 let g:netrw_altv=1
+
 
 
 " General
@@ -66,7 +73,6 @@ set backspace=indent,eol,start
 set ruler
 set number
 set noshowmode
-set colorcolumn=80
 set laststatus=2
 set ignorecase
 set smartcase
@@ -75,6 +81,9 @@ set hlsearch
 set foldmethod=indent
 set nofoldenable
 set t_Co=256
+
+
+
 
 " Terminal
 let g:term_buf = 0
@@ -105,7 +114,6 @@ inoremap <A-t> <Esc>:call TermToggle(12)<CR>
 tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
 
 " Mapping for macOS (this is Alt-t)
-
 nnoremap † :call TermToggle(12)<CR>
 inoremap † <Esc>:call TermToggle(12)<CR>
 tnoremap † <C-\><C-n>:call TermToggle(12)<CR>
@@ -118,6 +126,9 @@ tnoremap :q! <C-\><C-n>:q!<CR>
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Double space removes highlight
+nnoremap <Leader><space> :noh<CR>
 
 
 " CtrlP
@@ -137,15 +148,22 @@ let g:neoformat_c_clangformat = {
             \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true }"']
             \}
 
+let g:neoformat_glsl_clangformat = {
+            \ 'exe': 'clang-format',
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true }"']
+            \}
+
 let g:neoformat_arduino_clangformat = {
             \ 'exe': 'clang-format',
             \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true }"']
             \}
 
 
-
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
+let g:neoformat_enabled_glsl = ['clangformat']
+let g:neoformat_enabled_arduino = ['clangformat']
+let g:neoformat_enabled_python = ['black', 'yapf']
 
 " Enable tab to spaces conversion
 let g:neoformat_basic_format_retab = 1
@@ -159,15 +177,14 @@ augroup fmt
     autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
-
-" Make undo change, not format
-augroup fmt
-    autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
-augroup END
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+
+" LSP
+
+lua << EOF
+require'lspconfig'.ccls.setup{}
+EOF
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
@@ -209,6 +226,7 @@ local opts = {
 require('rust-tools').setup(opts)
 EOF
 
+
 lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
@@ -219,8 +237,8 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-j>'] = cmp.mapping.select_prev_item(),
+    ['<C-h>'] = cmp.mapping.select_next_item(),
     -- Add tab support
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
@@ -244,8 +262,6 @@ cmp.setup({
 })
 EOF
 
-
-
 " Code navigation shortcuts
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -257,6 +273,11 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
@@ -274,4 +295,3 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 set signcolumn=yes
 
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
-

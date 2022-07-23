@@ -4,14 +4,15 @@ filetype plugin indent on
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'jacoborus/tender.vim'
+" Plug 'jacoborus/tender.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sbdchd/neoformat'
 Plug 'neovim/nvim-lspconfig'
 
-Plug 'simrat39/rust-tools.nvim'
+Plug 'simrat41/rust-tools.nvim'
 
 Plug 'simrat39/rust-tools.nvim'
 
@@ -32,23 +33,24 @@ Plug 'tikhomirov/vim-glsl'
 call plug#end()
 
 " Color theme
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
+let g:nord_cursor_line_number_background = 1
 
-" au colorscheme * hi Normal ctermbg=None
+au colorscheme * hi Normal ctermbg=None
 
-colorscheme tender
-let g:lightline = { 'colorscheme': 'tender' }
+colorscheme nord
+let g:lightline = { 'colorscheme': 'nord' }
 
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-highlight clear ColorColumn
-highlight clear SignColumn
-highlight VertSplit ctermbg=NONE ctermfg=NONE
+"highlight Normal ctermbg=none
+"highlight NonText ctermbg=none
+"highlight clear ColorColumn
+"highlight clear SignColumn
+"highlight VertSplit ctermbg=NONE ctermfg=NONE
 
+" hi Visual guifg=White guibg=Cyan gui=none
+highlight Visual cterm=none ctermbg=Blue ctermfg=NONE
 
-" Remove vertical line for splits
-set fillchars+=vert:\ ,
+set fillchars+=vert:\|,
 
 
 " Netrw

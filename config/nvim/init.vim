@@ -188,6 +188,15 @@ EOF
 set shortmess+=c
 
 lua << EOF
+local lspconfig = require'lspconfig'
+
+lspconfig.ccls.setup {
+    filetypes = {"c", "cpp", "arduino", "ino"}
+}
+EOF
+
+
+lua << EOF
 local nvim_lsp = require'lspconfig'
 
 local opts = {

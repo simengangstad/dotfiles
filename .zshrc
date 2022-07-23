@@ -14,11 +14,12 @@ alias mkdir='mkdir -pv'
 alias vim='nvim'
 bindkey -v
 
-
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	export LC_ALL=en_US.UTF-8  
 	export LANG=en_US.UTF-8
 	export TERM=xterm-256color
+    export PATH="$HOME/.local/bin:$PATH"
+    export PATH="/mnt/c/arduino-cli:$PATH"
 elif [[ "$OSTYPE" == "darwin21.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"

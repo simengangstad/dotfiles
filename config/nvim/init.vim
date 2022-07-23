@@ -44,9 +44,8 @@ highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight clear ColorColumn
 highlight clear SignColumn
-highlight Visual cterm=bold ctermbg=4 ctermfg=NONE
-highlight CursorLine cterm=bold ctermbg=4
 highlight VertSplit ctermbg=NONE ctermfg=NONE
+
 
 " Remove vertical line for splits
 set fillchars+=vert:\ ,
@@ -173,7 +172,7 @@ let g:neoformat_basic_format_trim = 1
 " Run on save
 augroup fmt
     autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
+    au BufWritePre * try | undojoin | Neoformat | catch /E790/ | Neoformat | endtry
 augroup END
 
 " Set completeopt to have a better completion experience

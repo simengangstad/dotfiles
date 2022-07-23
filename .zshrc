@@ -24,13 +24,13 @@ elif [[ "$OSTYPE" == "darwin21.0" ]]; then
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 	export PATH=/opt/homebrew/bin:$PATH
 	export PATH=/Applications/ARM/bin:$PATH
-    export TERM="xterm"
+    export TERM="xterm-256color"
 fi
 
 echo $2
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     # Kill detached sessions
-    # tmux list-sessions -F '#{session_attached} #{session_id}' | awk '/^0/{print $2}' | xargs -n 1 tmux kill-session -t
-    # exec tmux
+    tmux list-sessions -F '#{session_attached} #{session_id}' | awk '/^0/{print $2}' | xargs -n 1 tmux kill-session -t
+    exec tmux
 fi

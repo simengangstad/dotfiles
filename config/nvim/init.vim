@@ -1,69 +1,62 @@
 set nocompatible
 filetype plugin indent on
 
-" Plugins
+" -------------------------------- Plugins ------------------------------------
 call plug#begin('~/.vim/plugged')
 
-" Plug 'jacoborus/tender.vim'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'nvim-treesitter/nvim-treesitter'
+
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 Plug 'ctrlpvim/ctrlp.vim'
+
 Plug 'sbdchd/neoformat'
+
 Plug 'neovim/nvim-lspconfig'
 
-Plug 'simrat41/rust-tools.nvim'
-
-Plug 'simrat39/rust-tools.nvim'
-
 Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
-
-Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'simrat39/rust-tools.nvim'
+
 Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 
-" Color theme
+" -------------------------------- Color theme --------------------------------
 syntax enable
-let g:nord_cursor_line_number_background = 1
-
-au colorscheme * hi Normal ctermbg=None
 
 colorscheme nord
-let g:lightline = { 'colorscheme': 'nord' }
 
-"highlight Normal ctermbg=none
-"highlight NonText ctermbg=none
-"highlight clear ColorColumn
-"highlight clear SignColumn
-"highlight VertSplit ctermbg=NONE ctermfg=NONE
+let g:nord_cursor_line_number_background = 1
+let g:lightline = {
+    \ 'colorscheme': 'nord',
+    \ 'active': {
+    \   'right': [['lineinfo']],
+    \ },
+    \ 'inactive': {
+    \   'right': [['lineinfo']],
+    \ },
+    \ }
 
-" hi Visual guifg=White guibg=Cyan gui=none
-highlight Visual cterm=none ctermbg=Blue ctermfg=NONE
-
+" Make splits have fill chars
 set fillchars+=vert:\|,
 
-
-" Netrw
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_browse_split = 1
-let g:netrw_winsize = 25
-let g:netrw_browse_split = 4
-let g:netrw_altv=1
-
-
-
-" General
+" -------------------------------- General ------------------------------------
 set splitright
 set mouse=a
 set tabstop=4
@@ -74,19 +67,40 @@ set backspace=indent,eol,start
 set ruler
 set number
 set noshowmode
-set laststatus=2
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set encoding=UTF-8
+
+" Set fold to indent and not to automatically fold
 set foldmethod=indent
 set nofoldenable
+
+" Always show status line
+set laststatus=2
+
+" Hide the current command
+set noshowcmd
+
+" Use xterm-256
 set t_Co=256
 
 
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
+" Leader space removes highlight
+nnoremap <Leader><space> :noh<CR>
 
-" Terminal
+" -------------------------------- NERDTree -----------------------------------
+let NERDTreeMinimalUI=1
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" -------------------------------- Terminal -----------------------------------
 let g:term_buf = 0
 let g:term_win = 0
 function! TermToggle(height)
@@ -109,9 +123,9 @@ function! TermToggle(height)
     endif
 endfunction
 
-" Toggle terminal on/off (neovim)
+" Mapping for linux
 nnoremap <A-t> :call TermToggle(12)<CR>
-inoremap <A-t> <Esc>:call TermToggle(12)<CR>
+inoremap <A-t> <Esc>:call TermToggle(13)<CR>
 tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
 
 " Mapping for macOS (this is Alt-t)
@@ -123,22 +137,13 @@ tnoremap † <C-\><C-n>:call TermToggle(12)<CR>
 tnoremap <Esc> <C-\><C-n>
 tnoremap :q! <C-\><C-n>:q!<CR>
 
+" -------------------------------- CtrlP -------------------------------------
 
-" j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-
-" Double space removes highlight
-nnoremap <Leader><space> :noh<CR>
-
-
-" CtrlP
-" Just use git as command, is quicker for larger projects and makes it
-" possible to automatically ignore files we're not interested in
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 
-" Formatting
+" -------------------------------- Neoformat ---------------------------------
+
 let g:neoformat_cpp_clangformat = {
             \ 'exe': 'clang-format',
             \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllParametersOfDeclarationOnNextLine: false, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
@@ -177,36 +182,27 @@ augroup fmt
     au BufWritePre * try | undojoin | Neoformat | catch /E790/ | Neoformat | endtry
 augroup END
 
+
+" -------------------------------- LSP ---------------------------------------
+
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" LSP
-
-lua << EOF
-require'lspconfig'.ccls.setup{}
-EOF
+" set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
-set shortmess+=c
+" set shortmess+=c
 
 lua << EOF
-local lspconfig = require'lspconfig'
 
-lspconfig.ccls.setup {
+require('lspconfig').ccls.setup({
     filetypes = {"c", "cpp", "arduino", "ino"}
-}
-EOF
+})
 
-
-lua << EOF
-local nvim_lsp = require'lspconfig'
-
-local opts = {
+require('rust-tools').setup({
     tools = { -- rust-tools options
         autoSetHints = true,
         hover_with_actions = true,
         inlay_hints = {
-            show_parameter_hints = false,
+            show_parameter_hints = true,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
         },
@@ -221,77 +217,64 @@ local opts = {
             }
         }
     },
-}
+})
 
-require('rust-tools').setup(opts)
-EOF
-
-
-lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
-  -- Enable LSP snippets
   snippet = {
     expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  mapping = {
-    ['<C-j>'] = cmp.mapping.select_prev_item(),
-    ['<C-h>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
+
+   mapping = {
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     })
   },
 
-  -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
     { name = 'path' },
     { name = 'buffer' },
+    { name = 'vsnip' },
+    { name = 'nvim_lsp_signature_help' }
   },
 })
 EOF
 
 " Code navigation shortcuts
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gi    <cmd>lua vim.lsp.buf.definition()<CR>
+
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gs    <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-set updatetime=300
-
-" Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.diagnostic.open_float()
-
-" Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
-" have a fixed column for the diagnostics to appear in
+" Have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
 set signcolumn=yes
 
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+
+" -------------------------------- Highlighting -------------------------------
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "cpp", "rust" },
+  sync_install = false,
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF

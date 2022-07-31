@@ -14,7 +14,7 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Påminnelser$" manage=off
 yabai -m rule --add app="^Kalkulator$" manage=off
 yabai -m rule --add app="^Kalender$" manage=off
-yabai -m rule --add app="^1Password 7$" manage=off
+yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^Aktivitetsmonitor$" manage=off
 yabai -m rule --add app="^Simulator$" manage=off
 yabai -m rule --add app="^Huskelapper$" manage=off

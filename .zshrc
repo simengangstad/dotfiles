@@ -4,11 +4,19 @@ ZSH_THEME="robbyrussell"
 
 plugins=(
 	git
+    history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^P" up-line-or-beginning-search
+bindkey "^N" down-line-or-beginning-search
 
 alias mkdir='mkdir -pv'
 alias vim='nvim'

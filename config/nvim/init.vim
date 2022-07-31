@@ -247,8 +247,8 @@ cmp.setup({
 EOF
 
 " Code navigation shortcuts
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gi    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gh    <cmd>lua vim.lsp.buf.declaration()<CR>
 
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gs    <cmd>lua vim.lsp.buf.signature_help()<CR>

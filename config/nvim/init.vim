@@ -200,7 +200,6 @@ require('lspconfig').ccls.setup({
 require('rust-tools').setup({
     tools = { -- rust-tools options
         autoSetHints = true,
-        hover_with_actions = true,
         inlay_hints = {
             show_parameter_hints = true,
             parameter_hints_prefix = "",
@@ -266,7 +265,12 @@ set signcolumn=yes
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
 
 " -------------------------------- Highlighting -------------------------------
+
 lua << EOF
+local function ts_disable(_, bufnr)
+    return vim.api.nvim_buf_line_count(bufnr) > 5000
+end
+
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "cpp", "rust" },
   sync_install = false,
@@ -274,6 +278,9 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
+    disable = function(lang, bufnr)
+        return lang == "cmake" or ts_disable(lang, bufnr)
+    end,
     additional_vim_regex_highlighting = false,
   },
 }

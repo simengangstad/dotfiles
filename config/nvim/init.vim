@@ -98,6 +98,14 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " Leader space removes highlight
 nnoremap <Leader><space> :noh<CR>
 
+" Make
+nnoremap <Leader>mm :make -j <CR>
+nnoremap <Leader>mc :make clean <CR>
+nnoremap <Leader>mf :make flash <CR>
+
+" Close all buffers besides the current one
+nnoremap <Leader>cc :w\|%bd\|e# <CR><Esc>
+
 " -------------------------------- NERDTree -----------------------------------
 let NERDTreeMinimalUI=1
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -144,6 +152,8 @@ tnoremap :q! <C-\><C-n>:q!<CR>
 " -------------------------------- CtrlP -------------------------------------
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+nnoremap <Leader>cp :CtrlPClearAllCaches<CR>
 
 
 " -------------------------------- Neoformat ---------------------------------
@@ -194,12 +204,16 @@ augroup END
 
 " Avoid showing extra messages when using completion
 " set shortmess+=c
+" require('lspconfig').clangd.setup({
+"    filetypes = {"c", "cpp", "arduino", "ino"}
+"})
 
 lua << EOF
 
 require('lspconfig').ccls.setup({
     filetypes = {"c", "cpp", "arduino", "ino"}
 })
+
 
 require('rust-tools').setup({
     tools = { -- rust-tools options
@@ -266,7 +280,10 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 " this removes the jitter when warnings/errors flow in
 set signcolumn=yes
 
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+augroup lspFormat
+    autocmd!
+    autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+augroup end
 
 " -------------------------------- Highlighting -------------------------------
 
@@ -283,7 +300,7 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     disable = function(lang, bufnr)
-        return lang == "cmake" or ts_disable(lang, bufnr)
+        return lang == "cmake" or lang == "latex" or ts_disable(lang, bufnr)
     end,
     additional_vim_regex_highlighting = false,
   },
@@ -292,22 +309,16 @@ EOF
 
 " -------------------------------- Vimtex -------------------------------
 
+augroup latexSpell
+    autocmd!
+    autocmd FileType tex setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_gb
+augroup END
 
 " Viewer options: One may configure the viewer either by specifying a built-in
 " viewer method:
 let g:vimtex_view_method = 'zathura'
 
-" Or with a generic interface:
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-
-" VimTeX uses latexmk as the default compiler backend. If you use it, which is
-" strongly recommended, you probably don't need to configure anything. If you
-" want another compiler backend, you can change it as follows. The list of
-" supported backends and further explanation is provided in the documentation,
-" see ":help vimtex-compiler".
-let g:vimtex_compiler_method = 'latexrun'
-
-" Most VimTeX mappings rely on localleader and this can be changed with the
-" following line. The default is usually fine and is the symbol "\".
-let maplocalleader = ","
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : 'latexbuild',
+    \}

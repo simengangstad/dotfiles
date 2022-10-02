@@ -16,6 +16,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 git config --global alias.lg "log --all --oneline --graph"
 
-echo "Finished setup, now run PluginInstall in Vim"
+# Install TPM
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+echo "Finished setup, now run PluginInstall in Vim and TPM install for Tmux"
 
 

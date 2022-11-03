@@ -41,6 +41,8 @@ Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
+let s:uname = system("uname")
+
 " -------------------------------- Color theme --------------------------------
 syntax enable
 
@@ -317,7 +319,14 @@ augroup END
 
 " Viewer options: One may configure the viewer either by specifying a built-in
 " viewer method:
-let g:vimtex_view_method = 'zathura'
+
+if s:uname == "Darwin\n"
+    let g:vimtex_view_method = 'skim'
+    let g:vimtex_view_skim_sync = 1
+    let g:vimtex_view_skim_activate = 1
+else
+    let g:vimtex_view_method = 'zathura'
+endif
 
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : 'latexbuild',

@@ -41,6 +41,8 @@ Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
+packadd termdebug
+
 " -------------------------------- Color theme --------------------------------
 syntax enable
 
@@ -325,3 +327,8 @@ let g:vimtex_quickfix_ignore_filters = [
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : 'latexbuild',
     \}
+
+" Termdebug
+let g:termdebugger = "arm-none-eabi-gdb"
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163

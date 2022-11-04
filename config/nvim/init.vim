@@ -43,6 +43,8 @@ call plug#end()
 
 packadd termdebug
 
+let s:uname = system("uname")
+
 " -------------------------------- Color theme --------------------------------
 syntax enable
 
@@ -317,7 +319,13 @@ augroup latexSpell
     autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_gb
 augroup END
 
-let g:vimtex_view_method = 'zathura'
+if s:uname == "Darwin\n"
+    let g:vimtex_view_method = 'skim'
+    let g:vimtex_view_skim_sync = 1
+    let g:vimtex_view_skim_activate = 1
+else
+    let g:vimtex_view_method = 'zathura'
+endif
 
 let g:vimtex_quickfix_ignore_filters = [
       \ 'Underfull',

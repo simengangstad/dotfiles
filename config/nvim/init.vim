@@ -39,16 +39,11 @@ Plug 'lervag/vimtex'
 
 Plug 'vimwiki/vimwiki'
 
-Plug 'chmanie/termdebugx.nvim'
-
 call plug#end()
 
-" packadd termdebug
+packadd termdebug
 
-let g:termdebugger = "arm-none-eabi-gdb"
-let g:termdebug_popup = 0
-let g:termdebug_wide = 163
-let g:termdebugger_program = "picocom -b 115200 -e b -q /dev/ttyACM0"
+let s:uname = system("uname")
 
 " -------------------------------- Color theme --------------------------------
 syntax enable
@@ -324,7 +319,13 @@ augroup latexSpell
     autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_gb
 augroup END
 
-let g:vimtex_view_method = 'zathura'
+if s:uname == "Darwin\n"
+    let g:vimtex_view_method = 'skim'
+    let g:vimtex_view_skim_sync = 1
+    let g:vimtex_view_skim_activate = 1
+else
+    let g:vimtex_view_method = 'zathura'
+endif
 
 let g:vimtex_quickfix_ignore_filters = [
       \ 'Underfull',
@@ -334,3 +335,8 @@ let g:vimtex_quickfix_ignore_filters = [
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : 'latexbuild',
     \}
+
+" Termdebug
+let g:termdebugger = "arm-none-eabi-gdb"
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163

@@ -45,8 +45,11 @@ packadd termdebug
 
 let s:uname = system("uname")
 
+
 " -------------------------------- Color theme --------------------------------
 syntax enable
+
+set cursorline
 
 colorscheme nord
 
@@ -340,3 +343,7 @@ let g:vimtex_compiler_latexmk = {
 let g:termdebugger = "arm-none-eabi-gdb"
 let g:termdebug_popup = 0
 let g:termdebug_wide = 163
+
+hi debugPC term=reverse ctermbg=0 guibg=0
+
+nnoremap <Leader>td :Termdebug<CR>

@@ -39,6 +39,8 @@ Plug 'lervag/vimtex'
 
 Plug 'vimwiki/vimwiki'
 
+Plug 'yegappan/taglist'
+
 call plug#end()
 
 packadd termdebug
@@ -347,3 +349,18 @@ let g:termdebug_wide = 163
 hi debugPC term=reverse ctermbg=0 guibg=0
 
 nnoremap <Leader>td :Termdebug<CR>
+
+" Taglist. Kind of hacky, but move the cursor to the left most window by just
+" moving ten times
+nnoremap <Leader>tl :TlistToggle <CR> 10<C-w>h
+
+let Tlist_Close_On_Select = 1
+
+" Use <Leader> w for window management, and map <Leader>w for window
+" management
+nnoremap <Leader>w <C-w>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>

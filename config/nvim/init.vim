@@ -13,8 +13,6 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 
-Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'sbdchd/neoformat'
 
 Plug 'neovim/nvim-lspconfig'
@@ -39,7 +37,8 @@ Plug 'lervag/vimtex'
 
 Plug 'vimwiki/vimwiki'
 
-Plug 'yegappan/taglist'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -154,16 +153,30 @@ nnoremap † :call TermToggle(12)<CR>
 inoremap † <Esc>:call TermToggle(12)<CR>
 tnoremap † <C-\><C-n>:call TermToggle(12)<CR>
 
-" Terminal go back to normal mode
-tnoremap <Esc> <C-\><C-n>
-tnoremap :q! <C-\><C-n>:q!<CR>
+" -------------------------------- fzf -------------------------------------
 
-" -------------------------------- CtrlP -------------------------------------
+let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3 } }
+let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=.ccls-cache'
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
-nnoremap <Leader>cp :CtrlPClearAllCaches<CR>
+noremap <silent> <C-p> :GFiles<CR>
+noremap <silent> <C-o> :BTags<CR>
 
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " -------------------------------- Neoformat ---------------------------------
 
@@ -349,12 +362,6 @@ let g:termdebug_wide = 163
 hi debugPC term=reverse ctermbg=0 guibg=0
 
 nnoremap <Leader>td :Termdebug<CR>
-
-" Taglist. Kind of hacky, but move the cursor to the left most window by just
-" moving ten times
-nnoremap <Leader>tl :TlistToggle <CR> 10<C-w>h
-
-let Tlist_Close_On_Select = 1
 
 " Use <Leader> w for window management, and map <Leader>w for window
 " management

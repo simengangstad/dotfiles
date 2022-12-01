@@ -22,7 +22,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	ln -s "$SCRIPTPATH/config/alacritty" "$HOME/.config/alacritty"
 	ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
 
-elif [[ "$OSTYPE" == "darwin21.0" ]]; then
+elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	rm -rf "$HOME/.config/yabai" 
 	rm -rf "$HOME/.config/skhd" 
 	rm -rf "$HOME/.config/nvim"
@@ -31,6 +31,7 @@ elif [[ "$OSTYPE" == "darwin21.0" ]]; then
 	ln -s "$SCRIPTPATH/config/yabai" "$HOME/.config/yabai"
 	ln -s "$SCRIPTPATH/config/skhd" "$HOME/.config/skhd"
 	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
+	ln -s "$SCRIPTPATH/config/alacritty" "$HOME/.config/alacritty"
 	ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
 fi
 

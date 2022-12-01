@@ -334,6 +334,13 @@ let g:vimtex_quickfix_ignore_filters = [
 
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : 'latexbuild',
+    \ 'options' : [
+    \    '-shell-escape',
+    \    '-verbose',
+    \    '-file-line-error',
+    \    '-synctex=1',
+    \    '-interaction=nonstopmode',
+    \ ],
     \}
 
 " Termdebug

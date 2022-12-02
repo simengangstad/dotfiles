@@ -2,16 +2,11 @@
 cmd - return : open -na /System/Applications/Utilities/Terminal.app
 
 # Navigation
-cmd - h : yabai -m window --focus west
-cmd - j : yabai -m window --focus south
-cmd - k : yabai -m window --focus north
-cmd - l : yabai -m window --focus east
-
-# Moving windows
-shift + cmd - h : yabai -m window --warp west
-shift + cmd - j : yabai -m window --warp south
-shift + cmd - k : yabai -m window --warp north
-shift + cmd - l : yabai -m window --warp east
+# cmd - h : yabai -m window --focus west
+cmd - h : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.frame.x) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+cmd - j : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.frame.y) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+cmd - k : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.frame.y) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+cmd - l : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.frame.x) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 
 # Move focus container to workspace
 shift + cmd - 1 : yabai -m window --space 1 && yabai -m space --focus 1
@@ -37,13 +32,4 @@ cmd + lctrl - k : \
 cmd + lctrl - l : \
     yabai -m window --resize right:20:0 ; \
     yabai -m window --resize left:20:0
-
-# Rotate windows clockwise and anticlockwise
-shift + cmd - r : yabai -m space --rotate 90
-
-# Float / Unfloat window
-shift + cmd - space : yabai -m window --toggle float
-
-# Fullscreen
-shift + cmd - f : yabai -m window --toggle zoom-fullscreen
 

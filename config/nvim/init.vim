@@ -161,7 +161,7 @@ let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=.ccls-cache'
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
 noremap <silent> <C-p> :GFiles<CR>
-noremap <silent> <C-o> :BTags<CR>
+noremap <silent> <C-u> :BTags<CR>
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],

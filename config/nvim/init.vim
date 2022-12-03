@@ -9,9 +9,6 @@ Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'nvim-treesitter/nvim-treesitter'
 
-Plug 'arcticicestudio/nord-vim'
-" Plug 'itchyny/lightline.vim'
-
 Plug 'sbdchd/neoformat'
 
 Plug 'neovim/nvim-lspconfig'
@@ -40,9 +37,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'EdenEast/nightfox.nvim'
-Plug 'feline-nvim/feline.nvim'
-Plug 'nanozuki/tabby.nvim'
+" Plug 'feline-nvim/feline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'itchyny/lightline.vim'
 
 
 call plug#end()
@@ -60,9 +57,15 @@ set cursorline
 
 colorscheme nordfox
 
-lua << EOF
-    require('user.feline')
-EOF
+let g:lightline = {
+    \ 'colorscheme': 'nordfox',
+    \ 'active': {
+    \   'right': [['lineinfo']],
+    \ },
+    \ 'inactive': {
+    \   'right': [['lineinfo']],
+    \ },
+    \ }
 
 
 " Make splits have fill chars

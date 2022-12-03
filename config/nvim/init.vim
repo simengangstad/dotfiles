@@ -165,7 +165,12 @@ tnoremap <D-t> <C-\><C-n>:call TermToggle(12)<CR>
 " -------------------------------- fzf -------------------------------------
 
 let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3 } }
-let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=.ccls-cache'
+
+if s:uname == "Darwin\n"
+    let g:fzf_tags_command = '/opt/homebrew/opt/ctags/bin/ctags -R --exclude=.git --exclude=.ccls-cache'
+else
+    let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=.ccls-cache'
+endif
 
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 

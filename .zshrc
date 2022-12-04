@@ -30,6 +30,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export PATH="/mnt/c/arduino-cli:$PATH"
     export PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
     export PATH="/opt/SEGGER/JLink:$PATH"
+    export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
 elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"

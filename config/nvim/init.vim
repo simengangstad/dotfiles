@@ -4,14 +4,10 @@ filetype plugin indent on
 " -------------------------------- Plugins ------------------------------------
 call plug#begin('~/.vim/plugged')
 
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 
-Plug 'arcticicestudio/nord-vim'
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'sbdchd/neoformat'
 
@@ -40,6 +36,12 @@ Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'EdenEast/nightfox.nvim'
+" Plug 'feline-nvim/feline.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'itchyny/lightline.vim'
+
+
 call plug#end()
 
 packadd termdebug
@@ -48,15 +50,15 @@ let s:uname = system("uname")
 
 
 " -------------------------------- Color theme --------------------------------
-syntax enable
 
+syntax enable
+set termguicolors
 set cursorline
 
-colorscheme nord
+colorscheme nordfox
 
-let g:nord_cursor_line_number_background = 1
 let g:lightline = {
-    \ 'colorscheme': 'nord',
+    \ 'colorscheme': 'nordfox',
     \ 'active': {
     \   'right': [['lineinfo']],
     \ },
@@ -64,6 +66,7 @@ let g:lightline = {
     \   'right': [['lineinfo']],
     \ },
     \ }
+
 
 " Make splits have fill chars
 set fillchars+=vert:\|,
@@ -95,9 +98,6 @@ set laststatus=2
 " Hide the current command
 set noshowcmd
 
-" Use xterm-256
-set t_Co=256
-
 
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -114,11 +114,23 @@ nnoremap <Leader>mf :make flash <CR>
 " Close all buffers besides the current one
 nnoremap <Leader>cc :w\|%bd\|e# <CR><Esc>
 
-" -------------------------------- NERDTree -----------------------------------
-let NERDTreeMinimalUI=1
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" -------------------------------- NvimTree -----------------------------------
+nnoremap <leader>n :NvimTreeFocus<CR>
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <C-f> :NvimTreeFindFile<CR>
+
+lua << EOF
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+    vim.opt.termguicolors = true
+
+    require("nvim-tree").setup {
+        view = {
+            adaptive_size = true,
+            hide_root_folder = true,
+        },
+    }
+EOF
 
 " -------------------------------- Terminal -----------------------------------
 let g:term_buf = 0
@@ -149,14 +161,19 @@ inoremap <A-t> <Esc>:call TermToggle(13)<CR>
 tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
 
 " Mapping for macOS (this is Alt-t)
-nnoremap † :call TermToggle(12)<CR>
-inoremap † <Esc>:call TermToggle(12)<CR>
-tnoremap † <C-\><C-n>:call TermToggle(12)<CR>
+nnoremap <D-t> :call TermToggle(12)<CR>
+inoremap <D-t> <Esc>:call TermToggle(12)<CR>
+tnoremap <D-t> <C-\><C-n>:call TermToggle(12)<CR>
 
 " -------------------------------- fzf -------------------------------------
 
 let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3 } }
-let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=.ccls-cache'
+
+if s:uname == "Darwin\n"
+    let g:fzf_tags_command = '/opt/homebrew/opt/ctags/bin/ctags -R --exclude=.git --exclude=.ccls-cache'
+else
+    let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=.ccls-cache'
+endif
 
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
@@ -220,15 +237,6 @@ augroup END
 
 
 " -------------------------------- LSP ---------------------------------------
-
-" Set completeopt to have a better completion experience
-" set completeopt=menuone,noinsert,noselect
-
-" Avoid showing extra messages when using completion
-" set shortmess+=c
-" require('lspconfig').clangd.setup({
-"    filetypes = {"c", "cpp", "arduino", "ino"}
-"})
 
 lua << EOF
 

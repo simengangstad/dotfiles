@@ -25,7 +25,6 @@ bindkey -v
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	export LC_ALL=en_US.UTF-8  
 	export LANG=en_US.UTF-8
-	export TERM=xterm-256color
     export PATH="$HOME/.local/bin:$PATH"
     export PATH="/mnt/c/arduino-cli:$PATH"
     export PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
@@ -36,7 +35,6 @@ elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 	export PATH=/opt/homebrew/bin:$PATH
 	export PATH=/Applications/ARM/bin:$PATH
-    export TERM="xterm-256color"
 fi
 
 echo $2

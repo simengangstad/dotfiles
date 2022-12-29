@@ -4,43 +4,50 @@ filetype plugin indent on
 " -------------------------------- Plugins ------------------------------------
 call plug#begin('~/.vim/plugged')
 
-Plug 'nvim-tree/nvim-web-devicons'
+" Tree
 Plug 'nvim-tree/nvim-tree.lua'
 
+" Syntax highlightning
 Plug 'nvim-treesitter/nvim-treesitter'
 
+" Formatting and LSP
 Plug 'sbdchd/neoformat'
-
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/popup.nvim'
 
+" Completion engine
 Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'rstacruz/vim-closer'
 
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
+" Language specifics
 Plug 'simrat39/rust-tools.nvim'
-
 Plug 'tikhomirov/vim-glsl'
-
 Plug 'lervag/vimtex'
 
+" Wiki support
 Plug 'vimwiki/vimwiki'
 
+" Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Theme
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'EdenEast/nightfox.nvim'
-" Plug 'feline-nvim/feline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'itchyny/lightline.vim'
 
+
+" DiffView for Git
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
+
+" Start screen
+Plug 'goolord/alpha-nvim'
 
 call plug#end()
 
@@ -49,7 +56,7 @@ packadd termdebug
 let s:uname = system("uname")
 
 
-" -------------------------------- Color theme --------------------------------
+" -------------------------------- Theme ----------------------------------------
 
 syntax enable
 set termguicolors
@@ -67,9 +74,9 @@ let g:lightline = {
     \ },
     \ }
 
-
 " Make splits have fill chars
 set fillchars+=vert:\|,
+
 
 " -------------------------------- General ------------------------------------
 set splitright
@@ -92,8 +99,7 @@ set encoding=UTF-8
 set foldmethod=indent
 set nofoldenable
 
-" Always show status line
-set laststatus=2
+set laststatus=3
 
 " Hide the current command
 set noshowcmd
@@ -155,19 +161,11 @@ function! TermToggle(height)
     endif
 endfunction
 
-" Mapping for linux
-nnoremap <A-t> :call TermToggle(12)<CR>
-inoremap <A-t> <Esc>:call TermToggle(13)<CR>
-tnoremap <A-t> <C-\><C-n>:call TermToggle(12)<CR>
+nnoremap <Leader>tt :call TermToggle(12)<CR>
+inoremap <Leader>tt <Esc>:call TermToggle(12)<CR>
+tnoremap <Leader>tt <C-\><C-n>:call TermToggle(12)<CR>
 
-" Mapping for macOS (this is Alt-t)
-nnoremap <D-t> :call TermToggle(12)<CR>
-inoremap <D-t> <Esc>:call TermToggle(12)<CR>
-tnoremap <D-t> <C-\><C-n>:call TermToggle(12)<CR>
-
-" -------------------------------- fzf -------------------------------------
-
-let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.3 } }
+" -------------------------------- Fuzzy finder ---------------------------------
 
 if s:uname == "Darwin\n"
     let g:fzf_tags_command = '/opt/homebrew/opt/ctags/bin/ctags -R --exclude=.git --exclude=.ccls-cache'
@@ -177,8 +175,10 @@ endif
 
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
-noremap <silent> <C-p> :GFiles<CR>
-noremap <silent> <C-u> :BTags<CR>
+nnoremap <Leader>ff :GFiles<CR>
+nnoremap <Leader>ft :BTags<CR>
+nnoremap <Leader>fg :Rg<CR>
+nnoremap <Leader>fh :History:<CR>
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -194,6 +194,10 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+
+" Bat theme for preview
+let $BAT_THEME='base16-256'
 
 " -------------------------------- Neoformat ---------------------------------
 
@@ -287,7 +291,6 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'buffer' },
-    { name = 'vsnip' },
     { name = 'nvim_lsp_signature_help' }
   },
 })
@@ -386,3 +389,61 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" ------------------------------ DiffView ---------------------------
+nnoremap <Leader>dv :DiffviewOpen<CR>
+nnoremap <Leader>dc :DiffviewClose<CR>
+nnoremap <Leader>df :DiffviewFileHistory<CR>
+
+
+" ------------------------------ Alpha ---------------------------
+
+lua << EOF
+    local alpha = require("alpha")
+    local dashboard = require("alpha.themes.dashboard")
+
+    -- Set header
+    dashboard.section.header.val = {
+    "                                                     ",
+    "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+    "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+    "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+    "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+    "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+    "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+    "                                                     ",
+    }
+
+    -- Set menu
+    dashboard.section.buttons.val = {
+        dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
+        dashboard.button( "f", "  > Find file", ":GFiles<CR>"),
+        dashboard.button( "r", "  > Recent"   , ":History<CR>"),
+        dashboard.button( "s", "  > Settings" , ":e $MYVIMRC <CR>"),
+        dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
+    }
+
+    local fortune = require("alpha.fortune")
+    dashboard.section.footer.val = fortune()
+
+    -- Send config to alpha
+    alpha.setup(dashboard.opts)
+
+    -- Disable folding on alpha buffer
+    vim.cmd([[
+        autocmd FileType alpha setlocal nofoldenable
+    ]])
+EOF
+
+
+" Clear cmd line message
+function! s:empty_message(timer)
+  if mode() ==# 'n'
+    echon ''
+  endif
+endfunction
+
+augroup cmd_msg_cls
+    autocmd!
+    autocmd CmdlineLeave :  call timer_start(500, funcref('s:empty_message'))
+augroup END

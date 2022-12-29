@@ -2,13 +2,13 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt update && sudo apt upgrade
-	sudo apt install zsh git neovim clang clang-format tmux ccls
+	sudo apt install zsh git neovim clang clang-format tmux ccls bat
 	chsh -s $(which zsh)
 
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	# Brew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install git yabai skhd alfred 
+	brew install git neovim yabai skhd clang-format alfred tmux ccls bat
 fi
 
 # Oh my zsh
@@ -16,9 +16,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 git config --global alias.lg "log --all --oneline --graph"
 
-
-# Install TPM
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # TexLive
 if [ $# -eq 1 ] && [ $1 = "latex" ]; then
@@ -32,6 +29,6 @@ if [ $# -eq 1 ] && [ $1 = "latex" ]; then
     popd
 fi
 
-echo "Finished setup, now run PluginInstall in Vim, TPM install for Tmux, install the Hack Nerd Font Mono and add TexLive to path (/usr/local/texlive/<year>/bin/<system>)"
+echo "Finished setup, now run PluginInstall in Vim, install the Hack Nerd Font Mono and add TexLive to path (/usr/local/texlive/<year>/bin/<system>)"
 
 

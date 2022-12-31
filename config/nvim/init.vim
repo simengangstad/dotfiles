@@ -175,8 +175,8 @@ endif
 
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
-nnoremap <Leader>ff :GFiles<CR>
-nnoremap <Leader>ft :BTags<CR>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <C-u> :BTags<CR>
 nnoremap <Leader>fg :Rg<CR>
 nnoremap <Leader>fh :History:<CR>
 

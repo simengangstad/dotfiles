@@ -49,6 +49,9 @@ Plug 'sindrets/diffview.nvim'
 " Start screen
 Plug 'goolord/alpha-nvim'
 
+Plug 'numToStr/Comment.nvim'
+
+
 call plug#end()
 
 packadd termdebug
@@ -447,3 +450,11 @@ augroup cmd_msg_cls
     autocmd!
     autocmd CmdlineLeave :  call timer_start(500, funcref('s:empty_message'))
 augroup END
+
+" ------------------------------ Comment ---------------------------
+
+lua << EOF
+require('Comment').setup()
+EOF
+
+

@@ -37,7 +37,8 @@ elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	export PATH=/Applications/ARM/bin:$PATH
 fi
 
-echo $2
+
+export FZF_DEFAULT_COMMAND="find . -not \( -path '*.git' -prune \) -not \( -path './build' -prune \) -not \( -path '*.ccls-cache' -prune \)" 
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     # Kill detached sessions

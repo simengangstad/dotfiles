@@ -179,9 +179,6 @@ endif
 
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
-" Ignore .git, ccls-cache and build folders
-let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name .ccls-cache -o -name build \) -prune -o -print'
-
 nnoremap <C-p> :Files<CR>
 nnoremap <C-u> :BTags<CR>
 nnoremap <Leader>fg :Rg<CR>

@@ -52,6 +52,7 @@ Plug 'goolord/alpha-nvim'
 
 Plug 'numToStr/Comment.nvim'
 
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 call plug#end()
 
@@ -381,9 +382,13 @@ let g:termdebugger = "arm-none-eabi-gdb"
 let g:termdebug_popup = 0
 let g:termdebug_wide = 163
 
+let g:termdebug_popup = 1
+
 hi debugPC term=reverse ctermbg=0 guibg=0
 
-nnoremap <Leader>td :Termdebug<CR>
+" Close the output window when launching termdebug
+nnoremap <Leader>td :Termdebug %:r<CR><c-w>j <c-w>q i
+nnoremap <RightMouse> :Break<CR>
 
 " Use <Leader> w for window management, and map <Leader>w for window
 " management
@@ -457,5 +462,3 @@ augroup END
 lua << EOF
 require('Comment').setup()
 EOF
-
-

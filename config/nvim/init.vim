@@ -253,6 +253,8 @@ require('lspconfig').ccls.setup({
     filetypes = {"c", "cpp", "arduino", "ino"}
 })
 
+require('lspconfig').pyright.setup{}
+
 
 require('rust-tools').setup({
     tools = { -- rust-tools options
@@ -338,7 +340,7 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     disable = function(lang, bufnr)
-        return lang == "cmake" or lang == "latex" or ts_disable(lang, bufnr)
+        return lang == "cmake" or lang == "latex" or lang == "lua" or ts_disable(lang, bufnr)
     end,
     additional_vim_regex_highlighting = false,
   },

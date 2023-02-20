@@ -38,7 +38,7 @@ elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 fi
 
 
-export FZF_DEFAULT_COMMAND="find . -not \( -path '*.git' -prune \) -not \( -path './build' -prune \) -not \( -path '*.ccls-cache' -prune \) -type f" 
+export FZF_DEFAULT_COMMAND="find . -not \( -path '*.git' -prune \) -not \( -path './build' -prune \) -not \( -path '*.ccls-cache' -prune \) -not \( -path '*.venv' -prune \) -not \( -path '*__pycache__' -prune \) -type f" 
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     # Kill detached sessions

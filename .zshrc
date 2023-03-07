@@ -35,6 +35,9 @@ elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 	export PATH=/opt/homebrew/bin:$PATH
 	export PATH=/Applications/ARM/bin:$PATH
+	export PATH=$HOME/Library/Python/3.9/bin:$PATH
+    export PATH="/opt/homebrew/opt/avr-gcc@12/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/avr-gcc@12/lib"
 fi
 
 

@@ -2,13 +2,13 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt update && sudo apt upgrade
-	sudo apt install zsh git neovim clang clang-format tmux ccls bat ripgrep
+	sudo apt install zsh git neovim clang clang-format tmux ccls bat ripgrep black
 	chsh -s $(which zsh)
 
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	# Brew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install git neovim yabai skhd clang-format alfred tmux ccls bat ripgrep
+	brew install git neovim yabai skhd clang-format alfred tmux ccls bat ripgrep black
 fi
 
 # Oh my zsh

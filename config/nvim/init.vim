@@ -99,6 +99,7 @@ set smartcase
 set incsearch
 set hlsearch
 set encoding=UTF-8
+set clipboard=unnamedplus
 
 " Set fold to indent and not to automatically fold
 set foldmethod=indent
@@ -301,7 +302,9 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help' }
   },
 })
+
 EOF
+
 
 " Code navigation shortcuts
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>

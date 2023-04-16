@@ -250,8 +250,8 @@ augroup END
 
 lua << EOF
 
-require('lspconfig').ccls.setup({
-    filetypes = {"c", "cpp", "arduino", "ino"}
+require('lspconfig').clangd.setup({
+    filetypes = {"c", "cpp"}
 })
 
 require('lspconfig').pyright.setup{}
@@ -286,7 +286,15 @@ cmp.setup({
     end,
   },
 
-   mapping = {
+  matching = {
+    disallow_fuzzy_matching = true,
+    disallow_fullfuzzy_matching = true,
+    disallow_partial_fuzzy_matching = true,
+    disallow_partial_matching = true,
+    disallow_prefix_unmatching = false,
+  },
+
+  mapping = {
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<CR>'] = cmp.mapping.confirm({

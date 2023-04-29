@@ -139,8 +139,10 @@ lua << EOF
     require("nvim-tree").setup {
         view = {
             adaptive_size = true,
-            hide_root_folder = true,
         },
+        renderer = {
+            root_folder_label = false,
+        }
     }
 EOF
 
@@ -249,6 +251,8 @@ augroup END
 " -------------------------------- LSP ---------------------------------------
 
 lua << EOF
+
+vim.lsp.set_log_level('OFF')
 
 require('lspconfig').clangd.setup({
     filetypes = {"c", "cpp"}

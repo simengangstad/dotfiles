@@ -353,7 +353,7 @@ require'nvim-treesitter.configs'.setup {
     disable = function(lang, bufnr)
         return lang == "cmake" or lang == "latex" or lang == "lua" or ts_disable(lang, bufnr)
     end,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 }
 EOF
@@ -364,6 +364,10 @@ augroup latexSpell
     autocmd!
     autocmd FileType tex setlocal spell spelllang=en_gb
     autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.wiki setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.cpp setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.c setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.h setlocal spell spelllang=en_gb
 augroup END
 
 if s:uname == "Darwin\n"

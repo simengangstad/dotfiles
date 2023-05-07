@@ -139,8 +139,10 @@ lua << EOF
     require("nvim-tree").setup {
         view = {
             adaptive_size = true,
-            hide_root_folder = true,
         },
+        renderer = {
+            root_folder_label = false,
+        }
     }
 EOF
 
@@ -209,22 +211,22 @@ let $BAT_THEME='base16-256'
 
 let g:neoformat_cpp_clangformat = {
             \ 'exe': 'clang-format',
-            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllParametersOfDeclarationOnNextLine: false, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: Always, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: Consecutive, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: Consecutive, AlignEscapedNewlines: Left, AlignOperands: Align, AlignTrailingComments: true, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
             \}
 
 let g:neoformat_c_clangformat = {
             \ 'exe': 'clang-format',
-            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllParametersOfDeclarationOnNextLine: false, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: Always, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: Consecutive, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: Consecutive, AlignEscapedNewlines: Left, AlignOperands: Align, AlignTrailingComments: true, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
             \}
 
 let g:neoformat_glsl_clangformat = {
             \ 'exe': 'clang-format',
-            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllParametersOfDeclarationOnNextLine: false, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: Always, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: Consecutive, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: Consecutive, AlignEscapedNewlines: Left, AlignOperands: Align, AlignTrailingComments: true, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
             \}
 
 let g:neoformat_arduino_clangformat = {
             \ 'exe': 'clang-format',
-            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllParametersOfDeclarationOnNextLine: false, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
+            \ 'args': ['--style="{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: Always, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: Consecutive, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: Consecutive, AlignEscapedNewlines: Left, AlignOperands: Align, AlignTrailingComments: true, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}"']
             \}
 
 let g:neoformat_enabled_cpp = ['clangformat']
@@ -250,8 +252,10 @@ augroup END
 
 lua << EOF
 
-require('lspconfig').ccls.setup({
-    filetypes = {"c", "cpp", "arduino", "ino"}
+vim.lsp.set_log_level('OFF')
+
+require('lspconfig').clangd.setup({
+    filetypes = {"c", "cpp"}
 })
 
 require('lspconfig').pyright.setup{}
@@ -286,7 +290,15 @@ cmp.setup({
     end,
   },
 
-   mapping = {
+  matching = {
+    disallow_fuzzy_matching = true,
+    disallow_fullfuzzy_matching = true,
+    disallow_partial_fuzzy_matching = true,
+    disallow_partial_matching = true,
+    disallow_prefix_unmatching = false,
+  },
+
+  mapping = {
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<CR>'] = cmp.mapping.confirm({
@@ -352,7 +364,7 @@ require'nvim-treesitter.configs'.setup {
     disable = function(lang, bufnr)
         return lang == "cmake" or lang == "latex" or lang == "lua" or ts_disable(lang, bufnr)
     end,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 }
 EOF
@@ -363,6 +375,10 @@ augroup latexSpell
     autocmd!
     autocmd FileType tex setlocal spell spelllang=en_gb
     autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.wiki setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.cpp setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.c setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.h setlocal spell spelllang=en_gb
 augroup END
 
 if s:uname == "Darwin\n"

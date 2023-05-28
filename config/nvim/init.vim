@@ -23,6 +23,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'rstacruz/vim-closer'
+Plug 'ErichDonGubler/lsp_lines.nvim'
 
 " Language specifics
 Plug 'simrat39/rust-tools.nvim'
@@ -252,6 +253,65 @@ augroup END
 
 lua << EOF
 
+-- Allow wrapping for tool-tips with LSP
+require("lsp_lines").setup()
+
+vim.diagnostic.enable()
+
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
+vim.keymap.set(
+  "",
+  "<Leader>gl",
+  require("lsp_lines").toggle,
+  { desc = "Toggle lsp_lines" }
+)
+
+
+-- Latex spelling and grammar
+require'lspconfig'.ltex.setup{
+    settings = {
+        ltex = {
+            language = "en-GB",
+            disabledRules = {['en-GB'] = {'OXFORD_SPELLING_Z_NOT_S'}},
+            dictionary = { ["en-GB"] = {
+                "vio",
+                "mcu",
+                "mcus",
+                "dtcm",
+                "ocram",
+                "sdram",
+                "fpu",
+                "itcm",
+                "tcm",
+                "Nicla",
+                "OpenVINS",
+                "msckf",
+                "watchpoint",
+                "simd",
+                "Lucas-Kanade",
+                "EuRoC",
+                "KITTI",
+                "LARVIO",
+                "ransac",
+                "extrinsics",
+                "imu",
+                "Runga-Kutta",
+                "Eigen",
+                "SysTick",
+                "Givens",
+                "realloc",
+                "malloc",
+                "libc",
+                "pipelining",
+                }
+            },
+        },
+    },
+}
+
 vim.lsp.set_log_level('OFF')
 
 require('lspconfig').clangd.setup({
@@ -328,10 +388,12 @@ EOF
 " Code navigation shortcuts
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gh    <cmd>lua vim.lsp.buf.declaration()<CR>
-
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gs    <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+
+nnoremap <silent> <Leader>h     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <Leader>sh    <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <Leader>ca    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <Leader>d    <cmd>lua vim.diagnostic.open_float()<CR>
 
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'

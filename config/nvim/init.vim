@@ -254,20 +254,20 @@ augroup END
 lua << EOF
 
 -- Allow wrapping for tool-tips with LSP
-require("lsp_lines").setup()
-
-vim.diagnostic.enable()
-
-vim.diagnostic.config({
-  virtual_text = false,
-})
-
-vim.keymap.set(
-  "",
-  "<Leader>gl",
-  require("lsp_lines").toggle,
-  { desc = "Toggle lsp_lines" }
-)
+-- require("lsp_lines").setup()
+--
+-- vim.diagnostic.enable()
+--
+-- vim.diagnostic.config({
+--   virtual_text = false,
+-- })
+--
+-- vim.keymap.set(
+--   "",
+--   "<Leader>gl",
+--   require("lsp_lines").toggle,
+--   { desc = "Toggle lsp_lines" }
+-- )
 
 
 -- Latex spelling and grammar
@@ -391,9 +391,9 @@ nnoremap <silent> gh    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
 nnoremap <silent> <Leader>h     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <Leader>sh    <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <Leader>ca    <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <Leader>d    <cmd>lua vim.diagnostic.open_float()<CR>
+nnoremap <silent> <Leader>dh    <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <Leader>da    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <Leader>do    <cmd>lua vim.diagnostic.open_float()<CR>
 
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'

@@ -110,6 +110,13 @@ return packer.startup(function(use)
 		end,
 	})
 
+	-- debugging
+	use({
+		"mfussenegger/nvim-dap",
+		"jay-babu/mason-nvim-dap.nvim",
+		"rcarriga/nvim-dap-ui",
+	})
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

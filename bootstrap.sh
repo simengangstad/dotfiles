@@ -16,22 +16,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 git config --global alias.lg "log --all --oneline --graph"
 
-
-# TexLive
-if [ $# -eq 1 ] && [ $1 = "latex" ]; then
-    echo "Installing TexLive"
-
-    pushd /tmp > /dev/null
-        wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-        zcat install-tl-unx.tar.gz | tar xf -
-        cd install-tl-*
-        perl ./install-tl --no-interaction
-    popd
-fi
-
 # TPM
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-echo "Finished setup, now run PluginInstall in Vim, install the Hack Nerd Font Mono and add TexLive to path (/usr/local/texlive/<year>/bin/<system>)"
+echo "Finished setup, now run PluginInstall in Vim, install the Hack Nerd Font Mono"
 
 

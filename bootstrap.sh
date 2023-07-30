@@ -9,12 +9,16 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 	tar xf lazygit.tar.gz lazygit
 	sudo install lazygit /usr/local/bin
+	rm -r lazygit lazygit.tar.gz
 
 	# Neovim
-	curl -Lo nvim.tar.gz https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-	tar xf nvim.tar.gz
-	mv nvim-linux64/bin/nvim ~/.local/bin/ 
-	# TODO: move share files
+	curl -Lo nvim.appimage https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+	chmod u+x nvim.appimage
+	./nvim.appimage --appimage-extract
+	mkdir ~/.local/app
+	mv squashfs-root ~/.local/app/nvim
+	ln -s ~/.local/app/nvim/AppRun ~/.local/bin/nvim
+	rm nvim.appimage
 
 	# Enable zsh
 	chsh -s $(which zsh)

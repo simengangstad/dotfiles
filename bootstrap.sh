@@ -21,11 +21,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	# Brew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install git yabai skhd clang-format alfred tmux ccls bat ripgrep black lazygit
+	brew install git neovim yabai skhd clang-format alfred tmux ccls bat ripgrep black lazygit
 
-	# Neovim
-	curl -Lo nvim.tar.gz https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz
-	tar xf nvim.tar.gz
+    # Reduce time for window animations
+    defaults -currentHost write -g NSWindowResizeTime -float 0.065
 fi
 
 # Packer

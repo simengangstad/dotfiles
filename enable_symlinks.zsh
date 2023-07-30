@@ -13,13 +13,13 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     rm -rf "$HOME/.config/nvim"
     rm -rf "$HOME/.config/sway"
     rm -rf "$HOME/.config/wofi"
-    rm -rf "$HOME/.config/alacritty"
+    rm -rf "$HOME/.config/kitty"
     rm -rf "$HOME/.config/gdb"
 
 	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
 	ln -s "$SCRIPTPATH/config/sway" "$HOME/.config/sway"
 	ln -s "$SCRIPTPATH/config/wofi" "$HOME/.config/wofi"
-	ln -s "$SCRIPTPATH/config/alacritty" "$HOME/.config/alacritty"
+	ln -s "$SCRIPTPATH/config/kitty" "$HOME/.config/kitty"
 	ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
 
 elif [[ "$OSTYPE" == "darwin22.0" ]]; then
@@ -31,7 +31,7 @@ elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	ln -s "$SCRIPTPATH/config/yabai" "$HOME/.config/yabai"
 	ln -s "$SCRIPTPATH/config/skhd" "$HOME/.config/skhd"
 	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
-	ln -s "$SCRIPTPATH/config/alacritty" "$HOME/.config/alacritty"
+	ln -s "$SCRIPTPATH/config/kitty" "$HOME/.config/kitty"
 	ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
 fi
 

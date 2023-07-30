@@ -13,13 +13,12 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	rm -r lazygit lazygit.tar.gz
 
 	# Neovim
-	curl -Lo nvim.appimage https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-	chmod u+x nvim.appimage
-	./nvim.appimage --appimage-extract
+    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+    tar xf nvim-linux64.tar.gz
 	mkdir ~/.local/app
-	mv squashfs-root ~/.local/app/nvim
-	ln -s ~/.local/app/nvim/AppRun ~/.local/bin/nvim
-	rm nvim.appimage
+	mv nvim-linux64 ~/.local/app/nvim
+	ln -s ~/.local/app/nvim/bin/nvim ~/.local/bin/nvim
+	rm nvim-linux64.tar.gz
 
     # Tree-sitter
     curl -LO https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.8/tree-sitter-linux-x64.gz
@@ -40,6 +39,9 @@ fi
 
 # Create config directory
 mkdir ~/.config
+
+# Rust & cargo
+curl https://sh.rustup.rs -sSf | sh
 
 # Packer
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim

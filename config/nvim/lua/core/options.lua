@@ -1,27 +1,27 @@
-local opt = vim.opt 
+local opt           = vim.opt
 
-vim.opt.mouse = 'a'
+vim.opt.mouse       = 'a'
 
-opt.number = true
+opt.number          = true
 
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.autoindent  = true
+opt.tabstop         = 4
+opt.shiftwidth      = 4
+opt.expandtab       = true
+opt.autoindent      = true
 vim.opt.breakindent = true
 
-opt.wrap = false
+opt.wrap            = false
 
-opt.ignorecase = true
-opt.smartcase = true
+opt.ignorecase      = true
+opt.smartcase       = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch    = false
 
-opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
+opt.termguicolors   = true
+opt.background      = "dark"
+opt.signcolumn      = "yes"
 
-opt.backspace = "indent,eol,start"
+opt.backspace       = "indent,eol,start"
 opt.clipboard:append("unnamedplus")
 
 opt.splitright = true

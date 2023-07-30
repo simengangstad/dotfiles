@@ -1,5 +1,5 @@
 # Open terminal
-cmd - return : open -na /Applications/Alacritty.app
+cmd - return : open -na /Applications/kitty.app
 
 # Navigation
 # cmd - h : yabai -m window --focus west

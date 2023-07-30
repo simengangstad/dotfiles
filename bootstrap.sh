@@ -13,6 +13,8 @@ elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install git neovim yabai skhd clang-format alfred tmux ccls bat ripgrep black lazygit
 
+    # Reduce time for window animations
+    defaults -currentHost write -g NSWindowResizeTime -float 0.065
 fi
 
 # Packer

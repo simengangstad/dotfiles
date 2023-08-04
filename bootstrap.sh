@@ -2,7 +2,7 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt update && sudo apt upgrade
-	sudo apt install zsh git clang clang-format tmux ccls bat ripgrep black fzf make cmake npm python3-venv python3-pip cpplint cmake-format exuberant-ctags clangd
+	sudo apt install zsh git clang clang-format tmux ccls bat ripgrep black fzf make cmake npm python3-venv python3-pip cpplint cmake-format exuberant-ctags unzip
     pip install cmakelint
 
 	# Lazygit
@@ -31,7 +31,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	# Brew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install git neovim skhd clang-format alfred tmux ccls bat ripgrep black lazygit tree-sitter make cmake node ctags clangd
+	brew install git neovim skhd clang-format alfred tmux ccls bat ripgrep black lazygit tree-sitter make cmake node ctags 
 
     # Reduce time for window animations
     defaults -currentHost write -g NSWindowResizeTime -float 0.065

@@ -10,7 +10,7 @@ opt.expandtab = true
 opt.autoindent = true
 vim.opt.breakindent = true
 
-opt.wrap = false
+opt.wrap = true
 
 opt.ignorecase = true
 opt.smartcase = true

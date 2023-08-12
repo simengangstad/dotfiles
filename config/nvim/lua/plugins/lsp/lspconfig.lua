@@ -20,7 +20,7 @@ local on_attach = function(_, bufnr)
 	keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- go to implementation
 	keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions
 	keymap.set("n", "<leader>rn", ":IncRename ", opts) -- smart rename
-	keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+	keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=1<CR>", opts) -- show  diagnostics for file
 	keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 	keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
@@ -36,14 +36,29 @@ lspconfig["pyright"].setup({
 	on_attach = on_attach,
 })
 
+local build_clangd_command = function()
+	local path = ""
+	local handle = io.popen("which avr-gcc")
+
+	if handle ~= nil then
+		local output = handle:read("*a")
+		path = output:gsub("[\n\r]", "")
+		handle:close()
+	end
+
+	return {
+		"clangd",
+		string.format("--query-driver=%s", path),
+	}
+end
+
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp_capabilities.offsetEncoding = { "utf-16" }
 lspconfig["clangd"].setup({
 	capabilities = lsp_capabilities,
 	on_attach = on_attach,
+	cmd = build_clangd_command(),
 })
-
-vim.lsp.set_log_level("trace")
 
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,

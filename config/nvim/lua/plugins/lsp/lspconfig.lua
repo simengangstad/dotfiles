@@ -43,6 +43,8 @@ local build_clangd_command = function()
 	if handle ~= nil then
 		local output = handle:read("*a")
 		path = output:gsub("[\n\r]", "")
+		-- We want to allow for g++ as well, so replace with a wildcard
+		path = path:gsub("gcc$", "g*")
 		handle:close()
 	end
 

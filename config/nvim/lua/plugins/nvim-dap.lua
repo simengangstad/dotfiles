@@ -41,6 +41,14 @@ dap.configurations = {
 			runInTerminal = true,
 		},
 	},
+	go = {
+		{
+			type = "go", -- Which adapter to use
+			name = "Debug", -- Human readable name
+			request = "launch", -- Whether to "launch" or "attach" to program
+			program = "${file}", -- The buffer you are focused on when running nvim-dap
+		},
+	},
 }
 
 dap.adapters = {
@@ -60,6 +68,14 @@ dap.adapters = {
 		command = "python3",
 		args = { "-m", "debugpy.adapter" },
 	},
+	go = {
+		type = "server",
+		port = "${port}",
+		executable = {
+			command = vim.fn.stdpath("data") .. "/mason/bin/dlv",
+			args = { "dap", "-l", "127.0.0.1:${port}" },
+		},
+	},
 }
 
 local dap_ui_status, ui = pcall(require, "dapui")
@@ -76,11 +92,13 @@ ui.setup({
 		repl = "r",
 		toggle = "t",
 	},
-	expand_lines = vim.fn.has("nvim-0.7"),
+	expand_lines = false,
 	layouts = {
 		{
 			elements = {
 				"scopes",
+				"watches",
+				"breakpoints",
 			},
 			size = 0.3,
 			position = "right",
@@ -88,7 +106,6 @@ ui.setup({
 		{
 			elements = {
 				"repl",
-				"breakpoints",
 			},
 			size = 0.3,
 			position = "bottom",
@@ -122,6 +139,7 @@ vim.keymap.set("n", "<localleader>db", dap.toggle_breakpoint)
 vim.keymap.set("n", "<localleader>dn", dap.step_over)
 vim.keymap.set("n", "<localleader>di", dap.step_into)
 vim.keymap.set("n", "<localleader>do", dap.step_out)
+vim.keymap.set("n", "<localleader>dh", ui.eval)
 vim.keymap.set("n", "<localleader>dC", function()
 	dap.clear_breakpoints()
 end)

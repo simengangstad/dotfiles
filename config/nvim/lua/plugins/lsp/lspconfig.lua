@@ -8,6 +8,11 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
+local setup, null_ls = pcall(require, "null-ls")
+if not setup then
+	return
+end
+
 -- enable keybinds for available lsp server
 local keymap = vim.keymap
 
@@ -30,12 +35,15 @@ end
 
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
 
+---- Python ----
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
+---- C/C++ ----
 local build_clangd_command = function()
 	local path = ""
 	local handle = io.popen("which avr-gcc")
@@ -54,14 +62,13 @@ local build_clangd_command = function()
 	}
 end
 
-local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-lsp_capabilities.offsetEncoding = { "utf-16" }
 lspconfig["clangd"].setup({
-	capabilities = lsp_capabilities,
+	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = build_clangd_command(),
 })
 
+---- Lua ----
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -83,7 +90,68 @@ lspconfig["lua_ls"].setup({
 	},
 })
 
+---- CMake ----
 lspconfig["cmake"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+})
+
+---- Go ----
+lspconfig["gopls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "gopls", "serve" },
+	filetypes = { "go", "gomod" },
+	root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+			gofumpt = true,
+		},
+	},
+})
+
+---- Formatting ----
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+
+-- to setup format on save
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+null_ls.setup({
+	sources = {
+		formatting.stylua,
+		formatting.black,
+		diagnostics.ruff,
+		formatting.clang_format.with({
+			extra_args = {
+				"--style",
+				"{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllParametersOfDeclarationOnNextLine: false, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}",
+			},
+		}),
+		diagnostics.cpplint.with({
+			args = {
+				"-filter",
+				"-legal/copyright,-build/include_subdir",
+			},
+		}),
+		formatting.cmake_format,
+		diagnostics.cmake_lint,
+		formatting.gofumpt,
+	},
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({ async = false })
+				end,
+			})
+		end
+	end,
 })

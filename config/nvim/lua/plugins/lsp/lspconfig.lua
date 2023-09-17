@@ -149,7 +149,12 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
+					-- Preserve the location in the file
+					local position = vim.api.nvim_win_get_cursor(0)
+					local view = vim.fn.winsaveview()
 					vim.lsp.buf.format({ async = false })
+					vim.api.nvim_win_set_cursor(0, position)
+					vim.fn.winrestview(view)
 				end,
 			})
 		end

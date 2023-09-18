@@ -114,6 +114,9 @@ lspconfig["gopls"].setup({
 	},
 })
 
+---- TypeScript ----
+lspconfig["tsserver"].setup({ capabilities = capabilities, on_attach = on_attach })
+
 ---- Formatting ----
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -141,6 +144,7 @@ null_ls.setup({
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
 		formatting.gofumpt,
+		formatting.prettier,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

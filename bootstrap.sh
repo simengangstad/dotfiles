@@ -2,8 +2,8 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt update && sudo apt upgrade
-	sudo apt install zsh git clang clang-format tmux ccls bat ripgrep black fzf make cmake npm python3-venv python3-pip cpplint cmake-format exuberant-ctags unzip
-    pip install cmakelint
+	sudo apt install -y zsh git clang clang-format tmux ccls bat ripgrep black fzf make cmake npm python3-venv python3-pip exuberant-ctags unzip 
+    	pip install cmakelint
 
 	# Lazygit
 	LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -11,6 +11,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	tar xf lazygit.tar.gz lazygit
 	sudo install lazygit /usr/local/bin
 	rm -r lazygit lazygit.tar.gz
+
+    mkdir ~/.local/bin
+    mkdir ~/.local/app
 
 	# Neovim
     curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz

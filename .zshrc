@@ -5,18 +5,16 @@ ZSH_THEME="robbyrussell"
 plugins=(
 	git
     history-substring-search
+    cp
+    history
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 alias mkdir='mkdir -pv'
 alias vim='nvim'
@@ -29,6 +27,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export PATH="/mnt/c/arduino-cli:$PATH"
     export PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
     export PATH="/opt/SEGGER/JLink:$PATH"
+    export PATH="$HOME/go/bin/:$PATH"
     export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
 elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"

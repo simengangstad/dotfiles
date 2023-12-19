@@ -144,6 +144,7 @@ null_ls.setup({
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
 		formatting.gofumpt,
+		diagnostics.golangci_lint,
 		formatting.prettier,
 	},
 	on_attach = function(client, bufnr)
@@ -157,6 +158,13 @@ null_ls.setup({
 					local position = vim.api.nvim_win_get_cursor(0)
 					local view = vim.fn.winsaveview()
 					vim.lsp.buf.format({ async = false })
+
+					-- Clamp the position to the last line if we surpass it
+					local lastLine = vim.fn.line("$")
+					if position[1] > lastLine then
+						position[1] = lastLine
+					end
+
 					vim.api.nvim_win_set_cursor(0, position)
 					vim.fn.winrestview(view)
 				end,

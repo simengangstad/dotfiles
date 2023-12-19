@@ -18,3 +18,12 @@ require("plugins.treesitter")
 
 require("plugins.lsp.lspconfig")
 require("plugins.lsp.mason")
+
+-- Open Telescope if current buffer is not set
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argv(0) == "" then
+			require("telescope.builtin").find_files()
+		end
+	end,
+})

@@ -27,7 +27,6 @@ mason_lspconfig.setup({
 		"rust_analyzer",
 		"clangd",
 		"pyright",
-		"arduino_language_server",
 		"gopls",
 	},
 

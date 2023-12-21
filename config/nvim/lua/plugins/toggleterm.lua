@@ -10,7 +10,7 @@ toggleterm.setup({
 	insert_mappings = true, -- whether or not the open mapping applies in insert mode
 	terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 	persist_size = true,
-	persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
+	persist_mode = false, -- if set to true (default) the previous terminal mode will be remembered
 	direction = "float",
 	close_on_exit = true, -- close the terminal window when the process exits
 	auto_scroll = true, -- automatically scroll to the bottom on terminal output
@@ -34,15 +34,6 @@ local terminal = require("toggleterm.terminal").Terminal
 
 local lazygit = terminal:new({
 	cmd = "lazygit",
-
-	on_open = function(term)
-		vim.cmd("startinsert!")
-		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-	end,
-
-	on_close = function(_)
-		vim.cmd("startinsert!")
-	end,
 })
 
 function _lazygit_toggle()
@@ -53,7 +44,6 @@ end
 
 local keymap = vim.keymap
 
-keymap.set("t", "<ESC>", "<cmd>:ToggleTerm<CR>")
 keymap.set("t", "<leader>tt", "<cmd>:ToggleTerm<CR>")
 keymap.set("n", "<leader>tt", "<cmd>:ToggleTerm<CR>")
 keymap.set("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })

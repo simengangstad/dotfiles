@@ -143,8 +143,8 @@ null_ls.setup({
 		}),
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
-		formatting.gofumpt,
-		diagnostics.golangci_lint,
+		-- formatting.gofumpt,
+		-- diagnostics.golangci_lint,
 		formatting.prettier,
 	},
 	on_attach = function(client, bufnr)

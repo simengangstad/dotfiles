@@ -2,8 +2,8 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	sudo apt update && sudo apt upgrade
-	sudo apt install -y zsh git clang clang-format tmux ccls bat ripgrep black fzf make cmake npm python3-venv python3-pip exuberant-ctags unzip 
-    	pip install cmakelint
+	sudo apt install -y zsh git clang clang-format tmux ccls bat ripgrep black fzf make cmake npm python3-venv python3-pip unzip i3 dunst picom
+    pip install cmakelint
 
 	# Lazygit
 	LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -30,7 +30,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     chmod u+x ~/.local/bin/tree-sitter
 
 	# Enable zsh
-	chsh -s $(which zsh)
+	sudo chsh -s $(which zsh)
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 	# Brew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

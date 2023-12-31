@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SPACING="   "
 
 DATE=$(date '+%a %d. %b %l:%M')
@@ -18,7 +20,13 @@ else
 fi
 
 # Keyboard layout
-KEYBOARD_LAYOUT=$(swaymsg -t get_inputs | jq '.[0].xkb_active_layout_name')
-KEYBOARD_LAYOUT="${KEYBOARD_LAYOUT:1:2}"
+CURR_LANG="$(setxkbmap -print | grep xkb_symbols | awk '{print $4}' | awk -F"+" '{print $2}')"
+KEYBOARD_LAYOUT="ERR"
+
+if [ $CURR_LANG == "us(mac)" ]; then
+	KEYBOARD_LAYOUT="US"
+elif [ $CURR_LANG == "no" ]; then
+	KEYBOARD_LAYOUT="NO"
+fi
 
 echo -e "$KEYBOARD_LAYOUT $SPACING $VOL_ICON $VOL $SPACING $DATE $SPACING"

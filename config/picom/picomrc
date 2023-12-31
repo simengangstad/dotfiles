@@ -1,0 +1,34 @@
+backend = "xrender";
+
+opacity-rule = [ ];
+
+corner-radius = 6.0;
+round-borders = 1;
+
+rounded-corners-exclude = [
+   # For smart gaps and a non-floating bar
+   # "widthb > 1365 && heightb > 736",
+   "class_g = 'Dunst'",
+   "class_g = 'i3bar'",
+   "name = 'Notification'",
+   "class_g = 'Conky'",
+   "class_g ?= 'Notify-osd'",
+   "class_g = 'Cairo-clock'",
+   "_GTK_FRAME_EXTENTS@:c"
+];
+
+shadow = true;
+shadow-radius = 12;
+shadow-opacity = 0.5;
+shadow-offset-x = -7;
+shadow-offset-y = -7;
+shadow-exclude = [
+    "class_g = 'XAVA'",
+    "class_g = 'albert'"
+];
+
+
+# fading = true;
+# fade-in-step = 0.1;
+# fade-out-step = 0.1;
+# fade-exclude = [ ];

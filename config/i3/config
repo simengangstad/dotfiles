@@ -1,0 +1,217 @@
+##################################################
+####                  Theme                   ####
+##################################################
+
+font pango: Hack Nerd Font Mono Bold 11
+
+default_border pixel 3
+
+gaps inner 15
+
+
+# Catppucin macchiato theme
+set $ctp-version v0.7.1
+set $ctp-type Catppuccin-Macchiato-Standard-Red-Dark
+
+exec_always --no-startup-id if [ ! -e ~/.themes/$ctp-type ]; then \
+  mkdir -p ~/.themes \
+  && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/$ctp-type.zip -o ~/.themes/catppuccin.zip \
+  && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
+  && rm -rf ~/.themes/catppuccin.zip \
+  && mkdir -p ${HOME}/.config/gtk-4.0 \
+  && ln -sf ~/.themes/$ctp-type/gtk-4.0/assets ~/.config/gtk-4.0/assets \
+  && ln -sf ~/.themes/$ctp-type/gtk-4.0/gtk.css ~/.config/gtk-4.0/gtk.css \
+  && ln -sf ~/.themes/$ctp-type/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk-dark.css; fi
+
+set $rosewater #f4dbd6
+set $flamingo  #f0c6c6
+set $pink      #f5bde6
+set $mauve     #c6a0f6
+set $red       #ed8796
+set $maroon    #ee99a0
+set $peach     #f5a97f
+set $yellow    #eed49f
+set $green     #a6da95
+set $teal      #8bd5ca
+set $sky       #91d7e3
+set $sapphire  #7dc4e4
+set $blue      #8aadf4
+set $lavender  #b7bdf8
+set $text      #cad3f5
+set $subtext1  #b8c0e0
+set $subtext0  #a5adcb
+set $overlay2  #939ab7
+set $overlay1  #8087a2
+set $overlay0  #6e738d
+set $surface2  #5b6078
+set $surface1  #494d64
+set $surface0  #363a4f
+set $base      #24273a
+set $mantle    #1e2030
+set $crust     #181926
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $base
+client.unfocused         $overlay0 $base $text  $rosewater $base
+client.urgent            $peach    $base $peach $overlay0  $red
+client.placeholder       $overlay0 $base $text  $overlay0  $base
+client.background        $base
+
+bar {
+
+    position top
+    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+    colors {
+      background         $base
+      statusline         $text
+      focused_statusline $text
+      active_workspace   $base $text $blue
+      focused_separator  $base
+      focused_workspace  $base $base $green
+      active_workspace   $base $base $blue
+      inactive_workspace $base $base $surface1
+      urgent_workspace   $base $base $surface1
+      binding_mode       $base $base $surface1
+    }
+}
+
+##################################################
+####                Key maps                  ####
+##################################################
+
+set $up k
+set $down j
+set $left h
+set $right l
+
+set $mod Mod1
+floating_modifier $mod 
+
+bindsym $mod+Return exec --no-startup-id kitty 
+bindsym $mod+s split toggle
+bindsym $mod+q kill
+
+exec --no-startup-id albert
+
+# Map caps lock to escape
+exec_always --no-startup-id setxkbmap -option caps:escape
+bindsym $mod+Shift+b exec --no-startup-id "setxkbmap us -variant mac && pkill -RTMIN+3 i3blocks"
+bindsym $mod+Shift+n exec --no-startup-id "setxkbmap no -variant mac && pkill -RTMIN+3 i3blocks"
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# move the currently focused window to the scratchpad
+bindsym $mod+m move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scrathpad windows, this command cycles through them.
+bindsym $mod+Shift+m scratchpad show
+
+# switch to workspace
+bindsym $mod+1 workspace 5, workspace 1
+bindsym $mod+2 workspace 6, workspace 2
+bindsym $mod+3 workspace 7, workspace 3
+bindsym $mod+4 workspace 8, workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+
+# reload the configuration file
+bindsym $mod+Shift+c restart
+bindsym $mod+Shift+e exec i3-msg exit
+
+# resize window 
+mode "resize" {
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 5 px or 5 ppt
+        bindsym $down       resize grow height 5 px or 5 ppt
+        bindsym $up         resize shrink height 5 px or 5 ppt
+        bindsym $right      resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+##################################################
+####                  Function keys           ####
+##################################################
+
+# Audio controls
+bindsym F10 exec --no-startup-id "amixer set Master toggle && pkill -RTMIN+2 i3blocks"
+bindsym F11 exec --no-startup-id "amixer set Master 1%- && pkill -RTMIN+2 i3blocks" 
+bindsym F12 exec --no-startup-id "amixer set Master 1%+ && pkill -RTMIN+2 i3blocks"
+
+## Media player controls
+bindsym F8 exec --no-startup-id playerctl play-pause
+bindsym F9 exec --no-startup-id playerctl next
+bindsym F7 exec --no-startup-id playerctl previous
+
+##################################################
+####			      General				  ####
+##################################################
+
+set $primary_monitor HDMI-0
+set $secondary_monitor HDMI-1
+
+# Define layout for workspaces
+workspace 1 output $primary_monitor
+workspace 2 output $primary_monitor
+workspace 3 output $primary_monitor
+workspace 4 output $primary_monitor
+workspace 5 output $secondary_monitor
+workspace 6 output $secondary_monitor
+workspace 7 output $secondary_monitor
+workspace 8 output $secondary_monitor
+
+for_window [class="1Password"] floating enable
+for_window [class="Nautilus"] floating enable
+for_window [class="gnome-calculator"] floating enable
+
+exec --no-startup-id picom -b --config $HOME/.config/picom/picomrc
+# exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpaper.jpg
+exec --no-startup-id nitrogen --restore
+
+

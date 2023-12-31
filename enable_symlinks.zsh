@@ -11,15 +11,17 @@ done
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     rm -rf "$HOME/.config/nvim"
-    rm -rf "$HOME/.config/sway"
-    rm -rf "$HOME/.config/wofi"
+    rm -rf "$HOME/.config/i3"
+    rm -rf "$HOME/.config/dunst"
     rm -rf "$HOME/.config/kitty"
+    rm -rf "$HOME/.config/picom"
     rm -rf "$HOME/.config/gdb"
 
 	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
-	ln -s "$SCRIPTPATH/config/sway" "$HOME/.config/sway"
-	ln -s "$SCRIPTPATH/config/wofi" "$HOME/.config/wofi"
+	ln -s "$SCRIPTPATH/config/i3" "$HOME/.config/i3"
+	ln -s "$SCRIPTPATH/config/dunst" "$HOME/.config/dunst"
 	ln -s "$SCRIPTPATH/config/kitty" "$HOME/.config/kitty"
+	ln -s "$SCRIPTPATH/config/picom" "$HOME/.config/picom"
 	ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
 
 elif [[ "$OSTYPE" == "darwin22.0" ]]; then

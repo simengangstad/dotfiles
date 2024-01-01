@@ -27,6 +27,7 @@ mason_lspconfig.setup({
 		"rust_analyzer",
 		"clangd",
 		"pyright",
+		"efm",
 		-- "gopls",
 	},
 

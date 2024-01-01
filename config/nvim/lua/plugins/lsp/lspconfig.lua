@@ -37,6 +37,9 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 
+-- to setup format on save
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 ---- Python ----
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
@@ -117,12 +120,48 @@ lspconfig["gopls"].setup({
 ---- TypeScript ----
 lspconfig["tsserver"].setup({ capabilities = capabilities, on_attach = on_attach })
 
+---- Godot ----
+lspconfig["gdscript"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
+lspconfig["efm"].setup({
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({ async = false })
+				end,
+			})
+		end
+	end,
+	flags = {
+		debounce_text_changes = 150,
+	},
+
+	init_options = { documentFormatting = true },
+	settings = {
+		rootMarkers = { ".git/" },
+		languages = {
+			gdscript = {
+				{ formatCommand = "gdformat -l 80 -", formatStdin = true },
+			},
+		},
+	},
+})
+
 ---- Formatting ----
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
-
--- to setup format on save
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
 	sources = {

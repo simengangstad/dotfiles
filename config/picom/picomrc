@@ -2,7 +2,7 @@ backend = "xrender";
 
 opacity-rule = [ ];
 
-corner-radius = 6.0;
+corner-radius = 8.0;
 round-borders = 1;
 
 rounded-corners-exclude = [

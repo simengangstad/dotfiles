@@ -21,5 +21,8 @@ yabai -m rule --add app="^Simulator$" manage=off
 yabai -m rule --add app="^Huskelapper$" manage=off
 yabai -m rule --add app="^Notater$" manage=off
 yabai -m rule --add app="^Godot$" manage=off
+yabai -m rule --add app="^Forhåndsvisning$" manage=off
+yabai -m rule --add app="^UnrealEditor$" manage=off
+yabai -m rule --add app="^Meldinger$" manage=off
 yabai -m rule --add label="MATLAB" app="^MATLAB$" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(Generelt|Faner|Autofyll|Passord|Søk|Sikkerhet|Personvern|Nettsteder|Tillegg|Avansert)$" manage=off

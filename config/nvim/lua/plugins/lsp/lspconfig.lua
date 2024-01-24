@@ -121,9 +121,17 @@ lspconfig["gopls"].setup({
 lspconfig["tsserver"].setup({ capabilities = capabilities, on_attach = on_attach })
 
 ---- Godot ----
+local port = os.getenv("GDSCRIPT_PORT") or "6005"
+local cmd = vim.lsp.rpc.connect("127.0.0.1", port)
+local pipe = "/tmp/godot.pipe"
+
 lspconfig["gdscript"].setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	cmd = cmd,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		vim.api.nvim_command('echo serverstart("' .. pipe .. '")')
+	end,
 	flags = {
 		debounce_text_changes = 150,
 	},

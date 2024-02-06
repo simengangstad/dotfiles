@@ -44,3 +44,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.iskeyword:append("-")
+
+-- opt.backupdir = "$HOME/.cache/nvim/backup"
+-- opt.directory = "$HOME/.cache/nvim/swap"
+-- opt.undodir = "$HOME/.cache/nvim/undo"

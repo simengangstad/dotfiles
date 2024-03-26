@@ -29,11 +29,21 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export PATH="/opt/SEGGER/JLink:$PATH"
     export PATH="$HOME/go/bin/:$PATH"
     export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
+
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+    . "$HOME/.cargo/env"
+    
+    export PATH="$HOME/.local/bin/go/bin:$PATH" 
+    export PATH="$HOME/go/bin:$PATH" 
+    export PATH="$HOME/.local/app/gcc-arm-none-eabi/bin:$PATH"
+
 elif [[ "$OSTYPE" == "darwin23.0" ]]; then
 	ZSH_DISABLE_COMPFIX="true"
 
 	alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
-
 	export PATH="/opt/homebrew/bin:$PATH"
 	export PATH="/Applications/ARM/bin:$PATH"
 	export PATH="$HOME/Library/Python/3.9/bin:$PATH"

@@ -28,7 +28,7 @@ mason_lspconfig.setup({
 		"clangd",
 		"pyright",
 		"efm",
-		-- "gopls",
+		"gopls",
 	},
 
 	automatic_installation = true,
@@ -44,8 +44,8 @@ mason_null_ls.setup({
 		"cpplint",
 		"cmake_lint", -- cmake
 		"cmake_format",
-		-- "golangci-lint", -- go
-		-- "gofumpt",
+		"golangci-lint", -- go
+		"gofumpt",
 	},
 
 	automatic_installation = true,

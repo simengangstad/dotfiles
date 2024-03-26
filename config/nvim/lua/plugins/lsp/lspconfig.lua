@@ -118,7 +118,17 @@ lspconfig["gopls"].setup({
 })
 
 ---- TypeScript ----
-lspconfig["tsserver"].setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig["eslint"].setup({
+	settings = {
+		packageManager = "yarn",
+	},
+	on_attach = function(_client, bufnr)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			command = "EslintFixAll",
+		})
+	end,
+})
 
 ---- Godot ----
 local port = os.getenv("GDSCRIPT_PORT") or "6005"
@@ -171,6 +181,14 @@ lspconfig["efm"].setup({
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typescriptreact", "typescript" },
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+	end,
+})
+
 null_ls.setup({
 	sources = {
 		formatting.stylua,
@@ -190,9 +208,22 @@ null_ls.setup({
 		}),
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
-		-- formatting.gofumpt,
-		-- diagnostics.golangci_lint,
-		formatting.prettier,
+		formatting.gofumpt,
+		diagnostics.golangci_lint,
+		formatting.prettierd.with({
+			condition = function(utils)
+				return utils.has_file({ ".eslintrc.json" })
+			end,
+			extra_args = function(params)
+				return params.options
+					and {
+						"--single-quote",
+						"--jsx-single-quote",
+						"--print-width 100",
+					}
+			end,
+		}),
+		diagnostics.eslint,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

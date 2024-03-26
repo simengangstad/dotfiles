@@ -122,7 +122,7 @@ lspconfig["eslint"].setup({
 	settings = {
 		packageManager = "yarn",
 	},
-	on_attach = function(_client, bufnr)
+	on_attach = function(_, bufnr)
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			buffer = bufnr,
 			command = "EslintFixAll",
@@ -148,6 +148,7 @@ lspconfig["gdscript"].setup({
 })
 
 lspconfig["efm"].setup({
+	filetypes = { "gd", "gdscript", "gdscript3" },
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
 

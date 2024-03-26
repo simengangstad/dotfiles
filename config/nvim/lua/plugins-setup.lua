@@ -112,6 +112,143 @@ return packer.startup(function(use)
 		"rcarriga/nvim-dap-ui",
 	})
 
+	-- testing
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-neotest/neotest-go",
+		},
+		config = function()
+			local neotest = require("neotest")
+			local map_opts = { noremap = true, silent = true, nowait = true }
+
+			-- get neotest namespace (api call creates or returns namespace)
+
+			local neotest_ns = vim.api.nvim_create_namespace("neotest")
+			vim.diagnostic.config({
+				virtual_text = {
+					format = function(diagnostic)
+						local message =
+							diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+						return message
+					end,
+				},
+			}, neotest_ns)
+
+			require("neotest").setup({
+				-- your neotest config here
+				adapters = {
+					require("neotest-go"),
+				},
+			})
+
+			require("neotest").setup({
+				quickfix = {
+					open = false,
+					enabled = false,
+				},
+				status = {
+					enabled = true,
+					signs = true, -- Sign after function signature
+					virtual_text = false,
+				},
+				icons = {
+					child_indent = "│",
+					child_prefix = "├",
+					collapsed = "─",
+					expanded = "╮",
+					failed = "✘",
+					final_child_indent = " ",
+					final_child_prefix = "╰",
+					non_collapsible = "─",
+					passed = "✓",
+					running = "",
+					running_animated = { "/", "|", "\\", "-", "/", "|", "\\", "-" },
+					skipped = "↓",
+					unknown = "",
+				},
+				floating = {
+					border = "rounded",
+					max_height = 0.9,
+					max_width = 0.9,
+					options = {},
+				},
+				summary = {
+					open = "botright vsplit | vertical resize 60",
+					mappings = {
+						attach = "a",
+						clear_marked = "M",
+						clear_target = "T",
+						debug = "d",
+						debug_marked = "D",
+						expand = { "<CR>", "<2-LeftMouse>" },
+						expand_all = "e",
+						jumpto = "i",
+						mark = "m",
+						next_failed = "J",
+						output = "o",
+						prev_failed = "K",
+						run = "r",
+						run_marked = "R",
+						short = "O",
+						stop = "u",
+						target = "t",
+						watch = "w",
+					},
+				},
+				highlights = {
+					adapter_name = "NeotestAdapterName",
+					border = "NeotestBorder",
+					dir = "NeotestDir",
+					expand_marker = "NeotestExpandMarker",
+					failed = "NeotestFailed",
+					file = "NeotestFile",
+					focused = "NeotestFocused",
+					indent = "NeotestIndent",
+					marked = "NeotestMarked",
+					namespace = "NeotestNamespace",
+					passed = "NeotestPassed",
+					running = "NeotestRunning",
+					select_win = "NeotestWinSelect",
+					skipped = "NeotestSkipped",
+					target = "NeotestTarget",
+					test = "NeotestTest",
+					unknown = "NeotestUnknown",
+				},
+				adapters = {
+					require("neotest-go"),
+				},
+			})
+
+			vim.keymap.set("n", "<localleader>tf", function()
+				neotest.run.run(vim.fn.expand("%"))
+				neotest.summary.open()
+			end, map_opts)
+
+			vim.keymap.set("n", "<localleader>tm", function()
+				neotest.run.run()
+				neotest.summary.open()
+			end, map_opts)
+
+			vim.keymap.set("n", "<localleader>to", function()
+				neotest.output.open({ last_run = true, enter = true })
+			end)
+
+			vim.keymap.set("n", "<localleader>ts", function()
+				neotest.summary.toggle()
+			end, map_opts)
+
+			vim.keymap.set("n", "<localleader>tl", function()
+				neotest.run.run_last({ enter = true })
+				neotest.output.open({ last_run = true, enter = true })
+			end, map_opts)
+		end,
+	})
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

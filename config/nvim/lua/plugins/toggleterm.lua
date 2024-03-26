@@ -29,6 +29,12 @@ toggleterm.setup({
 	},
 })
 
+vim.api.nvim_create_autocmd("TermClose", {
+	callback = function()
+		vim.cmd("close")
+	end,
+})
+
 -- Custom terminal for lazygit
 local terminal = require("toggleterm.terminal").Terminal
 
@@ -36,7 +42,7 @@ local lazygit = terminal:new({
 	cmd = "lazygit",
 })
 
-function _lazygit_toggle()
+local function _lazygit_toggle()
 	lazygit:toggle()
 end
 

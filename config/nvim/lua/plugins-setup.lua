@@ -226,12 +226,10 @@ return packer.startup(function(use)
 
 			vim.keymap.set("n", "<localleader>tf", function()
 				neotest.run.run(vim.fn.expand("%"))
-				neotest.summary.open()
 			end, map_opts)
 
 			vim.keymap.set("n", "<localleader>tm", function()
 				neotest.run.run()
-				neotest.summary.open()
 			end, map_opts)
 
 			vim.keymap.set("n", "<localleader>to", function()

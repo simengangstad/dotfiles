@@ -42,7 +42,7 @@ local lazygit = terminal:new({
 	cmd = "lazygit",
 })
 
-local function _lazygit_toggle()
+function lazygit_toggle()
 	lazygit:toggle()
 end
 
@@ -52,4 +52,4 @@ local keymap = vim.keymap
 
 keymap.set("t", "<leader>tt", "<cmd>:ToggleTerm<CR>")
 keymap.set("n", "<leader>tt", "<cmd>:ToggleTerm<CR>")
-keymap.set("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+keymap.set("n", "<leader>gg", "<cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })

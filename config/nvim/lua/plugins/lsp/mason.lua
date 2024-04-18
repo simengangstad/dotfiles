@@ -28,7 +28,6 @@ mason_lspconfig.setup({
 		"clangd",
 		"pyright",
 		"efm",
-		"gopls",
 	},
 
 	automatic_installation = true,

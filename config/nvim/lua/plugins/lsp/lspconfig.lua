@@ -49,7 +49,7 @@ lspconfig["pyright"].setup({
 ---- C/C++ ----
 local build_clangd_command = function()
 	local path = ""
-	local handle = io.popen("which avr-gcc")
+	local handle = io.popen("which avr-g++")
 
 	if handle ~= nil then
 		local output = handle:read("*a")

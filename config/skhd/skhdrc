@@ -2,10 +2,10 @@
 cmd - return : open -na /Applications/kitty.app
 
 # Navigation
-cmd - h : yabai -m window --focus west
-cmd - j : yabai -m window --focus south
-cmd - k : yabai -m window --focus north
-cmd - l : yabai -m window --focus east
+cmd - h : yabai -m window --focus west  || yabai -m display --focus west
+cmd - j : yabai -m window --focus south || yabai -m display --focus south
+cmd - k : yabai -m window --focus north || yabai -m display --focus north
+cmd - l : yabai -m window --focus east  || yabai -m display --focus east
  
 # Move focus container to workspace
 shift + cmd - 1 : yabai -m window --space 1 && yabai -m space --focus 1
@@ -16,10 +16,10 @@ shift + cmd - 5 : yabai -m window --space 5 && yabai -m space --focus 5
 shift + cmd - 6 : yabai -m window --space 6 && yabai -m space --focus 6
  
 # Moving windows
-shift + cmd - h : yabai -m window --warp west
-shift + cmd - j : yabai -m window --warp south
-shift + cmd - k : yabai -m window --warp north
-shift + cmd - l : yabai -m window --warp east
+shift + cmd - h : yabai -m window --swap west   || $(yabai -m window --display west; yabai -m display --focus west)
+shift + cmd - j : yabai -m window --swap south  || $(yabai -m window --display south; yabai -m display --focus south)
+shift + cmd - k : yabai -m window --swap north  || $(yabai -m window --display north; yabai -m display --focus north) 
+shift + cmd - l : yabai -m window --swap east   || $(yabai -m window --display east; yabai -m display --focus east) 
 
 # Float / Unfloat window
 shift + cmd - space : yabai -m window --toggle float

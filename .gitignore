@@ -1,9 +1,5 @@
 *.swp
 *.deb
-/i3lock-color/
-/polybar/
-/picom/
-.config/spotify-tui/client.yml
-.config/spotify-tui/.spotify_token_cache.json
 *.DS_Store
 config/nvim/plugin
+config/regolith3/flags

@@ -1,9 +1,23 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+
 	sudo apt update && sudo apt upgrade
-	sudo apt install -y zsh git clang clang-format tmux ccls bat ripgrep black fzf make cmake npm python3-venv python3-pip unzip i3 dunst picom
-    pip install cmakelint
+	sudo apt install -y zsh git tmux ccls bat ripgrep fzf make cmake npm python3-venv python3-pip unzip curl neovim
+
+    # Symlink batcat to bat
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+
+	# Kitty
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+	ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+	cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+	cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+	sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+	sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+	echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+
 
 	# Lazygit
 	LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -11,17 +25,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	tar xf lazygit.tar.gz lazygit
 	sudo install lazygit /usr/local/bin
 	rm -r lazygit lazygit.tar.gz
-
-    mkdir ~/.local/bin
-    mkdir ~/.local/app
-
-	# Neovim
-    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-    tar xf nvim-linux64.tar.gz
-	mkdir ~/.local/app
-	mv nvim-linux64 ~/.local/app/nvim
-	ln -s ~/.local/app/nvim/bin/nvim ~/.local/bin/nvim
-	rm nvim-linux64.tar.gz
 
     # Tree-sitter
     curl -LO https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.8/tree-sitter-linux-x64.gz
@@ -31,10 +34,15 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	# Enable zsh
 	sudo chsh -s $(which zsh)
+
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
+
 	# Brew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install git neovim skhd clang-format alfred tmux ccls bat ripgrep black lazygit tree-sitter make cmake node ctags 
+	brew install git neovim skhd clang-format alfred tmux ccls bat ripgrep lazygit tree-sitter make cmake node ctags bat
+
+	# Kitty
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
     # Reduce time for window animations
     defaults -currentHost write -g NSWindowResizeTime -float 0.065
@@ -57,6 +65,6 @@ git config --global alias.lg "log --all --oneline --graph"
 # TPM
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-echo "Finished setup, now install the Hack Nerd Font Mono"
+echo "Finished setup, now install the Hack Nerd Font Mono. Remember to log out to refresh the shell."
 
 

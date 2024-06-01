@@ -141,9 +141,7 @@ return packer.startup(function(use)
 
 			require("neotest").setup({
 				-- your neotest config here
-				adapters = {
-					require("neotest-go"),
-				},
+				adapters = {},
 			})
 
 			require("neotest").setup({

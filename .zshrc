@@ -48,6 +48,8 @@ elif [[ "$OSTYPE" == "darwin23.0" ]]; then
     export PATH="$HOME/Library/Python/3.9/bin:$PATH"
     export PATH="/opt/homebrew/opt/avr-gcc@12/bin:$PATH"
     export LDFLAGS="-L/opt/homebrew/opt/avr-gcc@12/lib"
+
+    export XDG_CONFIG_HOME="$HOME/.config"
 fi
 
 

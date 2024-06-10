@@ -65,6 +65,7 @@ alias lt='eza -alh --sort=modified'
 
 # Bat
 export BAT_THEME="Catppuccin Macchiato"
+alias cat="bat"
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     # Kill detached sessions
@@ -77,5 +78,3 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
     
     exec tmux
 fi
-
-source /Users/simengangstad/.config/broot/launcher/bash/br

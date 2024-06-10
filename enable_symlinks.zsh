@@ -10,28 +10,27 @@ for entry in .*; do
 done
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    rm -rf "$HOME/.config/nvim"
     rm -rf "$HOME/.config/regolith3"
-    rm -rf "$HOME/.config/kitty"
-    rm -rf "$HOME/.config/gdb"
 
-	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
-	ln -s "$SCRIPTPATH/config/regolith3" "$HOME/.config/regolith3"
-	ln -s "$SCRIPTPATH/config/kitty" "$HOME/.config/kitty"
-	ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
+    ln -s "$SCRIPTPATH/config/regolith3" "$HOME/.config/regolith3"
 
 elif [[ "$OSTYPE" == "darwin22.0" ]]; then
 	rm -rf "$HOME/.config/yabai" 
 	rm -rf "$HOME/.config/skhd" 
-	rm -rf "$HOME/.config/nvim"
-    rm -rf "$HOME/.config/gdb"
 
 	ln -s "$SCRIPTPATH/config/yabai" "$HOME/.config/yabai"
 	ln -s "$SCRIPTPATH/config/skhd" "$HOME/.config/skhd"
-	ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
-	ln -s "$SCRIPTPATH/config/kitty" "$HOME/.config/kitty"
-	ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
 fi
+
+rm -rf "$HOME/.config/nvim"
+rm -rf "$HOME/.config/kitty"
+rm -rf "$HOME/.config/gdb"
+rm -rf "$HOME/.config/bat"
+
+ln -s "$SCRIPTPATH/config/nvim" "$HOME/.config/nvim"
+ln -s "$SCRIPTPATH/config/kitty" "$HOME/.config/kitty"
+ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
+ln -s "$SCRIPTPATH/config/bat" "$HOME/.config/bat"
 
 
 

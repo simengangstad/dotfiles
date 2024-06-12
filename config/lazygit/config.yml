@@ -245,7 +245,7 @@ git:
     pattern: "^\\w+\\/(\\w+-\\w+).*"
 
     # Replace directive. E.g. for 'feature/AB-123' to start the commit message with 'AB-123 ' use "[$1] "
-    replace: "[$1] "
+    replace: "$1 "
 
   # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
   # (This should really be under 'gui', not 'git')

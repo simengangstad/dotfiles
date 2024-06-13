@@ -67,6 +67,7 @@ alias lt='eza -alh --sort=modified'
 
 # Bat
 export BAT_THEME="Catppuccin Macchiato"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 alias cat="bat"
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then

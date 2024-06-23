@@ -13,6 +13,11 @@ if not setup then
 	return
 end
 
+local rust_tools_setup, rust_tools = pcall(require, "rust-tools")
+if not rust_tools_setup then
+	return
+end
+
 -- enable keybinds for available lsp server
 local keymap = vim.keymap
 
@@ -29,7 +34,7 @@ local on_attach = function(_, bufnr)
 	keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 	keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+	keymap.set("n", "<C-space>", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 	keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
 end
 
@@ -70,6 +75,25 @@ lspconfig["clangd"].setup({
 	on_attach = on_attach,
 	cmd = build_clangd_command(),
 })
+
+---- Rust ----
+-- rust_tools.setup({
+-- 	server = {
+-- 		on_attach = function(_, bufnr)
+-- 			-- Hover actions
+-- 			vim.keymap.set("n", "<C-space>", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+-- 			-- Code action groups
+-- 			vim.keymap.set("n", "<Leader>ca", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+-- 		end,
+-- 	},
+-- })
+
+lspconfig["rust_analyzer"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+vim.g.rustfmt_autosave = 1
 
 ---- Lua ----
 lspconfig["lua_ls"].setup({
@@ -115,19 +139,6 @@ lspconfig["gopls"].setup({
 			gofumpt = true,
 		},
 	},
-})
-
----- TypeScript ----
-lspconfig["eslint"].setup({
-	settings = {
-		packageManager = "yarn",
-	},
-	on_attach = function(_, bufnr)
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
-			command = "EslintFixAll",
-		})
-	end,
 })
 
 ---- Godot ----
@@ -178,6 +189,59 @@ lspconfig["efm"].setup({
 	},
 })
 
+-- LSP Diagnostics Options Setup
+local sign = function(opts)
+	vim.fn.sign_define(opts.name, {
+		texthl = opts.name,
+		text = opts.text,
+		numhl = "",
+	})
+end
+
+sign({ name = "DiagnosticSignError", text = "" })
+sign({ name = "DiagnosticSignWarn", text = "" })
+sign({ name = "DiagnosticSignHint", text = "" })
+sign({ name = "DiagnosticSignInfo", text = "" })
+
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	update_in_insert = true,
+	underline = true,
+	severity_sort = false,
+	float = {
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+})
+
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+
+--Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not select, force to select one from the menu
+-- shortness: avoid showing extra messages when using completion
+-- updatetime: set updatetime for CursorHold
+vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+vim.opt.shortmess = vim.opt.shortmess + { c = true }
+vim.api.nvim_set_option("updatetime", 300)
+
+-- Fixed column for diagnostics to appear
+-- Show autodiagnostic popup on cursor hover_range
+-- Goto previous / next diagnostic warning / error
+-- Show inlay_hints more frequently
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+
 ---- Formatting ----
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -201,30 +265,10 @@ null_ls.setup({
 				"{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}",
 			},
 		}),
-		diagnostics.cpplint.with({
-			args = {
-				"-filter",
-				"-legal/copyright,-build/include_subdir",
-			},
-		}),
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
 		formatting.gofumpt,
 		diagnostics.golangci_lint,
-		formatting.prettierd.with({
-			condition = function(utils)
-				return utils.has_file({ ".eslintrc.json" })
-			end,
-			extra_args = function(params)
-				return params.options
-					and {
-						"--single-quote",
-						"--jsx-single-quote",
-						"--print-width 100",
-					}
-			end,
-		}),
-		diagnostics.eslint,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

@@ -36,11 +36,13 @@ mason_lspconfig.setup({
 mason_null_ls.setup({
 	-- list of formatters & linters for mason to install
 	ensure_installed = {
-		"stylua", -- lua formatter
-		"ruff", -- rust linter
-		"black", -- python formatter
+		"stylua", -- lua
+
+		"ruff", -- python
+		"black",
+
 		"clang_format", -- c & c++
-		"cpplint",
+
 		"cmake_lint", -- cmake
 		"cmake_format",
 	},

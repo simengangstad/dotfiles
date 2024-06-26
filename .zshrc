@@ -70,6 +70,12 @@ export BAT_THEME="Catppuccin Macchiato"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 alias cat="bat"
 
+# Duf
+alias df="duf"
+
+# Dust 
+alias dust="du"
+
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     # Kill detached sessions
 

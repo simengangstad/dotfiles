@@ -256,8 +256,6 @@ null_ls.setup({
 		}),
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
-		formatting.gofumpt,
-		diagnostics.golangci_lint,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

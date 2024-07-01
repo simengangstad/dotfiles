@@ -3,7 +3,7 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	sudo apt update && sudo apt upgrade
-	sudo apt install -y zsh git neovim clang-format tmux ccls bat ripgrep make cmake bat fzf git-delta duf curl
+	sudo apt install -y zsh git neovim clang-format tmux ccls bat ripgrep make cmake bat fzf git-delta duf curl eza python3-venv
 
     # Symlink batcat to bat
     mkdir -p ~/.local/bin

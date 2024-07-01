@@ -37,3 +37,4 @@ wm.binding.shutdown: Shift+KP_4
 
 # Theme
 regolith.look.path: /usr/share/regolith-look/lascaille
+regolith.wallpaper.file: /home/sg/Pictures/wallpaper.jpg

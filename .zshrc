@@ -35,9 +35,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     . "$HOME/.cargo/env"
     
-    export PATH="$HOME/.local/bin/go/bin:$PATH" 
-    export PATH="$HOME/go/bin:$PATH" 
     export PATH="$HOME/.local/app/gcc-arm-none-eabi/bin:$PATH"
+    export PATH="$HOME/.cargo/bin:$PATH"
 
 elif [[ "$OSTYPE" == "darwin23.0" ]]; then
     ZSH_DISABLE_COMPFIX="true"
@@ -74,4 +73,4 @@ alias cat="bat"
 alias df="duf"
 
 # Dust 
-alias dust="du"
+alias du="dust"

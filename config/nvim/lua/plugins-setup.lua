@@ -120,6 +120,7 @@ return packer.startup(function(use)
 		"mfussenegger/nvim-dap",
 		"jay-babu/mason-nvim-dap.nvim",
 		"rcarriga/nvim-dap-ui",
+		"ldelossa/nvim-dap-projects",
 	})
 
 	-- testing

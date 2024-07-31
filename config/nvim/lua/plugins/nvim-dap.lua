@@ -30,7 +30,7 @@ dap.configurations = {
 	cpp = {
 		{
 			name = "Launch",
-			type = "cpp",
+			type = "lldb",
 			request = "launch",
 			program = function()
 				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -41,20 +41,12 @@ dap.configurations = {
 			runInTerminal = true,
 		},
 	},
-	go = {
-		{
-			type = "go", -- Which adapter to use
-			name = "Debug", -- Human readable name
-			request = "launch", -- Whether to "launch" or "attach" to program
-			program = "${file}", -- The buffer you are focused on when running nvim-dap
-		},
-	},
 }
 
 dap.adapters = {
 
-	cpp = {
-		name = "codelldb server",
+	lldb = {
+		name = "lldb",
 		type = "server",
 		port = "${port}",
 		executable = {
@@ -67,14 +59,6 @@ dap.adapters = {
 		type = "executable",
 		command = "python3",
 		args = { "-m", "debugpy.adapter" },
-	},
-	go = {
-		type = "server",
-		port = "${port}",
-		executable = {
-			command = vim.fn.stdpath("data") .. "/mason/bin/dlv",
-			args = { "dap", "-l", "127.0.0.1:${port}" },
-		},
 	},
 }
 
@@ -106,6 +90,7 @@ ui.setup({
 		{
 			elements = {
 				"repl",
+				"console",
 			},
 			size = 0.3,
 			position = "bottom",
@@ -128,7 +113,7 @@ ui.setup({
 -- Start debugging session
 vim.keymap.set("n", "<leader>ds", function()
 	dap.continue()
-	ui.toggle({})
+	ui.open({})
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false) -- Spaces buffers evenly
 end)
 
@@ -146,7 +131,15 @@ end)
 
 -- Close debugger and clear breakpoints
 vim.keymap.set("n", "<leader>de", function()
-	ui.toggle({})
+	ui.close({})
 	dap.terminate()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false)
 end)
+
+--- Allow local DAP configuration file
+local dap_project_status, dap_projects = pcall(require, "nvim-dap-projects")
+if not dap_project_status then
+	return
+end
+
+dap_projects.search_project_config()

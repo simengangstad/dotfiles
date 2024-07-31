@@ -27,6 +27,7 @@ treesitter.setup({
 		"vim",
 		"gitignore",
 		"rust",
+		"toml",
 		"python",
 		"cmake",
 		"c",

@@ -256,6 +256,7 @@ null_ls.setup({
 		}),
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
+		formatting.rustfmt,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

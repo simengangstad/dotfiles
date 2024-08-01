@@ -161,30 +161,30 @@ lspconfig["efm"].setup({
 })
 
 -- LSP Diagnostics Options Setup
-local sign = function(opts)
-	vim.fn.sign_define(opts.name, {
-		texthl = opts.name,
-		text = opts.text,
-		numhl = "",
-	})
-end
-
-sign({ name = "DiagnosticSignError", text = "" })
-sign({ name = "DiagnosticSignWarn", text = "" })
-sign({ name = "DiagnosticSignHint", text = "" })
-sign({ name = "DiagnosticSignInfo", text = "" })
-
 vim.diagnostic.config({
 	virtual_text = false,
-	signs = true,
 	update_in_insert = true,
 	underline = true,
 	severity_sort = false,
 	float = {
 		border = "rounded",
-		source = "always",
+		source = true,
 		header = "",
 		prefix = "",
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+		},
+		numhl = {
+			[vim.diagnostic.severity.WARN] = "WarningMsg",
+		},
 	},
 })
 
@@ -229,16 +229,9 @@ null_ls.setup({
 	sources = {
 		formatting.stylua,
 		formatting.black,
-		diagnostics.ruff,
-		formatting.clang_format.with({
-			extra_args = {
-				"--style",
-				"{ IndentWidth: 4, AllowShortLoopsOnASingleLine: true, AllowShortBlocksOnASingleLine: true, ColumnLimit: 80, BinPackParameters: false, BinPackArguments: false, AllowAllParametersOfDeclarationOnNextLine: false, AlignConsecutiveMacros: true, FixNamespaceComments: false, NamespaceIndentation: All, AlignConsecutiveAssignments: true, AlignEscapedNewlines: true, AlignOperands: Align, AlignTrailingComments: true, AllowAllArgumentsOnNextLine: false, PenaltyBreakAssignment: 50, PointerAlignment: Left, ReferenceAlignment: Left}",
-			},
-		}),
+		formatting.clang_format,
 		formatting.cmake_format,
 		diagnostics.cmake_lint,
-		formatting.rustfmt,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

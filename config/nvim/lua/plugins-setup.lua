@@ -79,7 +79,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 
 	-- formatting & linting
-	use("jose-elias-alvarez/null-ls.nvim")
+	use("nvimtools/none-ls.nvim")
 	use("jayp0521/mason-null-ls.nvim")
 	use({
 		"smjonas/inc-rename.nvim",

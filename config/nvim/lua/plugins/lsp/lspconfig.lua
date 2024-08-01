@@ -179,11 +179,9 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = "",
 			[vim.diagnostic.severity.INFO] = "",
 		},
-		linehl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-		},
 		numhl = {
 			[vim.diagnostic.severity.WARN] = "WarningMsg",
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
 		},
 	},
 })

@@ -56,13 +56,10 @@ return packer.startup(function(use)
 	})
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
-	-- Completion framework:
+	-- Completion framework
 	use("hrsh7th/nvim-cmp")
 
-	-- LSP completion source:
-	use("hrsh7th/cmp-nvim-lsp")
-
-	-- Useful completion sources:
+	-- Useful completion sources
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-nvim-lsp-signature-help")
 	use("hrsh7th/cmp-vsnip")
@@ -115,12 +112,16 @@ return packer.startup(function(use)
 		end,
 	})
 
+	-- Notifications
+	use("rcarriga/nvim-notify")
+
 	-- debugging
 	use({
 		"mfussenegger/nvim-dap",
 		"jay-babu/mason-nvim-dap.nvim",
 		"rcarriga/nvim-dap-ui",
 		"ldelossa/nvim-dap-projects",
+		"jedrzejboczar/nvim-dap-cortex-debug",
 	})
 
 	-- testing

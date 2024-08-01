@@ -84,7 +84,7 @@ ui.setup({
 				"watches",
 				"breakpoints",
 			},
-			size = 0.3,
+			size = 0.2,
 			position = "right",
 		},
 		{
@@ -92,7 +92,7 @@ ui.setup({
 				"repl",
 				"console",
 			},
-			size = 0.3,
+			size = 0.2,
 			position = "bottom",
 		},
 	},

@@ -4,6 +4,8 @@ require("core.options")
 require("core.keymaps")
 require("core.colorscheme")
 
+require("plugins.nvim-notify")
+
 require("plugins.autopairs")
 require("plugins.bufferline")
 require("plugins.comment")

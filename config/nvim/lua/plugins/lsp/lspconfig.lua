@@ -21,7 +21,7 @@ end
 -- enable keybinds for available lsp server
 local keymap = vim.keymap
 
-local on_attach = function(_, bufnr)
+LSP_ON_ATTACH = function(_, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
@@ -39,55 +39,37 @@ local on_attach = function(_, bufnr)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities()
-capabilities.offsetEncoding = { "utf-16" }
+LSP_CAPABILITIES = cmp_nvim_lsp.default_capabilities()
+LSP_CAPABILITIES.offsetEncoding = { "utf-16" }
 
 -- to setup format on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 ---- Python ----
 lspconfig["pyright"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+	capabilities = LSP_CAPABILITIES,
+	on_attach = LSP_ON_ATTACH,
 })
 
 ---- C/C++ ----
-local build_clangd_command = function()
-	local path = ""
-	local handle = io.popen("which avr-g++")
-
-	if handle ~= nil then
-		local output = handle:read("*a")
-		path = output:gsub("[\n\r]", "")
-		-- We want to allow for g++ as well, so replace with a wildcard
-		path = path:gsub("gcc$", "g*")
-		handle:close()
-	end
-
-	return {
-		"clangd",
-		string.format("--query-driver=%s", path),
-	}
-end
 
 lspconfig["clangd"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	cmd = build_clangd_command(),
+	capabilities = LSP_CAPABILITIES,
+	on_attach = LSP_ON_ATTACH,
 })
 
 ---- Rust ----
 lspconfig["rust_analyzer"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+	capabilities = LSP_CAPABILITIES,
+	on_attach = LSP_ON_ATTACH,
 })
 
 vim.g.rustfmt_autosave = 1
 
 ---- Lua ----
 lspconfig["lua_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+	capabilities = LSP_CAPABILITIES,
+	on_attach = LSP_ON_ATTACH,
 	settings = {
 		-- custom settings for lua
 		Lua = {
@@ -108,14 +90,14 @@ lspconfig["lua_ls"].setup({
 
 ---- CMake ----
 lspconfig["cmake"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+	capabilities = LSP_CAPABILITIES,
+	on_attach = LSP_ON_ATTACH,
 })
 
 ---- Go ----
 lspconfig["gopls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+	capabilities = LSP_CAPABILITIES,
+	on_attach = LSP_ON_ATTACH,
 	cmd = { "gopls", "serve" },
 	filetypes = { "go", "gomod" },
 	root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
@@ -136,10 +118,10 @@ local cmd = vim.lsp.rpc.connect("127.0.0.1", port)
 local pipe = "/tmp/godot.pipe"
 
 lspconfig["gdscript"].setup({
-	capabilities = capabilities,
+	capabilities = LSP_CAPABILITIES,
 	cmd = cmd,
 	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
+		LSP_ON_ATTACH(client, bufnr)
 		vim.api.nvim_command('echo serverstart("' .. pipe .. '")')
 	end,
 	flags = {
@@ -150,7 +132,7 @@ lspconfig["gdscript"].setup({
 lspconfig["efm"].setup({
 	filetypes = { "gd", "gdscript", "gdscript3" },
 	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
+		LSP_ON_ATTACH(client, bufnr)
 
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -283,3 +265,6 @@ null_ls.setup({
 		end
 	end,
 })
+
+-- Load any project specific configurations
+require("plugins.lsp.clangd").search_project_config()

@@ -256,6 +256,3 @@ null_ls.setup({
 		end
 	end,
 })
-
--- Load any project specific configurations
-require("plugins.lsp.clangd").search_project_config()

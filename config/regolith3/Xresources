@@ -1,17 +1,17 @@
-# Use alt as modifier key 
+! Use alt as modifier key 
 wm.mod: Mod1
 wm.alt: Mod4
 
-# Setting caps lock to escape can be done with:
-# gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
-
-# Always have gaps, even if a window is the only 
-# window in the workspace
+! Setting caps lock to escape can be done with:
+! gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+!
+! Always have gaps, even if a window is the only 
+! window in the workspace
 wm.gaps.smart: off
 
 wm.bar.position: top
 
-# Bindings 
+! Bindings 
 wm.binding.exit_app: q 
 wm.binding.launcher.app: d
 wm.binding.file_search: Shift+d
@@ -20,7 +20,7 @@ wm.binding.lock: Shift+p
 wm.binding.sleep: Shift+s
 
 
-# Dummy keys to remove the keybinding
+! Dummy keys to remove the keybinding
 wm.binding.display: KP_1 
 wm.binding.settings: KP_2 
 wm.binding.wifi: KP_3 
@@ -35,7 +35,8 @@ wm.binding.logout: Shift+KP_2
 wm.binding.reboot: Shift+KP_3
 wm.binding.shutdown: Shift+KP_4
 
-# Theme
-regolith.look.path: /usr/share/regolith-look/lascaille
+! Theme
 regolith.wallpaper.file: $HOME/Pictures/wallpaper.jpg
 regolith.lockscreen.wallpaper.file: $HOME/Pictures/wallpaper.jpg
+!regolith.look.path: /usr/share/regolith-look/lascaille
+regolith.look.path: /usr/share/regolith-look/lascaille

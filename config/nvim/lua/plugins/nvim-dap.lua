@@ -82,6 +82,7 @@ ui.setup({
 			elements = {
 				"scopes",
 				"watches",
+				"stacks",
 				"breakpoints",
 			},
 			size = 0.2,

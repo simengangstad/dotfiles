@@ -62,5 +62,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo "Finished setup, next steps:"
 echo "1. Do ./enable_symlinks.zsh"
 echo "2. do bat cache --build"
-echo "3. Install Hack Nerd Font Mono"
-echo "4. Log out to refrehs the shell"
+echo "3. Install cmake-language-server via pip"
+echo "4. Install Hack Nerd Font Mono"
+echo "5. Log out to refrehs the shell"

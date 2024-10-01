@@ -34,9 +34,9 @@ wm.binding.launcher.cmd: Shift+KP_1
 wm.binding.logout: Shift+KP_2
 wm.binding.reboot: Shift+KP_3
 wm.binding.shutdown: Shift+KP_4
+wm.carry_container_to_ws_key: Shift+KP_5
 
 ! Theme
 regolith.wallpaper.file: $HOME/Pictures/wallpaper.jpg
 regolith.lockscreen.wallpaper.file: $HOME/Pictures/wallpaper.jpg
-!regolith.look.path: /usr/share/regolith-look/lascaille
 regolith.look.path: /usr/share/regolith-look/lascaille

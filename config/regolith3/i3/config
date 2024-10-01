@@ -29,14 +29,15 @@ set_from_resource $alt  wm.alt Mod1
 # Which monitors workspaces are placed 
 ###############################################################################
 workspace "$ws1" output DisplayPort-7
-workspace "$ws2" output DP 
+workspace "$ws2" output DisplayPort-7
 workspace "$ws3" output DisplayPort-7
 workspace "$ws4" output DisplayPort-7
 workspace "$ws5" output DisplayPort-7
 workspace "$ws6" output DisplayPort-7
 workspace "$ws7" output DisplayPort-7
 workspace "$ws8" output DisplayPort-7
-workspace "$ws9" output DisplayPort-7
+
+workspace "$ws9" output DP 
 
 
 

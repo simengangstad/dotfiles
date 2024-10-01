@@ -40,3 +40,13 @@ wm.carry_container_to_ws_key: Shift+KP_5
 regolith.wallpaper.file: $HOME/Pictures/wallpaper.jpg
 regolith.lockscreen.wallpaper.file: $HOME/Pictures/wallpaper.jpg
 regolith.look.path: /usr/share/regolith-look/lascaille
+
+! Workspace names
+
+wm.workspace.01.name: 1: 1. Web
+wm.workspace.02.name: 2: 2. Firmware
+wm.workspace.03.name: 3: 3. Yocto 
+wm.workspace.04.name: 4: 4. Schematics 
+wm.workspace.05.name: 5: 5. Spotify 
+
+wm.workspace.09.name: 9: 9. Terminal

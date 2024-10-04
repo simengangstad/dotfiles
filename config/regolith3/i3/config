@@ -60,8 +60,8 @@ workspace "$ws4" output DP6
 workspace "$ws5" output DP6
 workspace "$ws6" output DP6
 workspace "$ws7" output DP6
-workspace "$ws8" output DP6
 
+workspace "$ws8" output eDP
 workspace "$ws9" output eDP
 
 

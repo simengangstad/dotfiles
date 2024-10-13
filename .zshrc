@@ -74,3 +74,5 @@ alias df="duf"
 
 # Dust 
 alias du="dust"
+
+eval "$(zoxide init zsh)"

@@ -3,7 +3,7 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	sudo apt update && sudo apt upgrade
-	sudo apt install -y zsh git neovim clang-format tmux ccls bat ripgrep make cmake bat fzf git-delta duf curl eza python3-venv
+	sudo apt install -y zsh git neovim clang-format tmux ccls bat ripgrep make cmake bat fzf git-delta duf curl eza python3-venv zoxide
 
     # Symlink batcat to bat
     mkdir -p ~/.local/bin
@@ -32,13 +32,16 @@ elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 
 	# Brew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install git neovim clang-format tmux ccls bat ripgrep lazygit make cmake bat fzf git-delta duf alfred skhd yabai 
+	brew install git neovim clang-format tmux ccls bat ripgrep lazygit make cmake bat fzf git-delta duf alfred skhd yabai zoxide
 
 	# Kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
     # Reduce time for window animations
     defaults -currentHost write -g NSWindowResizeTime -float 0.065
+
+    # Disable window opening animations 
+    defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 fi
 
 # Create config directory

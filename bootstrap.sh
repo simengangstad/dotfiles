@@ -3,7 +3,7 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 	sudo apt update && sudo apt upgrade
-	sudo apt install -y zsh git neovim clang-format tmux ccls bat ripgrep make cmake bat fzf git-delta duf curl eza python3-venv zoxide
+	sudo apt install -y zsh git neovim clang-format tmux ccls bat ripgrep make cmake bat fzf python3-venv
 
     # Symlink batcat to bat
     mkdir -p ~/.local/bin
@@ -26,7 +26,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	rm -r lazygit lazygit.tar.gz
 
 	# Enable zsh
-	sudo chsh -s $(which zsh)
+	chsh -s $(which zsh)
 
 elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 
@@ -51,7 +51,7 @@ mkdir ~/.config
 curl https://sh.rustup.rs -sSf | sh
 
 # Cargo packages
-cargo install du-dust eza tree-sitter-cli
+cargo install du-dust eza tree-sitter-cli git-delta
 
 # Packer
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
@@ -67,4 +67,5 @@ echo "1. Do ./enable_symlinks.zsh"
 echo "2. do bat cache --build"
 echo "3. Install cmake-language-server via pip"
 echo "4. Install Hack Nerd Font Mono"
-echo "5. Log out to refrehs the shell"
+echo "5. Remap caps lock to escape (on gnome): gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']""
+echo "6. Log out to refresh the shell"

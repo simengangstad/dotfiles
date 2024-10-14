@@ -75,6 +75,9 @@ alias df="duf"
 # Dust 
 alias du="dust"
 
+# Zoxide
+alias cd="z"
+
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     # Kill detached sessions
 

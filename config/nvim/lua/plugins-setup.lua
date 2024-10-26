@@ -123,6 +123,13 @@ return packer.startup(function(use)
 		"jedrzejboczar/nvim-dap-cortex-debug",
 	})
 
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
+
 	-- Copilot
 	use({
 		"zbirenbaum/copilot.lua",

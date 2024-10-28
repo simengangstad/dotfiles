@@ -132,7 +132,7 @@ return packer.startup(function(use)
 			require("copilot").setup({
 				panel = {
 					enabled = true,
-					auto_refresh = false,
+					auto_refresh = true,
 					keymap = {
 						jump_prev = "[[",
 						jump_next = "]]",

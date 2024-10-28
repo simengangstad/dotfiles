@@ -24,12 +24,3 @@ require("plugins.lsp.mason")
 
 -- Load any project specific configurations
 require("core.project").search_project_config()
-
--- Open Telescope if current buffer is not set
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		if vim.fn.argv(0) == "" then
-			require("telescope.builtin").find_files()
-		end
-	end,
-})

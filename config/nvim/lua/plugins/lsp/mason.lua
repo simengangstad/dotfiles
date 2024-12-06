@@ -39,7 +39,7 @@ mason_null_ls.setup({
 		"stylua", -- lua
 
 		"ruff", -- python
-		"black",
+		"mypy",
 
 		"clang_format", -- c & c++
 

@@ -64,6 +64,7 @@ return {
         opts = {
             ---@type lspconfig.options
             servers = {},
+            inlay_hints = { enabled = false },
         },
     },
 
@@ -162,6 +163,33 @@ return {
 
                 -- Shell
                 "shfmt",
+            },
+        },
+    },
+
+    -- Add extra exclude directories for Rust
+    {
+        "mrcjkb/rustaceanvim",
+        opts = {
+            server = {
+                default_settings = {
+                    ["rust-analyzer"] = {
+                        files = {
+                            excludeDirs = {
+                                ".direnv",
+                                ".embuild",
+                                ".git",
+                                ".github",
+                                ".gitlab",
+                                "bin",
+                                "node_modules",
+                                "target",
+                                "venv",
+                                ".venv",
+                            },
+                        },
+                    },
+                },
             },
         },
     },

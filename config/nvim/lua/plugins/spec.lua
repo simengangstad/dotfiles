@@ -1,4 +1,47 @@
+---@format disable
+local mrpaw = [[
+             *     ,MMM8&&&.            *     
+                  MMMM88&&&&&    .            
+                 MMMM88&&&&&&&                
+     *           MMM88&&&&&&&&                
+                 MMM88&&&&&&&&                
+                 'MMM88&&&&&&'                
+                   'MMM8&&&'      *           
+          |\___/|                             
+          )     (             .              '
+         =\     /=                            
+           )===(       *                      
+          /     \                             
+         \       /                            
+          |     |                             
+         /       \                            
+  _/\_/\_/\__  _/_/\_/\_/\_/\_/\_/\_/\_/\_/\_ 
+  |  |  |  |( (  |  |  |  |  |  |  |  |  |  | 
+  |  |  |  | ) ) |  |  |  |  |  |  |  |  |  | 
+  |  |  |  |(_(  |  |  |  |  |  |  |  |  |  | 
+  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+]]
+---@format enable
+
 return {
+
+    {
+        "snacks.nvim",
+        opts = {
+            dashboard = {
+                preset = {
+                    header = mrpaw,
+                },
+                sections = {
+                    { section = "header" },
+                    { section = "keys", indent = 1, padding = 1 },
+                    { section = "startup" },
+                },
+            },
+        },
+    },
+
     -- Add catppuccin
     {
         "catppuccin/nvim",

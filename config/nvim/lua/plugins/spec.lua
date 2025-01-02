@@ -60,11 +60,18 @@ return {
         },
     },
 
-    -- Change trouble config
+    -- Disable trouble
     {
         "folke/trouble.nvim",
+        enabled = false,
         -- opts will be merged with the parent spec
         opts = { use_diagnostic_signs = true },
+    },
+
+    -- Disable blink
+    {
+        "saghen/blink.cmp",
+        enabled = false,
     },
 
     -- Override nvim-cmp and add cmp-emoji

@@ -84,6 +84,12 @@ return {
         end,
     },
 
+    -- Disable friendly-snippets
+    {
+        "rafamadriz/friendly-snippets",
+        enabled = false,
+    },
+
     -- Change some telescope options and a keymap to browse plugin files
     {
         "nvim-telescope/telescope.nvim",

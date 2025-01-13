@@ -138,7 +138,7 @@ git:
     paging:
         # Value of the --color arg in the git diff command. Some pagers want this to be set to 'always' and some want it set to 'never'
         colorArg: always
-        pager: delta --paging=never
+        pager: delta --paging=never -s
         # If true, Lazygit will use whatever pager is specified in `$GIT_PAGER`, `$PAGER`, or your *git config*. If the pager ends with something like ` | less` we will strip that part out, because less doesn't play nice with our rendering approach. If the custom pager uses less under the hood, that will also break rendering (hence the `--paging=never` flag for the `delta` pager).
         useConfig: false
         # e.g. 'difft --color=always'

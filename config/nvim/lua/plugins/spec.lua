@@ -68,22 +68,6 @@ return {
         opts = { use_diagnostic_signs = true },
     },
 
-    -- Disable blink
-    {
-        "saghen/blink.cmp",
-        enabled = false,
-    },
-
-    -- Override nvim-cmp and add cmp-emoji
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = { "hrsh7th/cmp-emoji" },
-        ---@param opts cmp.ConfigSchema
-        opts = function(_, opts)
-            table.insert(opts.sources, { name = "emoji" })
-        end,
-    },
-
     -- Disable friendly-snippets
     {
         "rafamadriz/friendly-snippets",
@@ -110,17 +94,6 @@ return {
                 sorting_strategy = "ascending",
                 winblend = 0,
             },
-        },
-    },
-
-    -- LSP config
-    {
-        "neovim/nvim-lspconfig",
-        ---@class PluginLspOpts
-        opts = {
-            ---@type lspconfig.options
-            servers = {},
-            inlay_hints = { enabled = false },
         },
     },
 

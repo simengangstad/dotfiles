@@ -184,9 +184,7 @@ return {
                 "stylua",
 
                 -- Python
-                "ruff",
                 "mypy",
-                "black",
 
                 "shellcheck",
 

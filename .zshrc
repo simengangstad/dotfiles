@@ -55,7 +55,7 @@ fi
 
 source <(fzf --zsh)
 
-export FZF_DEFAULT_COMMAND="find . -not \( -path '*.git' -prune \) -not \( -path './build' -prune \) -not \( -path '*.ccls-cache' -prune \) -not \( -path '*.venv' -prune \) -not \( -path '*__pycache__' -prune \) -type f" 
+export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name build -o -name .ccls-cache -o -name .venv -o -name __pycache__ -o -name .cache -o -name .mypy_cache -o -name .pytest_cache \) -prune -o -print'
 
 # Eza
 alias ls='eza'

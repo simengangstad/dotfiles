@@ -151,6 +151,28 @@ return {
         },
     },
 
+    -- Neo-tree
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        opts = {
+            window = {
+                position = "right",
+            },
+            filesystem = {
+                follow_current_file = { enabled = false },
+            },
+        },
+        keys = {
+            {
+                "<leader>r",
+                function()
+                    require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root(), reveal = true })
+                end,
+                desc = "Reveal Current File (in Neo-tree)",
+            },
+        },
+    },
+
     -- Lualine
     {
         "nvim-lualine/lualine.nvim",

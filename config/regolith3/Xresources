@@ -44,7 +44,7 @@ regolith.lockscreen.wallpaper.file: $HOME/Pictures/wallpaper.jpg
 
 wm.workspace.01.name: 1: 1. Web
 wm.workspace.02.name: 2: 2. Firmware
-wm.workspace.03.name: 3: 3. Yocto 
+wm.workspace.03.name: 3: 3. Debugger 
 wm.workspace.04.name: 4: 4. Schematics 
 wm.workspace.05.name: 5: 5. Spotify 
 wm.workspace.06.name: 6: 6. Teams 

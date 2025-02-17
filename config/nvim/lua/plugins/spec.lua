@@ -155,9 +155,6 @@ return {
     {
         "nvim-neo-tree/neo-tree.nvim",
         opts = {
-            window = {
-                position = "right",
-            },
             filesystem = {
                 follow_current_file = { enabled = false },
             },
@@ -166,7 +163,7 @@ return {
             {
                 "<leader>r",
                 function()
-                    require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root(), reveal = true })
+                    require("neo-tree.command").execute({ toggle = false, dir = LazyVim.root(), reveal = true })
                 end,
                 desc = "Reveal Current File (in Neo-tree)",
             },

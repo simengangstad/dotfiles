@@ -38,6 +38,8 @@ wm.carry_container_to_ws_key: Shift+KP_5
 
 ! Theme
 regolith.wallpaper.file: $HOME/Pictures/wallpaper.jpg
+regolith.wallpaper.options: spanned
+
 regolith.lockscreen.wallpaper.file: $HOME/Pictures/wallpaper.jpg
 
 ! Workspace names
@@ -51,5 +53,5 @@ wm.workspace.06.name: 6: 6. Teams
 
 wm.workspace.08.name: 8: 8. Documents
 wm.workspace.09.name: 9: 9. Terminal
-!regolith.look.path: /usr/share/regolith-look/default
+
 regolith.look.path: /usr/share/regolith-look/ayu-mirage

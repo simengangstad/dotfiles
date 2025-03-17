@@ -14,7 +14,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     ln -s "$SCRIPTPATH/config/regolith3" "$HOME/.config/regolith3"
 
-elif [[ "$OSTYPE" == "darwin22.0" ]]; then
+else
 	rm -rf "$HOME/.config/yabai" 
 	rm -rf "$HOME/.config/skhd" 
 

@@ -38,8 +38,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export PATH="$HOME/.local/app/gcc-arm-none-eabi/bin:$PATH"
     export PATH="$HOME/.cargo/bin:$PATH"
     export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | batcat -p -lman'"
-
-elif [[ "$OSTYPE" == "darwin23.0" ]]; then
+else
     ZSH_DISABLE_COMPFIX="true"
 
     alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
@@ -50,6 +49,8 @@ elif [[ "$OSTYPE" == "darwin23.0" ]]; then
 
     export XDG_CONFIG_HOME="$HOME/.config"
     export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 

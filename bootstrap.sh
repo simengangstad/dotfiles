@@ -28,10 +28,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # Enable zsh
     chsh -s $(which zsh)
 
-elif [[ "$OSTYPE" == "darwin20.0" ]]; then
+else
 
     # Brew
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     brew install git neovim clang-format tmux ccls bat ripgrep lazygit make cmake bat fzf git-delta duf alfred skhd yabai zoxide
 
     # Kitty
@@ -39,9 +40,6 @@ elif [[ "$OSTYPE" == "darwin20.0" ]]; then
 
     # Reduce time for window animations
     defaults -currentHost write -g NSWindowResizeTime -float 0.065
-
-    # Disable window opening animations
-    defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 fi
 
 # Create config directory
@@ -56,7 +54,7 @@ bat cache --build
 curl https://sh.rustup.rs -sSf | sh
 
 # Cargo packages
-cargo install du-dust eza tree-sitter-cli git-delta
+cargo install du-dust eza tree-sitter-cli
 
 # Packer
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim

@@ -42,6 +42,7 @@ else
     ZSH_DISABLE_COMPFIX="true"
 
     alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
+    export PATH="$HOME/.local/bin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/Applications/ARM/bin:$PATH"
     export PATH="$HOME/Library/Python/3.9/bin:$PATH"

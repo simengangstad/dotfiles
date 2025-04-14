@@ -17,9 +17,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 else
 	rm -rf "$HOME/.config/yabai" 
 	rm -rf "$HOME/.config/skhd" 
+    rm -rf "$HOME/.config/sketchybar"
 
 	ln -s "$SCRIPTPATH/config/yabai" "$HOME/.config/yabai"
 	ln -s "$SCRIPTPATH/config/skhd" "$HOME/.config/skhd"
+    ln -s "$SCRIPTPATH/config/sketchybar" "$HOME/.config/sketchybar"
 fi
 
 rm -rf "$HOME/.config/nvim"
@@ -33,6 +35,3 @@ ln -s "$SCRIPTPATH/config/kitty" "$HOME/.config/kitty"
 ln -s "$SCRIPTPATH/config/gdb" "$HOME/.config/gdb"
 ln -s "$SCRIPTPATH/config/bat" "$HOME/.config/bat"
 ln -s "$SCRIPTPATH/config/lazygit" "$HOME/.config/lazygit"
-
-
-

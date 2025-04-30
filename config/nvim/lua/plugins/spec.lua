@@ -205,6 +205,8 @@ return {
                 -- Python
                 "mypy",
 
+                -- Shell
+                "bash-language-server",
                 "shellcheck",
 
                 -- Shell

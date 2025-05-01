@@ -215,6 +215,14 @@ return {
         },
     },
 
+    -- LSP config
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            inlay_hints = { enabled = false },
+        },
+    },
+
     -- Add extra exclude directories for Rust
     {
         "mrcjkb/rustaceanvim",

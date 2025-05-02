@@ -13,12 +13,9 @@ wm.bar.position: top
 
 ! Bindings 
 wm.binding.exit_app: q 
-wm.binding.launcher.app: d
+wm.binding.launcher.app: Shift+d
 wm.binding.file_search: Shift+d
-wm.binding.launcher.window: Shift+w
 wm.binding.lock: Shift+p
-wm.binding.sleep: Shift+s
-
 
 ! Dummy keys to remove the keybinding
 wm.binding.display: KP_1 
@@ -37,13 +34,11 @@ wm.binding.shutdown: Shift+KP_4
 wm.carry_container_to_ws_key: Shift+KP_5
 
 ! Theme
-regolith.wallpaper.file: $HOME/Pictures/wallpaper.jpg
-regolith.wallpaper.options: spanned
-
-regolith.lockscreen.wallpaper.file: $HOME/Pictures/wallpaper.jpg
+regolith.wallpaper.file: /home/sg/Pictures/wallpaper.jpg
+regolith.wallpaper.options: zoom
+regolith.lockscreen.wallpaper.file: /home/sg/Pictures/wallpaper.jpg
 
 ! Workspace names
-
 wm.workspace.01.name: 1: 1. Web
 wm.workspace.02.name: 2: 2. Firmware
 wm.workspace.03.name: 3: 3. Debugger 

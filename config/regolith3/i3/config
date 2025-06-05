@@ -56,6 +56,7 @@ set_from_resource $ws17 wm.workspace.17.name "17"
 set_from_resource $ws18 wm.workspace.18.name "18"
 set_from_resource $ws19 wm.workspace.19.name "19"
 
+
 ###############################################################################
 # Workspace Locations
 # Which monitors the workspaces are located on 

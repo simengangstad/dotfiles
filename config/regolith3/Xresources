@@ -5,11 +5,9 @@ wm.alt: Mod4
 ! Setting caps lock to escape can be done with:
 ! gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 !
-! Always have gaps, even if a window is the only 
-! window in the workspace
-wm.gaps.smart: off
+wm.gaps.smart: on
 
-wm.bar.position: top
+wm.bar.position: bottom
 
 ! Bindings 
 wm.binding.exit_app: q 
@@ -46,7 +44,4 @@ wm.workspace.04.name: 4: 4. Schematics
 wm.workspace.05.name: 5: 5. Spotify 
 wm.workspace.06.name: 6: 6. Teams 
 
-wm.workspace.08.name: 8: 8. Documents
-wm.workspace.09.name: 9: 9. Terminal
-
-regolith.look.path: /usr/share/regolith-look/ayu-mirage
+regolith.look.path: /usr/share/regolith-look/lascaille

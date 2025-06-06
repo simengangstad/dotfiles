@@ -3,7 +3,7 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     sudo apt update && sudo apt upgrade
-    sudo apt install -y zsh git neovim clang-format tmux ccls bat ripgrep make cmake bat fzf python3-venv
+    sudo apt install -y zsh git neovim clang-format ccls bat ripgrep make cmake bat fzf python3-venv
 
     # Symlink batcat to bat
     mkdir -p ~/.local/bin
@@ -26,14 +26,14 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     rm -r lazygit lazygit.tar.gz
 
     # Enable zsh
-    chsh -s $(which zsh)
+    chsh -s "$(which zsh)"
 
 else
 
     # Brew
-    # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew install git neovim clang-format tmux ccls bat ripgrep lazygit make cmake bat fzf git-delta duf alfred skhd yabai zoxide eza
+    brew install git neovim clang-format ccls bat ripgrep lazygit make cmake bat fzf git-delta duf alfred skhd yabai zoxide eza
 
     # Kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
@@ -51,7 +51,7 @@ else
     brew install --cask font-sf-mono
     brew install --cask font-sf-pro
 
-    curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.28/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
+    curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.28/sketchybar-app-font.ttf -o "$HOME/Library/Fonts/sketchybar-app-font.ttf"
     (git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua/ && make install && rm -rf /tmp/SbarLua/)
 fi
 
@@ -74,9 +74,6 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 
 # Oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-# TPM
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Finished setup, next steps:"
 echo "1. Do ./enable_symlinks.zsh"

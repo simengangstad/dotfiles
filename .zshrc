@@ -11,42 +11,25 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-
-alias mkdir='mkdir -pv'
-alias vim='nvim'
 bindkey -v
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export LC_ALL=en_US.UTF-8  
     export LANG=en_US.UTF-8
-    export PATH="$HOME/.local/bin:$PATH"
-    export PATH="/mnt/c/arduino-cli:$PATH"
-    export PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
     export PATH="/opt/SEGGER/JLink:$PATH"
-    export PATH="$HOME/go/bin/:$PATH"
     export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
-
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
     . "$HOME/.cargo/env"
     
-    export PATH="$HOME/.local/app/gcc-arm-none-eabi/bin:$PATH"
-    export PATH="$HOME/.cargo/bin:$PATH"
     export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | batcat -p -lman'"
 else
     ZSH_DISABLE_COMPFIX="true"
 
     alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
-    export PATH="$HOME/.local/bin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/Applications/ARM/bin:$PATH"
-    export PATH="$HOME/Library/Python/3.9/bin:$PATH"
-    export PATH="/opt/homebrew/opt/avr-gcc@12/bin:$PATH"
 
     export XDG_CONFIG_HOME="$HOME/.config"
     export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
@@ -54,9 +37,16 @@ else
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# Aliases
+alias mkdir='mkdir -pv'
+alias vim='nvim'
 
+# Path
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Fzf
 source <(fzf --zsh)
-
 export FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name build -o -name .ccls-cache -o -name .venv -o -name __pycache__ -o -name .cache -o -name .mypy_cache -o -name .pytest_cache \) -prune -o -print'
 
 # Eza

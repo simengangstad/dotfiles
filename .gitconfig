@@ -83,3 +83,5 @@
 [user]
 	name = Simen Gangstad
 	email = simen.gangstad@me.com
+[init]
+	defaultBranch = main

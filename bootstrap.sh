@@ -37,22 +37,6 @@ else
 
     # Kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-
-    # Packages
-    brew install lua
-    brew install switchaudio-osx
-    brew install nowplaying-cli
-
-    brew tap FelixKratz/formulae
-    brew install sketchybar
-
-    # Fonts
-    brew install --cask sf-symbols
-    brew install --cask font-sf-mono
-    brew install --cask font-sf-pro
-
-    curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.28/sketchybar-app-font.ttf -o "$HOME/Library/Fonts/sketchybar-app-font.ttf"
-    (git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua/ && make install && rm -rf /tmp/SbarLua/)
 fi
 
 # Create config directory
@@ -61,6 +45,7 @@ mkdir ~/.config
 # Setup bat theme
 mkdir -p "$(bat --config-dir)/themes"
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
 bat cache --build
 
 # Rust & cargo

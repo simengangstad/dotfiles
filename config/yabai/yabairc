@@ -8,8 +8,6 @@ yabai -m config left_padding   5
 yabai -m config right_padding  5
 yabai -m config window_gap     5
 
-yabai -m config external_bar main:40:0
-
 # Floating rules
 yabai -m rule --add title='Preferences$' manage=off topmost=on
 yabai -m rule --add app="^Systemvalg$" manage=off

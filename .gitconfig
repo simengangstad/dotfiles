@@ -36,45 +36,6 @@
     gr = grep -Ii
     la = "!git config -l | grep alias | cut -c 7-"
 
-[include]
-    path = $HOME/.config/delta/themes/catppuccin.gitconfig
-
-[core]
-    pager = delta
-
-[interactive]
-    diffFilter = delta --color-only
-
-[delta]
-    navigate = true    
-    line-numbers = true
-
-    blame-palette = "#24273a #1e2030 #181926 #363a4f #494d64"
-    commit-decoration-style = "box ul"
-    dark = true
-    file-decoration-style = "#cad3f5"
-    file-style = "#cad3f5"
-    hunk-header-decoration-style = "box ul"
-    hunk-header-file-style = "bold"
-    hunk-header-line-number-style = "bold #a5adcb"
-    hunk-header-style = "file line-number syntax"
-    line-numbers = true
-    line-numbers-left-style = "#6e738d"
-    line-numbers-minus-style = "bold #ed8796"
-    line-numbers-plus-style = "bold #a6da95"
-    line-numbers-right-style = "#6e738d"
-    line-numbers-zero-style = "#6e738d"
-    minus-emph-style = "bold syntax #564052"
-    minus-style = "syntax #383143"
-    plus-emph-style = "bold syntax #455552"
-
-    plus-style = "syntax #313943"
-    map-styles = \
-        bold purple => syntax "#4d4569", \
-        bold blue => syntax "#3e4868", \
-        bold cyan => syntax "#3f5365", \
-        bold yellow => syntax "#585253"
-
 [merge]
     conflictstyle = diff3
 

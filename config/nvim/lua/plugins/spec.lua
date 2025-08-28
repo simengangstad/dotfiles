@@ -231,6 +231,10 @@ return {
 
                 -- Shell
                 "shfmt",
+
+                -- Markdown
+                "markdown-toc",
+                "markdownlint-cli2",
             },
         },
     },

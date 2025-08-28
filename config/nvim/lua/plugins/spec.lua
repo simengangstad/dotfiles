@@ -45,10 +45,30 @@ return {
     -- Add catppuccin
     {
         "catppuccin/nvim",
+        tag = "v1.10.0", -- Pin to v1.10 to avoid a breaking change in V1.11 API
         name = "catppuccin",
         priority = 1000,
         opts = {
-            flavour = "macchiato",
+            flavour = "auto",
+            background = {
+                light = "latte",
+                dark = "macchiato",
+            },
+        },
+    },
+
+    -- Switch between light and dark mode
+    {
+        "f-person/auto-dark-mode.nvim",
+        opts = {
+            set_dark_mode = function()
+                vim.api.nvim_set_option_value("background", "dark", {})
+            end,
+            set_light_mode = function()
+                vim.api.nvim_set_option_value("background", "light", {})
+            end,
+            update_interval = 2000,
+            fallback = "dark",
         },
     },
 

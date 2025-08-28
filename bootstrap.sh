@@ -3,11 +3,35 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     sudo apt update && sudo apt upgrade
-    sudo apt install -y zsh git neovim clang-format ccls bat ripgrep make cmake bat fzf python3-venv
 
-    # Symlink batcat to bat
+    # Environment
+    sudo apt install -y zsh python3-venv
+    pip3 install tldr
+
+    # Development
+    sudo apt install -y neovim
+
+    # Navigation, files & search
+    sudo apt install -y fzf zoxide eza ripgrep bat duf
+
     mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
+
+    # Git
+    sudo apt install -y git
+
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+    rm -r lazygit lazygit.tar.gz
+
+    # File manager
+    wget https://github.com/sxyazi/yazi/releases/download/v25.5.31/yazi-x86_64-unknown-linux-gnu.zip
+    unzip yazi-x86_64-unknown-linux-gnu.zip
+    cp yazi-x86_64-unknown-linux-gnu/yazi ~/.local/bin/yazi
+    rm -r yazi-x86_64-unknown-linux-gnu.zip yazi-x86_64-unknown-linux-gnu
+    sudo apt install -y 7zip jq poppler-utils fd-find ripgrep fzf zoxide imagemagick
 
     # Kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
@@ -18,13 +42,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
     echo 'kitty.desktop' >~/.config/xdg-terminals.list
 
-    # Lazygit
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit /usr/local/bin
-    rm -r lazygit lazygit.tar.gz
-
     # Enable zsh
     chsh -s "$(which zsh)"
 
@@ -33,16 +50,22 @@ else
     # Brew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew install git neovim clang-format ccls bat ripgrep make cmake bat fzf duf zoxide eza
 
-    # Desktop environment
+    # Environment
     brew install alfred skhd yabai
+    pip3 install tldr
 
-    # Yazi
+    # Development
+    brew install neovim
+
+    # Navigation, files & search
+    brew install fzf zoxide eza ripgrep bat duf
+
+    # Git
+    brew install git lazygit
+
+    # File manager
     brew install yazi sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font
-
-    # Lazygit
-    brew install lazygit
 
     # Kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
@@ -62,9 +85,6 @@ curl https://sh.rustup.rs -sSf | sh
 
 # Cargo packages
 cargo install du-dust tree-sitter-cli
-
-# Packer
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended

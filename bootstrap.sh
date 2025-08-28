@@ -33,7 +33,16 @@ else
     # Brew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew install git neovim clang-format ccls bat ripgrep lazygit make cmake bat fzf git-delta duf alfred skhd yabai zoxide eza
+    brew install git neovim clang-format ccls bat ripgrep make cmake bat fzf duf zoxide eza
+
+    # Desktop environment
+    brew install alfred skhd yabai
+
+    # Yazi
+    brew install yazi sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font
+
+    # Lazygit
+    brew install lazygit
 
     # Kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin

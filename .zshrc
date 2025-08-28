@@ -9,6 +9,14 @@ plugins=(
     history
 )
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
 source $ZSH/oh-my-zsh.sh
 
 bindkey -M vicmd 'k' history-substring-search-up

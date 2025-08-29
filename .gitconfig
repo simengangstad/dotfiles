@@ -41,8 +41,19 @@
 
 [diff]
     colorMoved = default
+
 [user]
 	name = Simen Gangstad
 	email = simen.gangstad@me.com
+
+[color]
+	ui = auto
+
+[pull]
+	ff = only
+
+[commit]
+    gpg-sign = true
+
 [init]
 	defaultBranch = main

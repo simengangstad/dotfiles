@@ -22,6 +22,7 @@
 for_window [class="gnome-calculator"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
 for_window [class="gnome-control-center"] floating enable
+for_window [class="1Password"] floating enable
 
 ###############################################################################
 # Meta Key Mappings

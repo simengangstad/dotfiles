@@ -27,7 +27,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export LC_ALL=en_US.UTF-8  
     export LANG=en_US.UTF-8
     export PATH="/opt/SEGGER/JLink:$PATH"
-    export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
 
     . "$HOME/.cargo/env"
     

@@ -17,11 +17,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 else
 	rm -rf "$HOME/.config/yabai" 
 	rm -rf "$HOME/.config/skhd" 
-    rm -rf "$HOME/.config/sketchybar"
 
 	ln -s "$SCRIPTPATH/config/yabai" "$HOME/.config/yabai"
 	ln -s "$SCRIPTPATH/config/skhd" "$HOME/.config/skhd"
-    ln -s "$SCRIPTPATH/config/sketchybar" "$HOME/.config/sketchybar"
 fi
 
 rm -rf "$HOME/.config/nvim"

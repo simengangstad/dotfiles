@@ -54,7 +54,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Fzf
 source <(fzf --zsh)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!build/"'
 
 # Eza
 alias ls='eza'

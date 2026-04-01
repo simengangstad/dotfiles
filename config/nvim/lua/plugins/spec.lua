@@ -196,7 +196,6 @@ return {
         opts = function(_, opts)
             opts.options = {
 
-                theme = "catppuccin",
                 component_separators = "|",
                 disabled_filetypes = { "packer", "NvimTree" },
                 ignore_focus = { "packer", "NvimTree" },

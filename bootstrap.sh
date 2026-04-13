@@ -18,7 +18,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     ln -s /usr/bin/batcat ~/.local/bin/bat
 
     # Git
-    sudo apt install -y git
+    sudo apt install -y git git-delta
 
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -62,7 +62,7 @@ else
     brew install fzf zoxide eza ripgrep bat duf
 
     # Git
-    brew install git lazygit
+    brew install git lazygit git-delta
 
     # File manager
     brew install yazi sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font

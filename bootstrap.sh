@@ -52,7 +52,8 @@ else
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # Environment
-    brew install alfred skhd yabai
+    brew install alfred
+    brew install --cask nikitabobko/tap/aerospace
     pip3 install tldr
 
     # Development
@@ -95,5 +96,3 @@ echo "2. Install cmake-language-server via pip"
 echo "3. Install Hack Nerd Font Mono"
 echo "4. Remap caps lock to escape (on gnome): gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']""
 echo "5. Log out to refresh the shell"
-echo "(optional, macOS) Disable SIP for advanced yabai features."
-echo "(optional, macOS) Add sudoer manually:\n echo "$(whoami) ALL = (root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | awk "{print \$1;}") $(which yabai) --load-sa" to '/private/etc/sudoers.d/yabai'"

@@ -15,11 +15,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     ln -s "$SCRIPTPATH/config/regolith3" "$HOME/.config/regolith3"
 
 else
-	rm -rf "$HOME/.config/yabai" 
-	rm -rf "$HOME/.config/skhd" 
+	rm -rf "$HOME/.aerospace.toml" 
 
-	ln -s "$SCRIPTPATH/config/yabai" "$HOME/.config/yabai"
-	ln -s "$SCRIPTPATH/config/skhd" "$HOME/.config/skhd"
+	ln -s "$SCRIPTPATH/config/.aerospace.toml" "$HOME/.aerospace.toml"
 fi
 
 rm -rf "$HOME/.config/nvim"
